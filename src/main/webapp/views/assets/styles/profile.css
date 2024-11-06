@@ -1,0 +1,145 @@
+@charset "UTF-8";
+
+.profile-container {
+  width: 100%;
+  height: auto;
+  margin-top: 81px;
+  display: flex;
+  flex-direction: column;
+}
+
+.profile-container h1 {
+  text-align: center;
+}
+
+.profile-container-feature {
+  display: flex;
+  flex-direction: row;
+}
+
+.profile-image {
+  padding-right: 20px;
+  margin-right: 50px;
+  width: 50%;
+  text-align: center;
+  border-right: 2px solid #000;
+}
+
+.profile-image > input {
+  background: none;
+  padding: 0;
+  margin-top: 60px;
+  width: 250px;
+}
+
+.profile-image > img {
+  width: 60%;
+}
+
+.profile-form {
+  width: 100%;
+  padding: 10px;
+}
+
+.profile-form-control {
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+}
+
+.profile-form-control .profile-form-group {
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+  padding: 10px;
+}
+
+.profile-form-user {
+  width: 100%;
+}
+
+.profile-form-user .form-group-user {
+  margin-top: 10px;
+}
+
+.form-group-user {
+  position: relative;
+}
+
+.form-group-user i {
+  position: absolute;
+  margin-top: 15px;
+  margin-left: 10px;
+}
+
+.form-group-user > input[type="text"],
+.form-group-user > input[type="email"] {
+  width: 100%;
+  padding: 10px 30px;
+  border-radius: 5px;
+  font-size: 20px;
+  border: 2px solid #000;
+}
+
+.form-group-user select,
+.form-group-user input[type="date"] {
+  width: 100%;
+  padding: 10px 30px;
+  border-radius: 5px;
+  font-size: 20px;
+  border: 2px solid #000;
+}
+
+.form-group-address {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+.form-group-country {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 30%;
+}
+
+.form-group-country select {
+  width: 100%;
+  padding: 10px 30px;
+  border-radius: 5px;
+  font-size: 20px;
+  border: 2px solid #000;
+}
+
+.profile-form-user .number-house {
+  margin-top: 10px;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.number-house input[type="text"] {
+  width: 100%;
+  border: 2px solid #000;
+  padding: 10px;
+  border-radius: 5px;
+  font-size: 20px;
+  border: 2px solid #000;
+}
+
+.profile-button-control {
+  padding: 10px;
+  text-align: center;
+}
+
+.profile-button-control button {
+  width: 10%;
+  height: 40px;
+  border-radius: 15px;
+  background-color: transparent;
+  cursor: pointer;
+}
+
+.profile-button-control button:hover {
+  background-color: aqua;
+}
