@@ -45,4 +45,5 @@
 	<!-- Footer -->
 	<jsp:include page="/views/fragment/footer.html" />
 </body>
+
 </html>
