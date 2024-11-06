@@ -5,8 +5,6 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<link rel="stylesheet" type="text/css"
-	href="<%=request.getContextPath()%>/views/assets/styles/profile.css" />
 <%@ include file="/views/fragment/head.html"%>
 <title>Thông tin cá nhân</title>
 </head>
@@ -14,7 +12,6 @@
 	<!-- Header -->
 	<jsp:include page="/views/fragment/header.html" />
 	<div class="profile-container">
-		<hr />
 		<h1>Thông tin cá nhân</h1>
 		<hr />
 		<div class="profile-container-feature">
