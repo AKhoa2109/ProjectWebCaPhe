@@ -2,7 +2,7 @@
 
 GO
 
-BEGIN TRANSACTION
+-- BEGIN TRANSACTION
 
 INSERT INTO Voucher (MaVC, TenVC, GiaTriVC, SoLuotSuDungToiDa, SoLuotDaSuDung, NgayBatDau, NgayKetThuc, TrangThai) VALUES
 ('VC01', N'Giảm giá 10%', 0.1, 100, 5, '2024-11-01', '2024-12-01', N'Còn hạn'),
@@ -39,19 +39,44 @@ INSERT INTO DonHangApDungVoucher (MaDH, MaVC) VALUES
 ('DH04', 'VC04'),
 ('DH05', 'VC05');
 
-INSERT INTO LoaiSanPham (MaLoaiSP, TenLoaiSP) VALUES
-('LSP01', N'Cà phê đen'),
-('LSP02', N'Cà phê sữa'),
-('LSP03', N'Sinh tố'),
-('LSP04', N'Nước ngọt'),
-('LSP05', N'Trà sữa');
+INSERT INTO LoaiSanPham (MaLoaiSP, TenLoaiSP,HinhLoaiSP) VALUES
+('LSP01', N'Cà phê','caphedenda.jpg'),
+('LSP02', N'Trà','travai.jpg'),
+('LSP03', N'Sinh tố','sinhtobo.jpg'),
+('LSP04', N'Kem','kemsocola.jpg'),
+('LSP05', N'Bánh kem','banhkemdau.jpg'),
+('LSP06', N'Bánh','tiramisu.jpg');
 
-INSERT INTO SanPham (MaSP, TenSP, GiaSP, AnhSP, MaLoaiSP) VALUES
-('SP01', N'Cà phê đen', 15000, 'bacxiu.jpg', 'LSP01'),
-('SP02', N'Cà phê sữa', 20000, 'tradao.jpg', 'LSP02'),
-('SP03', N'Sinh tố xoài', 30000, 'sinhtodau.jpg', 'LSP03'),
-('SP04', N'Coca', 10000, 'kemdau.jpg', 'LSP04'),
-('SP05', N'Trà sữa', 25000, 'cappuccinonong.jpg', 'LSP05');
+INSERT INTO SanPham (MaSP, TenSP, GiaSP, AnhSP, MaLoaiSP, MoTaSP) VALUES
+('SP01', N'Cà phê đen đá', 20000, 'caphedenda.jpg', 'LSP01',''),
+('SP02', N'Cà phê sữa đá', 25000, 'caphesuada.jpg', 'LSP01',''),
+('SP03', N'Bạc xỉu', 25000, 'bacxiu.jpg', 'LSP01',''),
+('SP04', N'Đường đen sữa đá', 30000, 'duongdensuada.jpg', 'LSP01',''),
+('SP05', N'Latte đá', 35000, 'latteda.jpg', 'LSP01',''),
+('SP06', N'Latte nóng', 35000, 'lattenong.jpg', 'LSP01',''),
+('SP07', N'Cappuccino đá', 35000, 'cappuccinoda.jpg', 'LSP01',''),
+('SP08', N'Cappuccino nóng', 35000, 'cappuccinonong.jpg', 'LSP01',''),
+('SP09', N'Trà đào', 30000, 'tradao.jpg', 'LSP02',''),
+('SP10', N'Trà đào cam sả', 40000, 'tradaocamsa.jpg', 'LSP02',''),
+('SP11', N'Trà vải', 30000, 'travai.jpg', 'LSP02',''),
+('SP12', N'Trà sen', 30000, 'trasen.jpg', 'LSP02',''),
+('SP13', N'Sinh tố bơ', 35000, 'sinhtobo.jpg', 'LSP03',''),
+('SP14', N'Sinh tố dâu', 35000, 'sinhtodau.jpg', 'LSP03',''),
+('SP15', N'Sinh tố mãng cầu', 30000, 'sinhtomangcau.jpg', 'LSP03',''),
+('SP16', N'Sinh tố nho', 30000, 'sinhtonho.jpg', 'LSP03',''),
+('SP17', N'Kem socola', 12000, 'kemsocola.jpg', 'LSP04',''),
+('SP18', N'Kem dâu', 12000, 'kemdau.jpg', 'LSP04',''),
+('SP19', N'Kem matcha', 12000, 'kemmatcha.jpg', 'LSP04',''),
+('SP20', N'Kem cà phê', 12000, 'kemcaphe.jpg', 'LSP04',''),
+('SP21', N'Bánh kem cheese', 35000, 'banhkemcheese.jpg', 'LSP05',''),
+('SP22', N'Bánh kem dâu', 35000, 'banhkemdau.jpg', 'LSP05',''),
+('SP23', N'Bánh kem socola', 35000, 'banhkemsocola.jpg', 'LSP05',''),
+('SP24', N'Bánh kem matcha', 35000, 'banhkemmatcha.jpg', 'LSP05',''),
+('SP25', N'Bánh tiramisu', 38000, 'tiramisu.jpg', 'LSP06',''),
+('SP26', N'Bánh chà bông phô mai', 27000, 'chabongphomai.jpg', 'LSP06',''),
+('SP27', N'Bánh croissant', 22000, 'croissant.jpg', 'LSP06',''),
+('SP28', N'Bánh chaud', 22000, 'chaud.jpg', 'LSP06','');
+
 
 INSERT INTO GioHang (MaND, MaSP, SoLuongMua) VALUES
 ('ND03', 'SP01', 2),

@@ -9,7 +9,7 @@
 <title>Đăng kí</title>
 </head>
 <body>
-	<jsp:include page="/views/fragment/header.html" />
+	<jsp:include page="/views/fragment/header.jsp" />
 	<div class="profile-container">
       <h1>Đăng kí</h1>
       <hr />
@@ -140,6 +140,6 @@
         </div>
       </div>
     </div>
-    <jsp:include page="/views/fragment/footer.html" />
+    <jsp:include page="/views/fragment/footer.jsp" />
 </body>
 </html>

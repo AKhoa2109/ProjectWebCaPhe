@@ -22,7 +22,7 @@
 <body>
 
 	<!-- Header -->
-	<jsp:include page="/views/fragment/header.html" />
+	<jsp:include page="/views/fragment/header.jsp" />
 	<!-- Nội dung -->
 	<div class="contact-container">
 		<div class="contact-introduce">
@@ -98,7 +98,7 @@
 		</div>
 	</div>
 	<!-- Footer -->
-	<jsp:include page="/views/fragment/footer.html" />
+	<jsp:include page="/views/fragment/footer.jsp" />
 
 </body>
 </html>

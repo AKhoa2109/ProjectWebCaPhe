@@ -10,7 +10,7 @@
 </head>
 <body>
 	<!-- Header -->
-	<jsp:include page="/views/fragment/header.html" />
+	<jsp:include page="/views/fragment/header.jsp" />
 	<div class="profile-container">
 		<h1>Thông tin cá nhân</h1>
 		<hr />
@@ -97,6 +97,6 @@
 		</div>
 	</div>
 	<!-- Footer -->
-	<jsp:include page="/views/fragment/footer.html" />
+	<jsp:include page="/views/fragment/footer.jsp" />
 </body>
 </html>

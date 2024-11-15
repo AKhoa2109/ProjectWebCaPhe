@@ -10,7 +10,7 @@
 </head>
 <body>
 	<!-- Header -->
-	<jsp:include page="/views/fragment/header.html" />
+	<jsp:include page="/views/fragment/header.jsp" />
 	
 	<div class="login-container">
 		<div class="login-form">
@@ -43,7 +43,7 @@
 		</div>
 	</div>
 	<!-- Footer -->
-	<jsp:include page="/views/fragment/footer.html" />
+	<jsp:include page="/views/fragment/footer.jsp" />
 </body>
 
 </html>

@@ -43,7 +43,7 @@
 </head>
 <body> 
 	<!-- Header -->
-	<jsp:include page="/views/fragment/header.html" />
+	<jsp:include page="/views/fragment/header.jsp" />
 	
 	
 	<!-- Toast để thông bao  -->
