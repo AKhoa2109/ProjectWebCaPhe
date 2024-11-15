@@ -162,6 +162,44 @@ public class SanPhamDao {
         return data;  
 	}
 	
+	public List<SanPham> getSanPhamCungLoaiSP(String idLoaiSP, String idSP)
+	{
+		String sql = """
+				SELECT * FROM SanPham INNER JOIN 
+				LoaiSanPham ON SanPham.MaLoaiSP = LoaiSanPham.MaLoaiSP 
+				WHERE SanPham.MaLoaiSP = ? AND SanPham.MaSP != ?
+				"""; 
+        List<SanPham> data = new ArrayList<>(); 
+
+        try { 
+            conn = DBConnection.getConnection();
+            ps = conn.prepareStatement(sql);
+            ps.setString(1,idLoaiSP);
+            ps.setString(2,idSP);
+            rs = ps.executeQuery();
+            
+            while (rs.next()) { 
+                
+            	SanPham s = new SanPham(
+                    rs.getString("MaSP"), 
+                    rs.getString("TenSP"), 
+                    rs.getFloat("GiaSP"), 
+                    rs.getString("AnhSP"), 
+                    rs.getString("MaLoaiSP"),
+                    rs.getString("TenLoaiSP"),
+                    rs.getString("MoTaSP")
+                );
+                data.add(s);  
+            }
+        } catch (SQLException e) {
+            e.printStackTrace(); 
+        } finally {
+            DBConnection.close(rs, ps, conn); 
+        }  
+
+        return data;  
+	}
+	
 	public SanPham getSanPhamByLoaiId(String idSP)
 	{
 		String sql = """

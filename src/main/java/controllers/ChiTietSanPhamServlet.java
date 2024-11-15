@@ -34,7 +34,7 @@ public class ChiTietSanPhamServlet extends HttpServlet {
 		SanPhamDao sanPhamDao = new SanPhamDao();
 		
 		request.setAttribute("product", sanPhamDao.getSanPhamByLoaiId(id));
-		request.setAttribute("listProduct", sanPhamDao.getSanPhamByLoaiSP(idLoaiSp));
+		request.setAttribute("listProduct", sanPhamDao.getSanPhamCungLoaiSP(idLoaiSp,id));
 		request.getRequestDispatcher("/views/template/chitietSP.jsp").forward(request, response);
 		
 		

@@ -61,7 +61,7 @@
 			<div class="related-products-container">
 				<c:forEach var="list" items="${listProduct}">
 					<div class="related-product-item">
-						<a href="ChiTietSanPhamServlet?id=${product.maSP}&type=${product.maLoaiSP}">
+						<a href="ChiTietSanPhamServlet?id=${list.maSP}&type=${list.maLoaiSP}">
 							<img
 							src="<%=request.getContextPath()%>/views/assets/images/HinhSanPham/${list.anhSP}"
 							alt="${list.tenSP}" />
