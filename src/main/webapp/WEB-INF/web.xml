@@ -4,6 +4,8 @@
   <welcome-file-list>
     <welcome-file>TrangChuServlet</welcome-file>
     <welcome-file>DanhMucSanPham</welcome-file>
+    <welcome-file>GoogleLoginServlet</welcome-file>
+    <welcome-file>contact.jsp</welcome-file>
     <welcome-file>VoucherServlet</welcome-file>
   </welcome-file-list>
   <servlet>
@@ -35,5 +37,35 @@
   <servlet-mapping>
     <servlet-name>ChiTietSanPhamServlet</servlet-name>
     <url-pattern>/ChiTietSanPhamServlet</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>ThongTinCaNhanServlet</display-name>
+    <servlet-name>ThongTinCaNhanServlet</servlet-name>
+    <servlet-class>controllers.ThongTinCaNhanServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ThongTinCaNhanServlet</servlet-name>
+    <url-pattern>/ThongTinCaNhanServlet</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>GoogleLoginServlet</display-name>
+    <servlet-name>GoogleLoginServlet</servlet-name>
+    <servlet-class>controllers.GoogleLoginServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>GoogleLoginServlet</servlet-name>
+    <url-pattern>/GoogleLoginServlet</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>ImageProxyServlet</display-name>
+    <servlet-name>ImageProxyServlet</servlet-name>
+    <servlet-class>controllers.ImageProxyServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ImageProxyServlet</servlet-name>
+    <url-pattern>/ImageProxyServlet</url-pattern>
   </servlet-mapping>
 </web-app>
