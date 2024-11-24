@@ -20,7 +20,10 @@ public class VoucherDao {
 
     // Phương thức lấy tất cả các voucher từ cơ sở dữ liệu
     public List<Voucher> getAll()  { 
-        String sql = "SELECT * FROM Voucher"; // Thay đổi bảng thành Voucher
+        String sql = """
+        		SELECT * 
+        		FROM Voucher
+        		""";  
         List<Voucher> data = new ArrayList<>(); 
 
         try { 
@@ -28,27 +31,26 @@ public class VoucherDao {
             ps = conn.prepareStatement(sql);
             rs = ps.executeQuery();
             
-            while (rs.next()) { 
-                // Khởi tạo đối tượng Voucher từ dữ liệu trong ResultSet
+            while (rs.next()) {  
                 Voucher v = new Voucher(
-                    rs.getString("maVC"), // Mã voucher
-                    rs.getString("tenVC"), // Tên voucher
-                    rs.getFloat("giaTriVC"), // Giá trị voucher
-                    rs.getInt("soLuotSuDungToiDa"), // Số lượt sử dụng tối đa
-                    rs.getInt("soLuotDaSuDung"), // Số lượt đã sử dụng
-                    rs.getDate("ngayBatDau"), // Ngày bắt đầu
-                    rs.getDate("ngayKetThuc"), // Ngày kết thúc
-                    rs.getString("trangThai") // Tình trạng
+                    rs.getString("maVC"),  
+                    rs.getString("tenVC"),  
+                    rs.getFloat("giaTriVC"),  
+                    rs.getInt("soLuotSuDungToiDa"), 
+                    rs.getInt("soLuotDaSuDung"),  
+                    rs.getDate("ngayBatDau"), 
+                    rs.getDate("ngayKetThuc"),  
+                    rs.getString("trangThai")  
                 );
-                data.add(v);  // Thêm voucher vào danh sách
+                data.add(v);   
             }
         } catch (SQLException e) {
             e.printStackTrace(); 
         } finally {
-            DBConnection.close(rs, ps, conn); // Đảm bảo đóng kết nối
+            DBConnection.close(rs, ps, conn);  
         }  
 
-        return data;  // Trả về danh sách các voucher
+        return data;   
     }
     
     public Voucher getById(String maVC) {
@@ -87,15 +89,14 @@ public class VoucherDao {
 
     public boolean insert(Voucher v) {
         String sql = """
-            INSERT INTO Voucher
-            (maVC, tenVC, giaTriVC, soLuotSuDungToiDa, soLuotDaSuDung, ngayBatDau, ngayKetThuc, trangThai)
+            INSERT INTO Voucher(maVC, tenVC, giaTriVC, soLuotSuDungToiDa, soLuotDaSuDung, ngayBatDau, ngayKetThuc, trangThai)
             VALUES (?, ?, ?, ?, ?, ?, ?, ?)
             """;
 
         try {
             conn = DBConnection.getConnection();
             ps = conn.prepareStatement(sql);
-            ps.setString(1, v.getMaVC());
+            ps.setString(1, v.getMaVC()); //Đã có trg_TuDongTaoMaVC_Voucher, nên 1 và 8 điền j cũng được
             ps.setString(2, v.getTenVC());
             ps.setFloat(3, v.getGiaTriVC());
             ps.setInt(4, v.getSoLuotSuDungToiDa());
@@ -122,7 +123,6 @@ public class VoucherDao {
         try {
             conn = DBConnection.getConnection();
             ps = conn.prepareStatement(sql);
-            ps.setString(8, v.getMaVC());
             ps.setString(1, v.getTenVC());
             ps.setFloat(2, v.getGiaTriVC());
             ps.setInt(3, v.getSoLuotSuDungToiDa());
@@ -130,6 +130,7 @@ public class VoucherDao {
             ps.setDate(5, v.getNgayBatDau());
             ps.setDate(6, v.getNgayKetThuc());
             ps.setString(7, v.getTrangThai());
+            ps.setString(8, v.getMaVC());
             return ps.executeUpdate() > 0;
         } catch (SQLException e) {
             e.printStackTrace();
@@ -159,15 +160,15 @@ public class VoucherDao {
     }
     
     public List<Voucher> searchByName(String tenVC) {
-        String sql = """
-            SELECT * FROM Voucher
-            WHERE tenVC COLLATE Latin1_General_CI_AS LIKE ?
-        """;
+    	String sql = """
+    	        SELECT * FROM Voucher
+    	        WHERE tenVC LIKE N'%'+?+'%' 
+    	    """;
         List<Voucher> data = new ArrayList<>();
         try {
             conn = DBConnection.getConnection();
             ps = conn.prepareStatement(sql);
-            ps.setString(1, "%" + tenVC + "%");
+            ps.setString(1, tenVC);
             rs = ps.executeQuery();
             while (rs.next()) {
                 Voucher v = new Voucher(
@@ -180,8 +181,7 @@ public class VoucherDao {
                     rs.getDate("ngayKetThuc"),
                     rs.getString("trangThai")
                 );
-                data.add(v);
-                System.out.println("Mã: "+rs.getString("maVC"));
+                data.add(v); 
             }
         } catch (SQLException e) {
             e.printStackTrace();

@@ -18,7 +18,7 @@ public class NguoiDung {
 	}
 
 	public NguoiDung(String maND, String tenND, int namSinh, String gioiTinh, String sdt, String email, String diaChi,
-			String anhND, String vaiTro, String tenDangNhap, String matKhau) {
+			String anhND, String vaiTro, String tenDangNhap, String matKhau) { //Table NguoiDung
 		this.maND = maND;
 		this.tenND = tenND;
 		this.namSinh = namSinh;

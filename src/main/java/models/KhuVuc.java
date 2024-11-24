@@ -4,11 +4,11 @@ public class KhuVuc {
 	private String maKV;
 	private String tenKV;
 	private float phiVanChuyen;
+	
 	public KhuVuc() {
 		
 	}
-	public KhuVuc(String maKV, String tenKV, float phiVanChuyen) {
-		super();
+	public KhuVuc(String maKV, String tenKV, float phiVanChuyen) { //Table Khu Vuc
 		this.maKV = maKV;
 		this.tenKV = tenKV;
 		this.phiVanChuyen = phiVanChuyen;

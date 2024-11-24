@@ -29,11 +29,11 @@ public class VoucherServlet extends HttpServlet {
         String action = request.getParameter("action"); 
         
         if (action == null) {
-            request.setAttribute("vouchers", vcDao.getAll());
+            request.setAttribute("voucherList", vcDao.getAll());
             request.getRequestDispatcher("/views/template/admin.jsp?page=voucherTable").forward(request, response);
         } else if (action.equals("search")) {
             String tenVoucher = request.getParameter("txtTimTenVoucher");
-            request.setAttribute("vouchers", vcDao.searchByName(tenVoucher));
+            request.setAttribute("voucherList", vcDao.searchByName(tenVoucher));
             request.getRequestDispatcher("/views/template/admin.jsp?page=voucherTable").forward(request, response); 
         } else if (action.equals("edit")) {
             String maVC = request.getParameter("maVC");
@@ -46,7 +46,7 @@ public class VoucherServlet extends HttpServlet {
             } else {
                 request.setAttribute("msg", "Xóa không thành công");
             }
-            request.setAttribute("vouchers", vcDao.getAll());
+            request.setAttribute("voucherList", vcDao.getAll());
             request.getRequestDispatcher("/views/template/admin.jsp?page=voucherTable").forward(request, response);
         } else if (action.equals("insert") || action.equals("update")) {
             String maVC = request.getParameter("maVC");
@@ -58,22 +58,22 @@ public class VoucherServlet extends HttpServlet {
             Date ngayKetThuc = Date.valueOf(request.getParameter("ngayKetThuc"));
             String trangThai = request.getParameter("trangThai");
 
-            Voucher voucher = new Voucher(maVC, tenVC, giaTriVC, soLuotSuDungToiDa, soLuotDaSuDung, ngayBatDau, ngayKetThuc, trangThai);
+            Voucher newVoucher = new Voucher(maVC, tenVC, giaTriVC, soLuotSuDungToiDa, soLuotDaSuDung, ngayBatDau, ngayKetThuc, trangThai);
 
             if (action.equals("insert")) {
-                if (vcDao.insert(voucher)) {
+                if (vcDao.insert(newVoucher)) {
                     request.setAttribute("msg", "Thêm thành công");
                 } else {
                     request.setAttribute("msg", "Thêm không thành công");
                 }
             } else {
-                if (vcDao.update(voucher)) {
+                if (vcDao.update(newVoucher)) {
                     request.setAttribute("msg", "Sửa thành công");
                 } else {
                     request.setAttribute("msg", "Sửa không thành công");
                 }
             }
-            request.setAttribute("vouchers", vcDao.getAll());
+            request.setAttribute("voucherList", vcDao.getAll());
             request.getRequestDispatcher("/views/template/admin.jsp?page=voucherTable").forward(request, response);
         }
     }
