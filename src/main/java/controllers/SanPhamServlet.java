@@ -47,6 +47,8 @@ public class SanPhamServlet extends HttpServlet {
         if (action == null) {
             request.setAttribute("sanPhamList", spDao.getAll());
             request.getRequestDispatcher("/views/template/admin.jsp?page=sanPhamTable").forward(request, response);
+        } else if (action.equals("add")) {  
+            request.getRequestDispatcher("/views/template/admin.jsp?page=sanPhamAdd").forward(request, response);
         } else if (action.equals("edit")) {
             String maSP = request.getParameter("maSP");
             request.setAttribute("sanPham", spDao.getById(maSP));
@@ -80,7 +82,16 @@ public class SanPhamServlet extends HttpServlet {
         	
         	request.setAttribute("sanPhamList", spDao.getAll());
             request.getRequestDispatcher("/views/template/admin.jsp?page=sanPhamTable").forward(request, response);
-        } 
+        } else if (action.equals("delete")) {
+        	String maSP = request.getParameter("maSP");
+            if (spDao.delete(maSP)) {
+                request.setAttribute("msg", "Xóa thành công");
+            } else {
+                request.setAttribute("msg", "Xóa không thành công");
+            }
+            request.setAttribute("sanPhamList", spDao.getAll());
+            request.getRequestDispatcher("/views/template/admin.jsp?page=sanPhamTable").forward(request, response);
+        }
 	}
 
 	/**

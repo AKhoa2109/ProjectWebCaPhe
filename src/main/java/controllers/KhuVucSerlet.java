@@ -37,6 +37,8 @@ public class KhuVucSerlet extends HttpServlet {
         if (action == null) {
             request.setAttribute("khuVucList", kvDao.getAll());
             request.getRequestDispatcher("/views/template/admin.jsp?page=khuVucTable").forward(request, response);
+        } else if (action.equals("add")) {  
+            request.getRequestDispatcher("/views/template/admin.jsp?page=khuVucAdd").forward(request, response);
         } else if (action.equals("edit")) {
             String maKV = request.getParameter("maKV");
             request.setAttribute("khuVuc", kvDao.getById(maKV));   
@@ -64,7 +66,16 @@ public class KhuVucSerlet extends HttpServlet {
         	
         	request.setAttribute("khuVucList", kvDao.getAll());
             request.getRequestDispatcher("/views/template/admin.jsp?page=khuVucTable").forward(request, response);
-        } 
+        } else if (action.equals("delete")) {
+        	String maKV = request.getParameter("maKV");
+            if (kvDao.delete(maKV)) {
+                request.setAttribute("msg", "Xóa thành công");
+            } else {
+                request.setAttribute("msg", "Xóa không thành công");
+            }
+            request.setAttribute("khuVucList", kvDao.getAll());
+            request.getRequestDispatcher("/views/template/admin.jsp?page=khuVucTable").forward(request, response);
+        }
 	}
 
 	/**

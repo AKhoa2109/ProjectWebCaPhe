@@ -11,7 +11,7 @@
 
 <div class="d-flex align-items-center justify-content-between">
     <p>
-        <a href="views/template/admin.jsp?page=voucherAdd" class="btn btn-primary rounded">
+        <a href="<%=request.getContextPath()%>/SanPhamServlet?action=add" class="btn btn-primary rounded">
             <i class="fas fa-plus-circle"></i> Thêm mới
         </a>
     </p>
@@ -53,10 +53,10 @@
 	              
 			    <td>
 				    <div class="btn-group d-flex justify-content-center"> 
-				        <a href="${pageContext.request.contextPath}/SanPhamServlet?action=edit&maSP=${sp.maSP}" class="text-info mr-3" style="font-size: 20px;">
+				        <a href="<%=request.getContextPath()%>/SanPhamServlet?action=edit&maSP=${sp.maSP}" class="text-info mr-3" style="font-size: 20px;">
 				            <i class="fas fa-edit"></i>
 				        </a> 
-				        <a href="${pageContext.request.contextPath}/SanPhamServlet?action=delete&maSP=${sp.maSP}" class="text-danger mr-3" onclick="return confirm('Bạn có chắc muốn xóa?');" style="font-size: 20px;">
+				        <a href="<%=request.getContextPath()%>/SanPhamServlet?action=delete&maSP=${sp.maSP}" class="text-danger mr-3" onclick="return confirm('Bạn có chắc muốn xóa?');" style="font-size: 20px;">
 				            <i class="fas fa-trash-alt"></i>
 				        </a>
 				    </div>

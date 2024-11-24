@@ -36,6 +36,8 @@ public class DonViServlet extends HttpServlet {
         if (action == null) {
             request.setAttribute("donViList", dvDao.getAll());
             request.getRequestDispatcher("/views/template/admin.jsp?page=donViTable").forward(request, response);
+        } else if (action.equals("add")) {  
+            request.getRequestDispatcher("/views/template/admin.jsp?page=donViAdd").forward(request, response);
         } else if (action.equals("edit")) {
             String maDV = request.getParameter("maDV");
             request.setAttribute("donVi", dvDao.getById(maDV));
@@ -62,7 +64,16 @@ public class DonViServlet extends HttpServlet {
         	
         	request.setAttribute("donViList", dvDao.getAll());
             request.getRequestDispatcher("/views/template/admin.jsp?page=donViTable").forward(request, response);
-        } 
+        } else if (action.equals("delete")) {
+        	String maDV = request.getParameter("maDV");
+            if (dvDao.delete(maDV)) {
+                request.setAttribute("msg", "Xóa thành công");
+            } else {
+                request.setAttribute("msg", "Xóa không thành công");
+            }
+            request.setAttribute("donViList", dvDao.getAll());
+            request.getRequestDispatcher("/views/template/admin.jsp?page=donViTable").forward(request, response);
+        }
 	}
 
 	/**

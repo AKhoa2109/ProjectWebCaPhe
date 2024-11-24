@@ -39,6 +39,8 @@ public class NguyenLieuServlet extends HttpServlet {
         if (action == null) {
             request.setAttribute("nguyenLieuList", nlDao.getAll());
             request.getRequestDispatcher("/views/template/admin.jsp?page=nguyenLieuTable").forward(request, response);
+        } else if (action.equals("add")) {  
+            request.getRequestDispatcher("/views/template/admin.jsp?page=nguyenLieuAdd").forward(request, response);
         } else if (action.equals("edit")) {
             String maNL = request.getParameter("maNL");
             request.setAttribute("nguyenLieu", nlDao.getById(maNL));  
@@ -68,6 +70,15 @@ public class NguyenLieuServlet extends HttpServlet {
             }
         	
         	request.setAttribute("nguyenLieuList", nlDao.getAll());
+            request.getRequestDispatcher("/views/template/admin.jsp?page=nguyenLieuTable").forward(request, response);
+        } else if (action.equals("delete")) {
+        	String maNL = request.getParameter("maNL");
+            if (nlDao.delete(maNL)) {
+                request.setAttribute("msg", "Xóa thành công");
+            } else {
+                request.setAttribute("msg", "Xóa không thành công");
+            }
+            request.setAttribute("nguyenLieuList", nlDao.getAll());
             request.getRequestDispatcher("/views/template/admin.jsp?page=nguyenLieuTable").forward(request, response);
         }
 	}

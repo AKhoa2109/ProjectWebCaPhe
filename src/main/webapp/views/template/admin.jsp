@@ -24,7 +24,9 @@
 	<script src="<%=request.getContextPath()%>/views/assets/js/admin.js"></script> 
 	
 	<script src="ckeditor/ckeditor.js"></script> <!-- CKEditor là một trình soạn thảo WYSIWYG cho phép người dùng tạo và chỉnh sửa nội dung văn bản một cách dễ dàng, với giao diện trực quan. -->
- 
+ 	
+ 	<script src="<%=request.getContextPath()%>/views/assets/js/adminUploadAnh.js"></script> 
+ 	
 	<style>  
 		 
 	</style>
@@ -40,34 +42,34 @@
 			         class="drawer-logo img-fluid rounded-circle mb-3"/>
 			    <ul class="list-group">
 			        <li class="list-group-item list-group-item-action" id="dashboard">
-			            <a href="DashBoardServlet" class="d-flex align-items-center"><i class="fas fa-tachometer-alt icon mr-2"></i><span class="menu-text">Dashboard</span></a>
+			            <a href="<%=request.getContextPath()%>/DashBoardServlet" class="d-flex align-items-center"><i class="fas fa-tachometer-alt icon mr-2"></i><span class="menu-text">Dashboard</span></a>
 			        </li>
 			        <li class="list-group-item list-group-item-action" id="ingredients">
-			            <a href="NguyenLieuServlet" class="d-flex align-items-center"><i class="fas fa-cogs icon mr-2"></i><span class="menu-text">Ingredients</span></a>
+			            <a href="<%=request.getContextPath()%>/NguyenLieuServlet" class="d-flex align-items-center"><i class="fas fa-cogs icon mr-2"></i><span class="menu-text">Ingredients</span></a>
 			        </li>
 			        <li class="list-group-item list-group-item-action" id="units">
-			            <a href="DonViServlet" class="d-flex align-items-center"><i class="fas fa-ruler icon mr-2"></i><span class="menu-text">Units</span></a>
+			            <a href="<%=request.getContextPath()%>/DonViServlet" class="d-flex align-items-center"><i class="fas fa-ruler icon mr-2"></i><span class="menu-text">Units</span></a>
 			        </li>
 			        <li class="list-group-item list-group-item-action" id="categories">
-			            <a href="LoaiSanPhamServlet" class="d-flex align-items-center"><i class="fas fa-th-large icon mr-2"></i><span class="menu-text">Categories</span></a>
+			            <a href="<%=request.getContextPath()%>/LoaiSanPhamServlet" class="d-flex align-items-center"><i class="fas fa-th-large icon mr-2"></i><span class="menu-text">Categories</span></a>
 			        </li>
 			        <li class="list-group-item list-group-item-action" id="products">
-			            <a href="SanPhamServlet" class="d-flex align-items-center"><i class="fas fa-box icon mr-2"></i><span class="menu-text">Products</span></a>
+			            <a href="<%=request.getContextPath()%>/SanPhamServlet" class="d-flex align-items-center"><i class="fas fa-box icon mr-2"></i><span class="menu-text">Products</span></a>
 			        </li>
 			        <li class="list-group-item list-group-item-action" id="vouchers">
-			            <a href="VoucherServlet" class="d-flex align-items-center"><i class="fas fa-gift icon mr-2"></i><span class="menu-text">Vouchers</span></a>
+			            <a href="<%=request.getContextPath()%>/VoucherServlet" class="d-flex align-items-center"><i class="fas fa-gift icon mr-2"></i><span class="menu-text">Vouchers</span></a>
 			        </li>
 			        <li class="list-group-item list-group-item-action" id="shipping">
-			            <a href="KhuVucServlet" class="d-flex align-items-center"><i class="fas fa-truck icon mr-2"></i><span class="menu-text">Shipping</span></a>
+			            <a href="<%=request.getContextPath()%>/KhuVucServlet" class="d-flex align-items-center"><i class="fas fa-truck icon mr-2"></i><span class="menu-text">Shipping</span></a>
 			        </li>
 			        <li class="list-group-item list-group-item-action" id="orders">
-			            <a href="DonHangServlet" class="d-flex align-items-center"><i class="fas fa-clipboard-list icon mr-2"></i><span class="menu-text">Orders</span></a>
+			            <a href="<%=request.getContextPath()%>/DonHangServlet" class="d-flex align-items-center"><i class="fas fa-clipboard-list icon mr-2"></i><span class="menu-text">Orders</span></a>
 			        </li>
 			        <li class="list-group-item list-group-item-action" id="accounts">
-			            <a href="NguoiDungServlet" class="d-flex align-items-center"><i class="fas fa-users icon mr-2"></i><span class="menu-text">Accounts</span></a>
+			            <a href="<%=request.getContextPath()%>/NguoiDungServlet" class="d-flex align-items-center"><i class="fas fa-users icon mr-2"></i><span class="menu-text">Accounts</span></a>
 			        </li> 
 			        <li class="list-group-item list-group-item-action" id="slides">
-			            <a href="SlideServlet" class="d-flex align-items-center"><i class="fas fa-images icon mr-2"></i><span class="menu-text">Slides</span></a>
+			            <a href="<%=request.getContextPath()%>/SlideServlet" class="d-flex align-items-center"><i class="fas fa-images icon mr-2"></i><span class="menu-text">Slides</span></a>
 			        </li> 
 			       <!--  <li class="list-group-item list-group-item-action" id="logOut">
 			            <a href="#" class="d-flex align-items-center" onclick="return confirm('Bạn có chắc muốn đăng xuất?');"><i class="fas fa-sign-out-alt icon mr-2"></i><span class="menu-text">Log out</span></a>

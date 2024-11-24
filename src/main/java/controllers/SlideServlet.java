@@ -46,6 +46,8 @@ public class SlideServlet extends HttpServlet {
         if (action == null) {
             request.setAttribute("slideList", sDao.getAll());
             request.getRequestDispatcher("/views/template/admin.jsp?page=slideTable").forward(request, response);
+        } else if (action.equals("add")) {  
+            request.getRequestDispatcher("/views/template/admin.jsp?page=slideAdd").forward(request, response);
         } else if (action.equals("edit")) {
             String maSlide = request.getParameter("maSlide");
             request.setAttribute("slide", sDao.getById(maSlide));

@@ -9,13 +9,13 @@
     <!-- Tên nguyên liệu -->
     <div class="form-group">
         <label for="tenNL" class="font-weight-bold">Tên Nguyên Liệu</label>
-        <input type="text" class="form-control" id="tenNL" name="tenNL" placeholder="Nhập tên nguyên liệu" required />
+        <input type="text" class="form-control" id="tenNL" name="tenNL"/>
     </div>
 
     <!-- Số lượng tồn kho -->
     <div class="form-group">
         <label for="soLuongTonKho" class="font-weight-bold">Số Lượng Tồn Kho</label>
-        <input type="number" class="form-control" id="soLuongTonKho" name="soLuongTonKho" placeholder="Nhập số lượng tồn kho" min="0" required />
+        <input type="number" class="form-control" id="soLuongTonKho" name="soLuongTonKho" min="0"/>
     </div>
 
     <!-- Đơn vị -->
@@ -30,6 +30,6 @@
     
     <div class="form-group d-flex justify-content-center"> 
         <button type="submit" class="btn btn-primary mr-2" style="width:100px">Thêm</button>
-        <a href="${pageContext.request.contextPath}/NguyenLieuServlet" class="btn btn-secondary" style="width:100px">Hủy</a> 
+        <a href="<%=request.getContextPath()%>/NguyenLieuServlet" class="btn btn-secondary" style="width:100px">Hủy</a> 
     </div>
 </form>

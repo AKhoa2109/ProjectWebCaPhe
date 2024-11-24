@@ -2,9 +2,11 @@ package controllers;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.Enumeration;
 
 import daos.LoaiSanPhamDao;
 import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.MultipartConfig;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
@@ -17,6 +19,11 @@ import models.LoaiSanPham;
  */
 
 @WebServlet("/LoaiSanPhamServlet")
+@MultipartConfig(
+	    fileSizeThreshold = 1024 * 1024 * 2, // 2MB
+	    maxFileSize = 1024 * 1024 * 10,      // 10MB
+	    maxRequestSize = 1024 * 1024 * 50    // 50MB
+	)
 public class LoaiSanPhamServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -39,6 +46,8 @@ public class LoaiSanPhamServlet extends HttpServlet {
         if (action == null) {
             request.setAttribute("loaiSanPhamList", lspDao.getAll());
             request.getRequestDispatcher("/views/template/admin.jsp?page=loaiSanPhamTable").forward(request, response);
+        } else if (action.equals("add")) {  
+            request.getRequestDispatcher("/views/template/admin.jsp?page=loaiSanPhamAdd").forward(request, response);
         } else if (action.equals("edit")) {
             String maLoaiSP = request.getParameter("maLoaiSP");
             request.setAttribute("loaiSanPham", lspDao.getById(maLoaiSP));   
@@ -49,15 +58,14 @@ public class LoaiSanPhamServlet extends HttpServlet {
         	
         	String maLoaiSP = request.getParameter("maLoaiSP");
         	String tenLoaiSP = request.getParameter("tenLoaiSP");
-        	String hinhLoaiSP = request.getParameter("hinhLoaiSP");  
-        	//String hinhLoaiSP = "";  
+        	String hinhLoaiSP = request.getParameter("hinhLoaiSP");   
         	
         	System.out.println("Mã loại sản phẩm: " + maLoaiSP);
             System.out.println("Tên loại sản phẩm: " + tenLoaiSP);
             System.out.println("Hình loại sản phẩm: " + hinhLoaiSP);
         	
         	LoaiSanPham newLoaiSP = new LoaiSanPham(maLoaiSP, tenLoaiSP, hinhLoaiSP);
-        	//luuAnh(request); 
+        	luuAnh(request); 
         	
         	if (action.equals("insert")) {
                 if (lspDao.insert(newLoaiSP)) {
@@ -91,14 +99,7 @@ public class LoaiSanPhamServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		String maLoaiSP = request.getParameter("maLoaiSP");
-		String tenLoaiSP = request.getParameter("tenLoaiSP");
-		String hinhLoaiSP = request.getParameter("hinhLoaiSP");
-
-		System.out.println("Mã loại sản phẩm: " + maLoaiSP);
-		System.out.println("Tên loại sản phẩm: " + tenLoaiSP);
-		System.out.println("Hình loại sản phẩm: " + hinhLoaiSP);
+		// TODO Auto-generated method stub 
 		doGet(request, response);
 	}
 	

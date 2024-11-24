@@ -29,7 +29,7 @@
             <!-- Họ và tên -->
             <div class="form-group">
                 <label for="tenND" class="font-weight-bold">Họ và Tên</label>
-                <input type="text" class="form-control" id="tenND" name="tenND" placeholder="Nhập họ và tên" required />
+                <input type="text" class="form-control" id="tenND" name="tenND"/>
             </div>
             
             <!-- Giới tính -->
@@ -44,7 +44,7 @@
             <!-- Năm sinh -->
             <div class="form-group">
                 <label for="namSinh" class="font-weight-bold">Năm Sinh</label>
-                <input type="number" class="form-control" id="namSinh" name="namSinh" placeholder="Nhập năm sinh" required />
+                <input type="number" class="form-control" id="namSinh" name="namSinh" />
             </div>
         </div>
     </div>
@@ -53,45 +53,45 @@
     <!-- Số điện thoại -->
     <div class="form-group">
         <label for="sdt" class="font-weight-bold">Số Điện Thoại</label>
-        <input type="text" class="form-control" id="sdt" name="sdt" placeholder="Nhập số điện thoại" required />
+        <input type="text" class="form-control" id="sdt" name="sdt"  />
     </div>
 
     <!-- Email -->
     <div class="form-group">
         <label for="email" class="font-weight-bold">Email</label>
-        <input type="email" class="form-control" id="email" name="email" placeholder="Nhập email" required />
+        <input type="email" class="form-control" id="email" name="email"  />
     </div>
 
     <!-- Địa chỉ -->
     <div class="form-group">
         <label for="diaChi" class="font-weight-bold">Địa Chỉ</label>
-        <textarea class="form-control" id="diaChi" name="diaChi" rows="3" placeholder="Nhập địa chỉ" required></textarea>
+        <textarea class="form-control" id="diaChi" name="diaChi" rows="3"></textarea>
     </div>
  
     <!-- Vai trò -->
     <div class="form-group">
         <label for="vaiTro" class="font-weight-bold">Vai Trò</label>
-        <select class="form-control" id="vaiTro" name="vaiTro">
+        <select class="form-control" id="vaiTro" name="vaiTro"> 	
             <option value="Admin">Admin</option>
-            <option value="User">User</option>
+            <option value="User" selected>User</option>
         </select>
     </div>
 
     <!-- Tên đăng nhập -->
     <div class="form-group">
         <label for="tenDangNhap" class="font-weight-bold">Tên Đăng Nhập</label>
-        <input type="text" class="form-control" id="tenDangNhap" name="tenDangNhap" placeholder="Nhập tên đăng nhập" required />
+        <input type="text" class="form-control" id="tenDangNhap" name="tenDangNhap" />
     </div>
 
     <!-- Mật khẩu -->
     <div class="form-group">
         <label for="matKhau" class="font-weight-bold">Mật Khẩu</label>
-        <input type="password" class="form-control" id="matKhau" name="matKhau" placeholder="Nhập mật khẩu" required />
+        <input type="password" class="form-control" id="matKhau" name="matKhau" />
     </div>
  
     <div class="form-group d-flex justify-content-center"> 
         <button type="submit" class="btn btn-primary mr-2" style="width:100px">Thêm</button>
-        <a href="${pageContext.request.contextPath}/NguoiDungServlet" class="btn btn-secondary" style="width:100px">Hủy</a> 
+        <a href="<%=request.getContextPath()%>/NguoiDungServlet" class="btn btn-secondary" style="width:100px">Hủy</a> 
     </div>
 </form>
 

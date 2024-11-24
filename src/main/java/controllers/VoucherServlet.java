@@ -35,19 +35,12 @@ public class VoucherServlet extends HttpServlet {
             String tenVoucher = request.getParameter("txtTimTenVoucher");
             request.setAttribute("voucherList", vcDao.searchByName(tenVoucher));
             request.getRequestDispatcher("/views/template/admin.jsp?page=voucherTable").forward(request, response); 
+        } else if (action.equals("add")) {  
+            request.getRequestDispatcher("/views/template/admin.jsp?page=voucherAdd").forward(request, response);
         } else if (action.equals("edit")) {
             String maVC = request.getParameter("maVC");
             request.setAttribute("voucher", vcDao.getById(maVC));
             request.getRequestDispatcher("/views/template/admin.jsp?page=voucherEdit").forward(request, response);
-        } else if (action.equals("delete")) {
-            String maVC = request.getParameter("maVC");
-            if (vcDao.delete(maVC)) {
-                request.setAttribute("msg", "Xóa thành công");
-            } else {
-                request.setAttribute("msg", "Xóa không thành công");
-            }
-            request.setAttribute("voucherList", vcDao.getAll());
-            request.getRequestDispatcher("/views/template/admin.jsp?page=voucherTable").forward(request, response);
         } else if (action.equals("insert") || action.equals("update")) {
             String maVC = request.getParameter("maVC");
             String tenVC = request.getParameter("tenVC");
@@ -72,6 +65,15 @@ public class VoucherServlet extends HttpServlet {
                 } else {
                     request.setAttribute("msg", "Sửa không thành công");
                 }
+            }
+            request.setAttribute("voucherList", vcDao.getAll());
+            request.getRequestDispatcher("/views/template/admin.jsp?page=voucherTable").forward(request, response);
+        } else if (action.equals("delete")) {
+            String maVC = request.getParameter("maVC");
+            if (vcDao.delete(maVC)) {
+                request.setAttribute("msg", "Xóa thành công");
+            } else {
+                request.setAttribute("msg", "Xóa không thành công");
             }
             request.setAttribute("voucherList", vcDao.getAll());
             request.getRequestDispatcher("/views/template/admin.jsp?page=voucherTable").forward(request, response);

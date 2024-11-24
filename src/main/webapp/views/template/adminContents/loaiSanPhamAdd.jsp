@@ -26,7 +26,7 @@
 
     <div class="form-group d-flex justify-content-center">
         <button type="submit" class="btn btn-primary mr-2" style="width:100px">Thêm mới</button>
-        <a href="${pageContext.request.contextPath}/LoaiSanPhamServlet" class="btn btn-secondary" style="width:100px">Hủy</a>
+        <a href="<%=request.getContextPath()%>/LoaiSanPhamServlet" class="btn btn-secondary" style="width:100px">Hủy</a>
     </div>
 </form>
 

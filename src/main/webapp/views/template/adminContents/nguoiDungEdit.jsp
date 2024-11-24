@@ -104,30 +104,8 @@
  
     <div class="form-group d-flex justify-content-center"> 
         <button type="submit" class="btn btn-primary mr-2" style="width:100px">Cập nhật</button>
-        <a href="${pageContext.request.contextPath}/NguoiDungServlet" class="btn btn-secondary" style="width:100px">Hủy</a> 
+        <a href="<%=request.getContextPath()%>/NguoiDungServlet" class="btn btn-secondary" style="width:100px">Hủy</a> 
 	</div>
 </form>
 
-<script>
-    document.querySelector('.custom-file-input').addEventListener('change', function(e) {
-        var fileInput = e.target;
-        var file = fileInput.files[0];
-        var fileName = file?.name || 'Chọn file...';
-        
-        // Cập nhật giá trị của label ngay sau phần tử có class là '.custom-file-input'
-        fileInput.nextElementSibling.innerText = fileName;
-        
-     	// Cập nhật giá trị của input[type="hidden"]
-        var hiddenInput = fileInput.parentElement.querySelector('input[type="hidden"]');
-        hiddenInput.value = fileName; 
-
-        if (file) {
-            var reader = new FileReader();
-            reader.onload = function(e) {
-                document.querySelector('.border img').src = e.target.result;
-            };
-            reader.readAsDataURL(file); // Đọc file và gán kết quả base64 vào src ảnh
-        }
-    });
-</script>
  

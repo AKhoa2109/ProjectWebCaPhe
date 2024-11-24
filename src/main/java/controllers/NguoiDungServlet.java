@@ -45,30 +45,13 @@ public class NguoiDungServlet extends HttpServlet {
         if (action == null) {
             request.setAttribute("nguoiDungList", ndDao.getAll());
             request.getRequestDispatcher("/views/template/admin.jsp?page=nguoiDungTable").forward(request, response);
+        } else if (action.equals("add")) {  
+            request.getRequestDispatcher("/views/template/admin.jsp?page=nguoiDungAdd").forward(request, response);
         } else if (action.equals("edit")) {
             String maND = request.getParameter("maND");
             request.setAttribute("nguoiDung", ndDao.getById(maND));   
             request.getRequestDispatcher("/views/template/admin.jsp?page=nguoiDungEdit").forward(request, response);
-        } else if (action.equals("update")) {
-            // Đường dẫn thư mục trên server  
-            String serverFilePath = getServletContext().getRealPath("") + File.separator + "views\\assets\\images\\HinhNguoiDung";
-            System.out.println("Server Path: " + serverFilePath);
-
-            // Đường dẫn thư mục trong gốc của dự án
-            int viTriCat = getServletContext().getRealPath("").indexOf(".metadata");
-            String localFilePath = getServletContext().getRealPath("").substring(0, viTriCat) + "ProjectWebCaPhe" + File.separator + "src\\main\\webapp\\views\\assets\\images\\HinhNguoiDung";
-            System.out.println("Local Path: " + localFilePath);
-              
-            // Tạo thư mục nếu chưa tồn tại (cho cả server và local)
-            File serverUploadDir = new File(serverFilePath);
-            if (!serverUploadDir.exists()) {
-                serverUploadDir.mkdirs();
-            }
-
-            File localUploadDir = new File(localFilePath);
-            if (!localUploadDir.exists()) {
-                localUploadDir.mkdirs();
-            } else if (action.equals("insert") || action.equals("update")) { 
+        } else if (action.equals("insert") || action.equals("update")) { 
         	/*public NguoiDung(String maND, String tenND, int namSinh, String gioiTinh, String sdt, String email, String diaChi,
 			String anhND, String vaiTro, String tenDangNhap, String matKhau) */
         	String maND = request.getParameter("maND");
@@ -100,11 +83,21 @@ public class NguoiDungServlet extends HttpServlet {
                 }
             }
         	
-        	 request.setAttribute("nguoiDungList", ndDao.getAll());
-             request.getRequestDispatcher("/views/template/admin.jsp?page=nguoiDungTable").forward(request, response);
+	    	request.setAttribute("nguoiDungList", ndDao.getAll());
+	        request.getRequestDispatcher("/views/template/admin.jsp?page=nguoiDungTable").forward(request, response);
+	        
+        } else if (action.equals("delete")) {
+        	String maND = request.getParameter("maND");
+            if (ndDao.delete(maND)) {
+                request.setAttribute("msg", "Xóa thành công");
+            } else {
+                request.setAttribute("msg", "Xóa không thành công");
             }
+            request.setAttribute("nguoiDungList", ndDao.getAll());
+            request.getRequestDispatcher("/views/template/admin.jsp?page=nguoiDungTable").forward(request, response);
         }
-	}
+    } 
+	
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
