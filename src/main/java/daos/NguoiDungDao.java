@@ -175,5 +175,45 @@ public class NguoiDungDao {
         }
         return false;
     }
+    
+    public List<NguoiDung> searchByName(String tenND) {
+        String sql = """
+            SELECT * 
+            FROM NguoiDung
+            WHERE TenND LIKE ?
+        """;
+        List<NguoiDung> data = new ArrayList<>();
+
+        try {
+            conn = DBConnection.getConnection();
+            ps = conn.prepareStatement(sql);
+            ps.setString(1, "%" + tenND + "%"); 
+            rs = ps.executeQuery();
+
+            while (rs.next()) {
+                NguoiDung nd = new NguoiDung(
+                    rs.getString("MaND"),
+                    rs.getString("TenND"),
+                    rs.getInt("NamSinh"),
+                    rs.getString("GioiTinh"),
+                    rs.getString("SoDienThoai"),
+                    rs.getString("Email"),
+                    rs.getString("DiaChi"),
+                    rs.getString("AnhND"),
+                    rs.getString("VaiTro"),
+                    rs.getString("TenDangNhap"),
+                    rs.getString("MatKhau")
+                );
+                data.add(nd);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            DBConnection.close(rs, ps, conn);
+        }
+
+        return data;
+    }
+
 
 }

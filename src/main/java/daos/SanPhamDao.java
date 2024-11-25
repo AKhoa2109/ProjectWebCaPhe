@@ -24,7 +24,7 @@ public class SanPhamDao {
 		String sql = """
 				SELECT sp.*, lsp.TenLoaiSP 
 				FROM SanPham sp
-				INNER JOIN LoaiSanPham lsp ON sp.MaLoaiSP = lsp.MaLoaiSP
+				LEFT OUTER JOIN LoaiSanPham lsp ON sp.MaLoaiSP = lsp.MaLoaiSP
 				"""; 
         List<SanPham> data = new ArrayList<>(); 
 
@@ -58,7 +58,7 @@ public class SanPhamDao {
         String sql = """
     		SELECT sp.*, lsp.TenLoaiSP 
 			FROM SanPham sp
-			INNER JOIN LoaiSanPham lsp ON sp.MaLoaiSP = lsp.MaLoaiSP
+			LEFT OUTER JOIN LoaiSanPham lsp ON sp.MaLoaiSP = lsp.MaLoaiSP
 			WHERE sp.MaSP = ? 
             """;
         SanPham sanPham = null;
@@ -158,12 +158,44 @@ public class SanPhamDao {
         return false;
     }
     
+    public List<SanPham> searchByMaLoaiSP(String maLoaiSP) {
+        String sql = """
+            SELECT sp.*, lsp.TenLoaiSP
+            FROM SanPham sp
+            LEFT OUTER JOIN LoaiSanPham lsp ON sp.MaLoaiSP = lsp.MaLoaiSP
+            WHERE sp.MaLoaiSP = ?
+        """;
+        List<SanPham> data = new ArrayList<>();
+
+        try {
+            conn = DBConnection.getConnection();
+            ps = conn.prepareStatement(sql);
+            ps.setString(1, maLoaiSP);   
+            rs = ps.executeQuery();
+
+            while (rs.next()) {
+                SanPham sp = new SanPham(
+                    rs.getString("MaSP"),
+                    rs.getString("TenSP"),
+                    rs.getFloat("GiaSP"),
+                    rs.getString("AnhSP"),
+                    rs.getString("MaLoaiSP"),
+                    rs.getString("MoTaSP"),
+                    rs.getString("TenLoaiSP")
+                );
+                data.add(sp);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            DBConnection.close(rs, ps, conn);
+        }
+
+        return data;
+    }
+
     
-    
-    
-    
-    
-    
+ 
     
     
 	

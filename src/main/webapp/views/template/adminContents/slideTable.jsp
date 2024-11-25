@@ -21,7 +21,7 @@
 	    <input type="hidden" name="action" value="filter" />
 	    <div class="position-relative">
 	        <i class="fa fa-filter position-absolute" style="top: 50%; left: 10px; transform: translateY(-50%);"></i>
-	        <select class="form-control rounded" name="filterOption" style="padding-left:40px">
+	        <select class="form-control rounded" name="filterOption" style="padding-left:25px; padding-right:25px">
 	            <option value="default">Mặc định</option>
 	            <option value="position">Sắp xếp theo vị trí</option>
 	        </select>

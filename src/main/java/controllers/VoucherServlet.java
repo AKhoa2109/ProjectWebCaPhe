@@ -32,7 +32,7 @@ public class VoucherServlet extends HttpServlet {
             request.setAttribute("voucherList", vcDao.getAll());
             request.getRequestDispatcher("/views/template/admin.jsp?page=voucherTable").forward(request, response);
         } else if (action.equals("search")) {
-            String tenVoucher = request.getParameter("txtTimTenVoucher");
+            String tenVoucher = request.getParameter("txtSearchTenVoucher");
             request.setAttribute("voucherList", vcDao.searchByName(tenVoucher));
             request.getRequestDispatcher("/views/template/admin.jsp?page=voucherTable").forward(request, response); 
         } else if (action.equals("add")) {  

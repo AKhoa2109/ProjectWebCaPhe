@@ -27,8 +27,11 @@
  	
  	<script src="<%=request.getContextPath()%>/views/assets/js/adminUploadAnh.js"></script> 
  	
-	<style>  
-		 
+ 	<script src="https://cdn.jsdelivr.net/npm/chart.js"></script> <!-- nhúng Chart.js, một thư viện JavaScript phổ biến dùng để tạo các biểu đồ tương tác trên trang web. -->
+ 	
+	<style>   
+		
+          
 	</style>
 </head>
 <body>   

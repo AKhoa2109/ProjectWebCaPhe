@@ -18,10 +18,10 @@
     </p>
 
     <form class="input-group" method="get" style="width: auto;"> <!-- width:auto chiếm đủ nội dung của nó, còn không để thì nó sẽ chiếm hết chiều ngang màn hình -->
-	    <input type="hidden" name="action" value="search" />
+	    <input type="hidden" name="action" value="search" /> 
 	    <div class="position-relative">
 	        <i class="fa fa-search position-absolute" style="top: 50%; left: 10px; transform: translateY(-50%);" ></i>  
-	        <input type="text" class="form-control rounded" style="padding-left:40px" placeholder="Tìm tên voucher" name="txtTimTenVoucher"/>
+	        <input type="text" class="form-control rounded" style="padding-left:40px" placeholder="Tìm tên voucher" name="txtSearchTenVoucher"/>
 	    </div>
 	    <input class="btn btn-primary ml-2 rounded" type="submit" value="Tìm kiếm"> 
 	</form>

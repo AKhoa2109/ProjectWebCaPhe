@@ -246,6 +246,92 @@ BEGIN
     END CATCH
 END;
 
+GO
+
+CREATE TRIGGER trg_TuDongTaoMaDV_DonVi
+ON DonVi
+INSTEAD OF INSERT
+AS
+BEGIN
+    BEGIN TRY
+        DECLARE @maxMaDV NVARCHAR(50);
+        DECLARE @newMaDV NVARCHAR(50);
+        DECLARE @numPart INT;
+
+        -- Lấy mã đơn vị cao nhất hiện tại
+        SELECT @maxMaDV = MAX(MaDV)
+        FROM DonVi
+        WHERE MaDV LIKE 'DV%';
+
+        -- Tính toán phần số của mã đơn vị mới
+        IF @maxMaDV IS NOT NULL
+        BEGIN
+            SET @numPart = CAST(SUBSTRING(@maxMaDV, 3, LEN(@maxMaDV) - 2) AS INT) + 1;
+        END
+        ELSE
+        BEGIN 
+            SET @numPart = 1;
+        END
+
+        -- Tạo mã đơn vị mới theo định dạng DVxx
+        SET @newMaDV = 'DV' + RIGHT('00' + CAST(@numPart AS NVARCHAR), 2);
+
+        -- Thực hiện INSERT với mã đơn vị mới
+        INSERT INTO DonVi(MaDV, TenDV)
+        SELECT @newMaDV, TenDV
+        FROM inserted;
+
+    END TRY
+    BEGIN CATCH
+        DECLARE @ErrorMessage NVARCHAR(4000) = ERROR_MESSAGE();
+        RAISERROR (@ErrorMessage, 16, 1);
+    END CATCH
+END;
+
+GO
+
+CREATE TRIGGER trg_TuDongTaoMaND_NguoiDung
+ON NguoiDung
+INSTEAD OF INSERT
+AS
+BEGIN
+    BEGIN TRY
+        DECLARE @maxMaND NVARCHAR(50);
+        DECLARE @newMaND NVARCHAR(50);
+        DECLARE @numPart INT;
+
+        -- Lấy mã người dùng cao nhất hiện tại
+        SELECT @maxMaND = MAX(MaND)
+        FROM NguoiDung
+        WHERE MaND LIKE 'ND%';
+
+        -- Tính toán phần số của mã người dùng mới
+        IF @maxMaND IS NOT NULL
+        BEGIN
+            SET @numPart = CAST(SUBSTRING(@maxMaND, 3, LEN(@maxMaND) - 2) AS INT) + 1;
+        END
+        ELSE
+        BEGIN 
+            SET @numPart = 1;
+        END
+
+        -- Tạo mã người dùng mới theo định dạng NDxx
+        SET @newMaND = 'ND' + RIGHT('00' + CAST(@numPart AS NVARCHAR), 2);
+
+        -- Thực hiện INSERT với mã người dùng mới
+        INSERT INTO NguoiDung(MaND, TenND, NamSinh, GioiTinh, SoDienThoai, Email, DiaChi, AnhND, VaiTro, TenDangNhap, MatKhau)
+        SELECT @newMaND, TenND, NamSinh, GioiTinh, SoDienThoai, Email, DiaChi, AnhND, VaiTro, TenDangNhap, MatKhau
+        FROM inserted;
+
+    END TRY
+    BEGIN CATCH
+        DECLARE @ErrorMessage NVARCHAR(4000) = ERROR_MESSAGE();
+        RAISERROR (@ErrorMessage, 16, 1);
+    END CATCH
+END;
+
+
+
 
 
 

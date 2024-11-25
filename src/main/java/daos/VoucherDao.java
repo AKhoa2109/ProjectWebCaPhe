@@ -162,13 +162,13 @@ public class VoucherDao {
     public List<Voucher> searchByName(String tenVC) {
     	String sql = """
     	        SELECT * FROM Voucher
-    	        WHERE tenVC LIKE N'%'+?+'%' 
+    	        WHERE tenVC LIKE ?
     	    """;
         List<Voucher> data = new ArrayList<>();
         try {
             conn = DBConnection.getConnection();
             ps = conn.prepareStatement(sql);
-            ps.setString(1, tenVC);
+            ps.setString(1, "%" + tenVC + "%");
             rs = ps.executeQuery();
             while (rs.next()) {
                 Voucher v = new Voucher(

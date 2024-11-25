@@ -4,8 +4,9 @@
 
 <h3 class="mb-3 mt-3 text-center font-weight-bold">Thêm mới loại sản phẩm</h3>
 
-<form action="LoaiSanPhamServlet?action=add" method="post" enctype="multipart/form-data" class="p-4 bg-light shadow rounded">
-
+<form action="LoaiSanPhamServlet?action=insert" method="post" enctype="multipart/form-data" class="p-4 bg-light shadow rounded">
+	<input type="hidden"name="maLoaiSP"/>
+	
     <!-- Tên loại sản phẩm -->
     <div class="form-group">
         <label for="tenLoaiSP" class="font-weight-bold">Tên loại sản phẩm</label>
@@ -13,16 +14,24 @@
     </div>
 
     <!-- Hình loại sản phẩm -->
-    <div class="form-group">
-        <label for="hinhLoaiSP" class="font-weight-bold">Hình loại sản phẩm</label>
+    <div class="form-group ">   
+        <label for="picture" class="font-weight-bold">Hình loại sản phẩm</label>
         <div class="custom-file">
-            <input type="file" class="custom-file-input" id="hinhLoaiSP" name="hinhLoaiSP" required />
-            <label class="custom-file-label" for="hinhLoaiSP">Chọn hình ảnh</label>
+            <input type="file" class="custom-file-input" name="filename123"> <!-- cái name này đặt tên gì cũng được, nhưng phải có tên :v -->
+            
+            <label class="custom-file-label">Chọn hình ảnh</label>
+            <input type="hidden" name="hinhLoaiSP" value="${loaiSanPham.hinhLoaiSP}" />
         </div>
-        <div class="border p-3 text-center mt-2">
-            <img src="#" class="img-fluid rounded" style="max-width: 200px;" id="previewImage" />
+
+        <div class="border p-3 text-center mt-3 bg-white">
+            <img src="<%=request.getContextPath()%>/views/assets/images/HinhSanPham/${loaiSanPham.hinhLoaiSP}" 
+           		 class="img-fluid rounded"  
+                 onerror="this.src='https://via.placeholder.com/200x220'"
+                 alt="Placeholder Image"
+                 class="img-fluid img-thumbnail shadow-sm rounded"
+                 style="max-width: 200px;  max-height: 220px;">
         </div>
-    </div>
+    </div> 
 
     <div class="form-group d-flex justify-content-center">
         <button type="submit" class="btn btn-primary mr-2" style="width:100px">Thêm mới</button>
@@ -30,19 +39,4 @@
     </div>
 </form>
 
-<script>
-    document.querySelector('.custom-file-input').addEventListener('change', function(e) {
-        var fileInput = e.target;
-        var file = fileInput.files[0];
-        var fileName = file?.name || 'Chọn file...';
-        fileInput.nextElementSibling.innerText = fileName;
-
-        if (file) {
-            var reader = new FileReader();
-            reader.onload = function(e) {
-                document.querySelector('#previewImage').src = e.target.result;
-            };
-            reader.readAsDataURL(file);
-        }
-    });
-</script>
+ 

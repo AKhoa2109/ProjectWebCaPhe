@@ -4,8 +4,9 @@
 
 <h3 class="mb-4 text-center font-weight-bold">Thêm mới Nguyên Liệu</h3>
 
-<form action="NguyenLieuServlet?action=add" method="post" class="p-4 bg-light shadow rounded">    
-
+<form action="NguyenLieuServlet?action=insert" method="post" class="p-4 bg-light shadow rounded">    
+	<input type="hidden"name="maNL"/>
+	
     <!-- Tên nguyên liệu -->
     <div class="form-group">
         <label for="tenNL" class="font-weight-bold">Tên Nguyên Liệu</label>
@@ -21,9 +22,9 @@
     <!-- Đơn vị -->
     <div class="form-group">
         <label for="maDV" class="font-weight-bold">Đơn Vị</label>
-        <select class="form-control" id="maDV" name="maDV" required>
+        <select class="form-control" id="maDV" name="maDV">
             <c:forEach items="${donViList}" var="dv">
-                <option value="${dv.maDV}">${dv.tenDV}</option>
+                <option value="${dv.maDV}" ${dv.maDV == nguyenLieu.maDV ? 'selected' : ''}>${dv.tenDV}</option>
             </c:forEach>
         </select>
     </div> 

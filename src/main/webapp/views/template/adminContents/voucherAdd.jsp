@@ -6,6 +6,7 @@
  
  <h3 class="text-center mb-3 mt-3">Thêm mới Voucher</h3>
  <form action="${pageContext.request.contextPath}/VoucherServlet?action=insert" method="post" name="formVoucher" onsubmit="return validateForm()"> 
+     <input type="hidden"name="maVC"/>
      
      <div class="form-group">
          <label for="tenVC">Tên Voucher</label>

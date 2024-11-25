@@ -39,7 +39,12 @@ public class NguyenLieuServlet extends HttpServlet {
         if (action == null) {
             request.setAttribute("nguyenLieuList", nlDao.getAll());
             request.getRequestDispatcher("/views/template/admin.jsp?page=nguyenLieuTable").forward(request, response);
+        } else if (action.equals("search")) {
+            String tenNL = request.getParameter("txtSearchTenNguyenLieu"); 
+            request.setAttribute("nguyenLieuList", nlDao.searchByName(tenNL));
+            request.getRequestDispatcher("/views/template/admin.jsp?page=nguyenLieuTable").forward(request, response); 
         } else if (action.equals("add")) {  
+        	request.setAttribute("donViList", dvDao.getAll());
             request.getRequestDispatcher("/views/template/admin.jsp?page=nguyenLieuAdd").forward(request, response);
         } else if (action.equals("edit")) {
             String maNL = request.getParameter("maNL");

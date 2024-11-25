@@ -152,6 +152,40 @@ public class SlideDao {
         return false;
     }
     
+    public List<Slide> getAllOrderByViTri() {
+        String sql = """
+            SELECT * 
+            FROM Slide
+            ORDER BY ViTri
+            """;
+        List<Slide> data = new ArrayList<>();
+
+        try {
+            conn = DBConnection.getConnection();
+            ps = conn.prepareStatement(sql);
+            rs = ps.executeQuery();
+
+            while (rs.next()) {
+                Slide s = new Slide(
+                    rs.getString("MaSlide"),
+                    rs.getString("TenSlide"),
+                    rs.getString("AnhSlide"),
+                    rs.getString("ViTri"),
+                    rs.getString("TrangThai"),
+                    rs.getString("MaND")
+                );
+                data.add(s);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            DBConnection.close(rs, ps, conn);
+        }
+        return data;
+    }
+
+    
+     
      
     public List<Slide> getByTrangThai(String tt)
 	{

@@ -4,24 +4,31 @@
 
 <h3 class="mb-4 text-center font-weight-bold">Thêm Mới Người Dùng</h3>
 
-<form action="NguoiDungServlet?action=add" method="post" enctype="multipart/form-data" class="p-4 bg-light shadow rounded">
-
+<form action="NguoiDungServlet?action=insert" method="post" enctype="multipart/form-data" class="p-4 bg-light shadow rounded">
+	<input type="hidden"name="maND"/>
+	
     <!-- Row 1: Hình ảnh và thông tin người dùng -->
     <div class="form-group row">
         
         <!-- Cột 1: Hình ảnh -->
-        <div class="col-md-3">
-            <label for="anhND" class="font-weight-bold">Hình Ảnh</label>
-            <div class="custom-file">
-                <input type="file" class="custom-file-input" id="anhND" name="anhND">
-                <label class="custom-file-label" for="anhND">Chọn hình ảnh</label>
-            </div>
-            <div class="border p-3 text-center mt-3">
-                <img src="https://via.placeholder.com/150" 
-                     alt="Hình người dùng" 
-                     class="img-fluid img-thumbnail rounded"
-                     style="width: 150px; height: auto;">
-            </div>
+         <div class="col-md-3">
+            <div class="form-group">
+		        <label for="picture" class="font-weight-bold">Hình Ảnh</label>
+		        <div class="custom-file">
+		            <input type="file" class="custom-file-input" name="filename123"> <!-- cái name này đặt tên gì cũng được, nhưng phải có tên :v -->
+		            
+		            <label class="custom-file-label">Chọn hình ảnh</label>
+		            <input type="hidden" name="anhND" value="${nguoiDung.anhND}" />
+		        </div>
+		
+		        <div class="border p-3 text-center mt-3 bg-white">
+		            <img src="<%=request.getContextPath()%>/views/assets/images/HinhNguoiDung/${nguoiDung.anhND}" 
+		                 onerror="this.src='https://via.placeholder.com/150x150'"
+		                 alt="Placeholder Image"
+		                 class="img-fluid img-thumbnail shadow-sm rounded"
+		                 style="width: 150px; height: auto; max-width: 300px;  max-height: 300px;">
+		        </div>
+		    </div>
         </div>
 
         <!-- Cột 2: Các trường thông tin người dùng -->
@@ -94,20 +101,4 @@
         <a href="<%=request.getContextPath()%>/NguoiDungServlet" class="btn btn-secondary" style="width:100px">Hủy</a> 
     </div>
 </form>
-
-<script>
-    document.querySelector('.custom-file-input').addEventListener('change', function(e) {
-        var fileInput = e.target;
-        var file = fileInput.files[0];
-        var fileName = file?.name || 'Chọn file...';
-        fileInput.nextElementSibling.innerText = fileName;
-
-        if (file) {
-            var reader = new FileReader();
-            reader.onload = function(e) {
-                document.querySelector('.border img').src = e.target.result;
-            };
-            reader.readAsDataURL(file);  
-        }
-    });
-</script>
+ 

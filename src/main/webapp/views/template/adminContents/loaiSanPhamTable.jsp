@@ -16,11 +16,11 @@
         </a>
     </p>
 
-    <form class="input-group" method="get" style="width: auto;">  
-	    <input type="hidden" name="action" value="search" />
+    <form class="input-group"  style="width: auto;">  
+   		<input type="hidden" name="action" value="search" />
 	    <div class="position-relative">
 	        <i class="fa fa-search position-absolute" style="top: 50%; left: 10px; transform: translateY(-50%);" ></i>  
-	        <input type="text" class="form-control rounded" style="padding-left:40px" placeholder="Tìm tên loại sản phẩm" name="txtTimTenLoaiSanPham"/>
+	        <input type="text" class="form-control rounded" style="padding-left:40px" placeholder="Tìm tên loại sản phẩm" name="txtSearchTenLoaiSanPham"/>
 	    </div>
 	    <input class="btn btn-primary ml-2 rounded" type="submit" value="Tìm kiếm"> 
 	</form>

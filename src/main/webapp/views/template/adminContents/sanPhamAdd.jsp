@@ -4,44 +4,47 @@
 
 <h3 class="mb-4 mt-4 text-center font-weight-bold">Thêm mới sản phẩm</h3>
 
-<form action="SanPhamServlet?action=add" method="post" enctype="multipart/form-data" class="p-4 bg-light rounded shadow">
+<form action="SanPhamServlet?action=insert" method="post" enctype="multipart/form-data" class="p-4 bg-light rounded shadow">
+    <input type="hidden"name="maSP"/>
+  
     <!-- Row 1: Hình ảnh sản phẩm và thông tin sản phẩm -->
     <div class="form-group row">
         <!-- Cột 1: Hình ảnh sản phẩm --> 
         <div class="col-md-4">
-            <div class="form-group">
-                <label for="anhSP" class="font-weight-bold mb-2">Hình ảnh sản phẩm</label>
-                <div class="custom-file">
-                    <input type="file" class="custom-file-input" id="anhSP" name="anhSP" required>
-                    <label class="custom-file-label" for="anhSP">Chọn hình ảnh</label>
-                </div>
-            </div>
-            <div class="border p-3 text-center mt-2">
-                <img src="https://via.placeholder.com/200x200" alt="Ảnh sản phẩm" 
-                     class="img-fluid img-thumbnail" 
-                     style="max-width: 200px; height: auto;">
-            </div>
-        </div>
+		    <div class="form-group">
+	            <label for="picture" class="font-weight-bold">Hình sản phẩm</label>
+				<div class="custom-file">
+				    <input type="file" class="custom-file-input" name="filename123"> <!-- cái name này đặt tên gì cũng được, nhưng phải có tên :v -->
+				   
+				    <label class="custom-file-label">Chọn hình ảnh</label>
+				    <input type="hidden" name="anhSP" value="${sanPham.anhSP}" />
+				</div>
+				
+				<div class="border p-3 text-center mt-2 bg-white">
+				     <img src="<%=request.getContextPath()%>/views/assets/images/HinhSanPham/${sanPham.anhSP}"
+						onerror="this.src='https://via.placeholder.com/200x200'"
+						alt="Placeholder Image"
+						class="img-fluid img-thumbnail shadow-sm rounded"
+						style="max-width: 200px; max-height: 200px;">
+				</div>
+		    </div>
+		     
+		</div>
 
         <!-- Cột 2: Các trường thông tin sản phẩm -->
-        <div class="col-md-8"> 
-            <!-- Mã sản phẩm -->
-            <div class="form-group">
-                <label for="maSP" class="font-weight-bold">Mã sản phẩm</label>
-                <input type="text" class="form-control" id="maSP" name="maSP" placeholder="Nhập mã sản phẩm" required>
-            </div>
-
+        <div class="col-md-8">  
+        
             <!-- Tên sản phẩm -->
             <div class="form-group">
                 <label for="tenSP" class="font-weight-bold">Tên sản phẩm</label>
-                <input type="text" class="form-control" id="tenSP" name="tenSP" placeholder="Nhập tên sản phẩm" required>
+                <input type="text" class="form-control" id="tenSP" name="tenSP">
             </div>
 
             <!-- Giá sản phẩm -->
             <div class="form-group">
                 <label for="giaSP" class="font-weight-bold">Giá sản phẩm</label>
                 <div class="input-group">
-                    <input type="number" class="form-control" id="giaSP" name="giaSP" placeholder="Nhập giá sản phẩm" min="0" step="1000" required>
+                    <input type="number" class="form-control" id="giaSP" name="giaSP" min="0" step="1000" >
                     <div class="input-group-append">
                         <span class="input-group-text">VNĐ</span>
                     </div>
@@ -51,9 +54,11 @@
             <!-- Loại sản phẩm -->
             <div class="form-group">
                 <label for="maLoaiSP" class="font-weight-bold">Loại sản phẩm</label>
-                <select class="form-control" id="maLoaiSP" name="maLoaiSP" required>
+                <select class="form-control" id="maLoaiSP" name="maLoaiSP">
                     <c:forEach items="${loaiSPList}" var="loaiSP">
-                        <option value="${loaiSP.maLoaiSP}">${loaiSP.tenLoaiSP}</option>
+                        <option value="${loaiSP.maLoaiSP}" ${loaiSP.maLoaiSP == sanPham.maLoaiSP ? 'selected' : ''}>
+                            ${loaiSP.tenLoaiSP}
+                        </option>
                     </c:forEach>
                 </select>
             </div> 
@@ -64,7 +69,7 @@
     <div class="form-group row">
         <div class="col-sm-12">
             <label for="moTaSP" class="font-weight-bold">Mô tả sản phẩm</label>
-            <textarea class="form-control" id="moTaSP" name="moTaSP" rows="4" placeholder="Mô tả sản phẩm" required></textarea>
+            <textarea class="form-control" id="moTaSP" name="moTaSP" rows="4" ></textarea>
         </div>
     </div>
 
@@ -78,20 +83,4 @@
 <script>
     CKEDITOR.replace('moTaSP');
 </script>
-
-<script>
-    document.querySelector('.custom-file-input').addEventListener('change', function(e) {
-        var fileInput = e.target;
-        var file = fileInput.files[0];
-        var fileName = file?.name || 'Chọn file...';
-        fileInput.nextElementSibling.innerText = fileName;
-
-        if (file) {
-            var reader = new FileReader();
-            reader.onload = function(e) {
-                document.querySelector('.border img').src = e.target.result;
-            };
-            reader.readAsDataURL(file); // Đọc file và gán kết quả base64 vào src ảnh
-        }
-    });
-</script>
+ 

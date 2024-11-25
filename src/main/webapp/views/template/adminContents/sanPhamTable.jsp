@@ -15,14 +15,24 @@
             <i class="fas fa-plus-circle"></i> Thêm mới
         </a>
     </p>
+    
 
-    <form class="input-group" method="get" style="width: auto;">  
-	    <input type="hidden" name="action" value="search" />
-	    <div class="position-relative">
-	        <i class="fa fa-search position-absolute" style="top: 50%; left: 10px; transform: translateY(-50%);" ></i>  
-	        <input type="text" class="form-control rounded" style="padding-left:40px" placeholder="Tìm tên sản phẩm" name="txtTimTenSanPham"/>
-	    </div>
-	    <input class="btn btn-primary ml-2 rounded" type="submit" value="Tìm kiếm"> 
+    <form class="form-inline input-group" method="get" style="width: auto;">  
+	    <input type="hidden" name="action" value="filter" />
+	    
+	    <!-- Dropdown cho loại sản phẩm -->
+	    <div class="form-group position-relative">
+	     	<i class="fa fa-filter position-absolute" style="top: 50%; left: 10px; transform: translateY(-50%);"></i>
+	        <select class="form-control rounded" name="filterOption" style="padding-left:25px; padding-right:25px">
+	            <option value="default">Mặc định</option>
+	            <c:forEach items="${loaiSPList}" var="loaiSP"> 
+                     <option value="${loaiSP.maLoaiSP}" ${loaiSP.maLoaiSP == sanPham.maLoaiSP ? 'selected' : ''}>
+                         ${loaiSP.tenLoaiSP}
+                     </option>
+                 </c:forEach>
+	        </select> 
+	        <input class="btn btn-primary ml-2 rounded px-4" type="submit" value="Lọc">
+	    </div>  
 	</form>
 </div>  
 
@@ -42,7 +52,8 @@
 	
 	<tbody> 
 		 
-	    <c:forEach items="${sanPhamList}" var="sp">
+	    <c:forEach items="${sanPhamList}" var="sp"> 
+	    	
 	        <tr>
 	            <td>${sp.maSP}</td> 
 	            <td><img src="<%=request.getContextPath()%>/views/assets/images/HinhSanPham/${sp.anhSP}" class="img-fluid rounded" style="width:150px; height: auto;"></td>  

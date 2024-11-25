@@ -4,8 +4,9 @@
 
 <h3 class="mb-3 mt-3 text-center font-weight-bold">Thêm mới đơn vị</h3>
 
-<form action="DonViServlet?action=add" method="post" class="p-4 bg-light shadow rounded">
-
+<form action="DonViServlet?action=insert" method="post" class="p-4 bg-light shadow rounded">
+	<input type="hidden"name="maDV"/>
+	
     <!-- Tên đơn vị -->
     <div class="form-group">
         <label for="tenDV" class="font-weight-bold">Tên đơn vị</label>

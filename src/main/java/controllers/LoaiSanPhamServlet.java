@@ -46,6 +46,10 @@ public class LoaiSanPhamServlet extends HttpServlet {
         if (action == null) {
             request.setAttribute("loaiSanPhamList", lspDao.getAll());
             request.getRequestDispatcher("/views/template/admin.jsp?page=loaiSanPhamTable").forward(request, response);
+        } else if (action.equals("search")) {
+            String tenLoaiSP = request.getParameter("txtSearchTenLoaiSanPham"); 
+            request.setAttribute("loaiSanPhamList", lspDao.searchByName(tenLoaiSP));
+            request.getRequestDispatcher("/views/template/admin.jsp?page=loaiSanPhamTable").forward(request, response); 
         } else if (action.equals("add")) {  
             request.getRequestDispatcher("/views/template/admin.jsp?page=loaiSanPhamAdd").forward(request, response);
         } else if (action.equals("edit")) {

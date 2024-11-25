@@ -20,7 +20,7 @@
 	    <input type="hidden" name="action" value="search" />
 	    <div class="position-relative">
 	        <i class="fa fa-search position-absolute" style="top: 50%; left: 10px; transform: translateY(-50%);" ></i>  
-	        <input type="text" class="form-control rounded" style="padding-left:40px" placeholder="Tìm tên người dùng" name="txtTimTenNguoiDung"/>
+	        <input type="text" class="form-control rounded" style="padding-left:40px" placeholder="Tìm tên người dùng" name="txtSearchTenNguoiDung"/>
 	    </div>
 	    <input class="btn btn-primary ml-2 rounded" type="submit" value="Tìm kiếm"> 
 	</form>

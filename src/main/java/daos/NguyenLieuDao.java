@@ -148,6 +148,43 @@ public class NguyenLieuDao {
         }
         return false;  
     }
+    
+    public List<NguyenLieu> searchByName(String tenNL) {
+        String sql = """
+            SELECT nl.*, dv.TenDV
+            FROM NguyenLieu nl
+            INNER JOIN DonVi dv ON nl.MaDV = dv.MaDV
+            WHERE nl.TenNL LIKE ?
+            """;
+        List<NguyenLieu> data = new ArrayList<>();
+
+        try {
+            conn = DBConnection.getConnection();
+            ps = conn.prepareStatement(sql);
+            ps.setString(1, "%" + tenNL + "%");  
+            rs = ps.executeQuery();
+
+            while (rs.next()) {
+                NguyenLieu nl = new NguyenLieu(
+                    rs.getString("MaNL"),
+                    rs.getString("TenNL"),
+                    rs.getInt("SoLuongTonKho"),
+                    rs.getString("MaDV"),
+                    rs.getString("TenDV")
+                );
+                data.add(nl);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            DBConnection.close(rs, ps, conn);
+        }
+
+        return data;
+    }
+
+    
+    
 
 
     

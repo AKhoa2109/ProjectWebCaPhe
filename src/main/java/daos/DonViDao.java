@@ -133,4 +133,35 @@ public class DonViDao {
         }
         return false;
     }
+    
+    public List<DonVi> searchByName(String tenDV) {
+        String sql = """
+            SELECT * 
+            FROM DonVi
+            WHERE TenDV LIKE ?
+        """;
+        List<DonVi> data = new ArrayList<>();
+
+        try {
+            conn = DBConnection.getConnection();
+            ps = conn.prepareStatement(sql);
+            ps.setString(1, "%" + tenDV + "%");  
+            rs = ps.executeQuery();
+
+            while (rs.next()) {
+                DonVi dv = new DonVi(
+                    rs.getString("MaDV"),
+                    rs.getString("TenDV")
+                );
+                data.add(dv);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            DBConnection.close(rs, ps, conn);
+        }
+
+        return data;
+    }
+
 }

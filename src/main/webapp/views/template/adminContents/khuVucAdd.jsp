@@ -3,8 +3,9 @@
 
 <h3 class="mb-3 mt-3 text-center font-weight-bold">Thêm khu vực vận chuyển</h3>
 
-<form action="KhuVucServlet?action=add" method="post"> 
-
+<form action="KhuVucServlet?action=insert" method="post"> 
+	<input type="hidden"name="maKV"/>
+	
     <div class="form-group">
         <label for="tenKV">Tên khu vực</label>
         <input type="text" class="form-control" id="tenKV" name="tenKV">

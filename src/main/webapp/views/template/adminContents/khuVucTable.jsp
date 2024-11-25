@@ -15,12 +15,12 @@
             <i class="fas fa-plus-circle"></i> Thêm mới
         </a>
     </p>
-
-    <form class="input-group" method="get" style="width: auto;">  
-	    <input type="hidden" name="action" value="search" />
+ 
+	<form method="get" class="input-group" style="width: auto;">  
+	    <input type="hidden" name="action" value="search" /> <!-- Nó tự lấy url chứa servlet hiện tại rồi thêm action là search vào, để action này lên  thẻ form thì nó k gửi được :v . thẻ a thì được hay sao á, ... luôn-->
 	    <div class="position-relative">
 	        <i class="fa fa-search position-absolute" style="top: 50%; left: 10px; transform: translateY(-50%);" ></i>  
-	        <input type="text" class="form-control rounded" style="padding-left:40px" placeholder="Tìm tên khu vực" name="txtTimTenKhuVuc"/>
+	        <input type="text" class="form-control rounded" style="padding-left:40px" placeholder="Tìm tên khu vực" name="txtSearchTenKhuVuc"/>
 	    </div>
 	    <input class="btn btn-primary ml-2 rounded" type="submit" value="Tìm kiếm"> 
 	</form>

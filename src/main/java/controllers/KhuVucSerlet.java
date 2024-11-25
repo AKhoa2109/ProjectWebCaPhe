@@ -37,6 +37,10 @@ public class KhuVucSerlet extends HttpServlet {
         if (action == null) {
             request.setAttribute("khuVucList", kvDao.getAll());
             request.getRequestDispatcher("/views/template/admin.jsp?page=khuVucTable").forward(request, response);
+        } else if (action.equals("search")) {
+            String tenKV = request.getParameter("txtSearchTenKhuVuc"); 
+            request.setAttribute("khuVucList", kvDao.searchByName(tenKV));
+            request.getRequestDispatcher("/views/template/admin.jsp?page=khuVucTable").forward(request, response); 
         } else if (action.equals("add")) {  
             request.getRequestDispatcher("/views/template/admin.jsp?page=khuVucAdd").forward(request, response);
         } else if (action.equals("edit")) {

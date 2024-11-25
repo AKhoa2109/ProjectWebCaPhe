@@ -140,6 +140,38 @@ public class LoaiSanPhamDao {
 	    }
 	    return false;
 	}
+	
+	public List<LoaiSanPham> searchByName(String tenLoaiSP) {
+	    String sql = """
+	        SELECT * 
+	        FROM LoaiSanPham
+	        WHERE TenLoaiSP LIKE ?
+	    """;
+	    List<LoaiSanPham> data = new ArrayList<>();
+
+	    try {
+	        conn = DBConnection.getConnection();
+	        ps = conn.prepareStatement(sql);
+	        ps.setString(1, "%" + tenLoaiSP + "%");  
+	        rs = ps.executeQuery();
+
+	        while (rs.next()) {
+	            LoaiSanPham lsp = new LoaiSanPham(
+	                rs.getString("MaLoaiSP"),
+	                rs.getString("TenLoaiSP"),
+	                rs.getString("HinhLoaiSP")
+	            );
+	            data.add(lsp);
+	        }
+	    } catch (SQLException e) {
+	        e.printStackTrace();
+	    } finally {
+	        DBConnection.close(rs, ps, conn);
+	    }
+
+	    return data;
+	}
+
 
 
 

@@ -138,5 +138,37 @@ public class KhuVucDao {
         }
         return false;
     }
+    
+    public List<KhuVuc> searchByName(String tenKV) {
+        String sql = """
+            SELECT * 
+            FROM KhuVuc
+            WHERE TenKV LIKE ?
+        """;
+        List<KhuVuc> data = new ArrayList<>();
+
+        try {
+            conn = DBConnection.getConnection();
+            ps = conn.prepareStatement(sql);
+            ps.setString(1, "%" + tenKV + "%"); 
+            rs = ps.executeQuery();
+
+            while (rs.next()) {
+                KhuVuc kv = new KhuVuc(
+                    rs.getString("MaKV"),
+                    rs.getString("TenKV"),
+                    rs.getFloat("PhiVanChuyen")
+                );
+                data.add(kv);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            DBConnection.close(rs, ps, conn);
+        }
+
+        return data;
+    }
+
 
 }

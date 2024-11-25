@@ -40,14 +40,27 @@ public class SanPhamServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
+		LoaiSanPhamDao lspDao = new LoaiSanPhamDao();
         SanPhamDao spDao = new SanPhamDao();
-        LoaiSanPhamDao lspDao = new LoaiSanPhamDao();
         String action = request.getParameter("action"); 
         
         if (action == null) {
             request.setAttribute("sanPhamList", spDao.getAll());
+            request.setAttribute("loaiSPList", lspDao.getAll());
             request.getRequestDispatcher("/views/template/admin.jsp?page=sanPhamTable").forward(request, response);
-        } else if (action.equals("add")) {  
+        } else if (action.equals("filter")) { 
+        	String option = request.getParameter("filterOption");
+        	if(option.equals("default")) { 
+        		 request.setAttribute("sanPhamList", spDao.getAll());
+                 request.setAttribute("loaiSPList", lspDao.getAll());
+                 request.getRequestDispatcher("/views/template/admin.jsp?page=sanPhamTable").forward(request, response);
+        	} else { 
+        		request.setAttribute("sanPhamList", spDao.searchByMaLoaiSP(option));
+                request.setAttribute("loaiSPList", lspDao.getAll());
+        		request.getRequestDispatcher("/views/template/admin.jsp?page=sanPhamTable").forward(request, response);
+        	} 
+        }else if (action.equals("add")) {  
+        	request.setAttribute("loaiSPList", lspDao.getAll()); 
             request.getRequestDispatcher("/views/template/admin.jsp?page=sanPhamAdd").forward(request, response);
         } else if (action.equals("edit")) {
             String maSP = request.getParameter("maSP");
@@ -80,6 +93,7 @@ public class SanPhamServlet extends HttpServlet {
                 }
             }
         	
+        	request.setAttribute("loaiSPList", lspDao.getAll());
         	request.setAttribute("sanPhamList", spDao.getAll());
             request.getRequestDispatcher("/views/template/admin.jsp?page=sanPhamTable").forward(request, response);
         } else if (action.equals("delete")) {
@@ -89,6 +103,7 @@ public class SanPhamServlet extends HttpServlet {
             } else {
                 request.setAttribute("msg", "Xóa không thành công");
             }
+            request.setAttribute("loaiSPList", lspDao.getAll());
             request.setAttribute("sanPhamList", spDao.getAll());
             request.getRequestDispatcher("/views/template/admin.jsp?page=sanPhamTable").forward(request, response);
         }

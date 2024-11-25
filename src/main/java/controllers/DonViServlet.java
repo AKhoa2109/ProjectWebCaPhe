@@ -38,6 +38,10 @@ public class DonViServlet extends HttpServlet {
             request.getRequestDispatcher("/views/template/admin.jsp?page=donViTable").forward(request, response);
         } else if (action.equals("add")) {  
             request.getRequestDispatcher("/views/template/admin.jsp?page=donViAdd").forward(request, response);
+        } else if (action.equals("search")) {
+            String tenDV = request.getParameter("txtSearchTenDonVi"); 
+            request.setAttribute("donViList", dvDao.searchByName(tenDV));
+            request.getRequestDispatcher("/views/template/admin.jsp?page=donViTable").forward(request, response); 
         } else if (action.equals("edit")) {
             String maDV = request.getParameter("maDV");
             request.setAttribute("donVi", dvDao.getById(maDV));

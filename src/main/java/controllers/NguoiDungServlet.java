@@ -45,7 +45,11 @@ public class NguoiDungServlet extends HttpServlet {
         if (action == null) {
             request.setAttribute("nguoiDungList", ndDao.getAll());
             request.getRequestDispatcher("/views/template/admin.jsp?page=nguoiDungTable").forward(request, response);
-        } else if (action.equals("add")) {  
+        } else if (action.equals("search")) {
+            String tenND = request.getParameter("txtSearchTenNguoiDung");
+            request.setAttribute("nguoiDungList", ndDao.searchByName(tenND));
+            request.getRequestDispatcher("/views/template/admin.jsp?page=nguoiDungTable").forward(request, response); 
+        } else if (action.equals("add")) {   
             request.getRequestDispatcher("/views/template/admin.jsp?page=nguoiDungAdd").forward(request, response);
         } else if (action.equals("edit")) {
             String maND = request.getParameter("maND");

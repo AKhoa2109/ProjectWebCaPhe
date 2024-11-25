@@ -46,6 +46,15 @@ public class SlideServlet extends HttpServlet {
         if (action == null) {
             request.setAttribute("slideList", sDao.getAll());
             request.getRequestDispatcher("/views/template/admin.jsp?page=slideTable").forward(request, response);
+        } else if (action.equals("filter")) { 
+        	String option = request.getParameter("filterOption");
+        	if(option.equals("default")) { 
+                request.setAttribute("slideList", sDao.getAll());
+                request.getRequestDispatcher("/views/template/admin.jsp?page=slideTable").forward(request, response);
+        	} else {
+        		request.setAttribute("slideList", sDao.getAllOrderByViTri());
+                request.getRequestDispatcher("/views/template/admin.jsp?page=slideTable").forward(request, response);
+        	} 
         } else if (action.equals("add")) {  
             request.getRequestDispatcher("/views/template/admin.jsp?page=slideAdd").forward(request, response);
         } else if (action.equals("edit")) {
