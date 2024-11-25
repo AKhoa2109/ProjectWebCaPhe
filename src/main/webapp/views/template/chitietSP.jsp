@@ -75,6 +75,10 @@
 			</div>
 		</div>
 	</div>
+	
+	<!-- Footer -->
+	<jsp:include page="/views/fragment/footer.jsp" />
+	
 	<script>
       // Đổi hình ảnh chính khi bấm vào hình nhỏ
       function changeImage(thumbnail) {

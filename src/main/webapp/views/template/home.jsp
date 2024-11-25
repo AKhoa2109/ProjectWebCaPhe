@@ -35,7 +35,7 @@
 	</div>
 	<!-- Danh mục loại sản phẩm -->
 	<div class="category-container">
-		<h2>DANH MỤC</h2>
+		<h1>DANH MỤC</h1>
 		<div class="grid-container">
 			<c:forEach var="list" items="${listLoaiSP}">
 				<div class="grid-item">

@@ -118,8 +118,6 @@
 
       /* Sản phẩm liên quan */
       .related-products {
-      	
-      	
         margin-top: 40px;
         width: auto;
       }
@@ -142,7 +140,7 @@
         border-radius: 8px;
         box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
         padding: 15px;
-        width: calc(25% - 20px);
+        width: calc(20% - 20px);
         text-align: center;
       }
       
@@ -168,7 +166,7 @@
         margin: 5px 0;
       }
       .thumbnail-container {
-        height: 80px;
+        height: 100px;
         display: flex;
         justify-content: flex-start;
       }

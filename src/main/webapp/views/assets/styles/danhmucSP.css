@@ -1,23 +1,26 @@
+
+
 .category-product-container {
 	display: flex;
+	margin: 81px auto;
 }
 
 /* Sidebar */
 .category-sidebar {
 	display: flex;
-	flex-direction: column;
-	min-height: 100vh;
-	width: 250px;
+	flex-direction: column;	
+	width: 200px;
 	background-color: #fff;
 	padding: 20px;
 	border-right: 1px solid #ddd;
 	box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
-	z-index: 1000;
+	position: sticky;
 }
 
 .category-sidebar ul {
 	list-style: none;
 	padding: 0;
+	margin: 0 auto;
 }
 
 .category-sidebar ul li {
@@ -30,6 +33,7 @@
 
 .category-sidebar a{
 	text-decoration: none;
+	font-size: 20px;
 }
 
 .category-sidebar ul li.active, .category-sidebar ul li:hover {
