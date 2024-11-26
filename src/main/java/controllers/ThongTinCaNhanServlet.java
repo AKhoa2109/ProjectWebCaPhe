@@ -12,6 +12,7 @@ import java.io.IOException;
 /**
  * Servlet implementation class ThongTinCaNhanServlet
  */
+@WebServlet("/ThongTinCaNhanServlet")
 public class ThongTinCaNhanServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        

@@ -12,6 +12,7 @@ import daos.SanPhamDao;
 /**
  * Servlet implementation class ChiTietSanPhamServlet
  */
+@WebServlet("/ChiTietSanPhamServlet")
 public class ChiTietSanPhamServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        

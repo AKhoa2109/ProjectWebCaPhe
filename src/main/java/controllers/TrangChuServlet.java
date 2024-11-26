@@ -16,6 +16,7 @@ import daos.SlideDao;
 /**
  * Servlet implementation class TrangChuServlet
  */
+@WebServlet("/TrangChuServlet")
 public class TrangChuServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        

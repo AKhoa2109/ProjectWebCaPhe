@@ -37,7 +37,7 @@
 							<li><a class="dropdown-item"
 								href="TrangChuServlet?action=login">Đăng nhập</a></li>
 							<li><a class="dropdown-item"
-								href="TrangChuServlet?action=signup">Đăng kí</a></li>
+								href="DangKyServlet?action=signup">Đăng kí</a></li>
 						</ul></li>
 
 				</ul>

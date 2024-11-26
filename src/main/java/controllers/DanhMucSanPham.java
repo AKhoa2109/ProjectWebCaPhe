@@ -20,6 +20,7 @@ import models.*;
 /**
  * Servlet implementation class DanhMucSanPham
  */
+@WebServlet("/DanhMucSanPham")
 public class DanhMucSanPham extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
