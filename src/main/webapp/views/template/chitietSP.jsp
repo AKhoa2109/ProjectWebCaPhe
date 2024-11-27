@@ -10,6 +10,8 @@
 <link rel="stylesheet" type="text/css"
 	href="<%=request.getContextPath()%>/views/assets/styles/style.css" />
 <link rel="stylesheet" type="text/css"
+	href="<%=request.getContextPath()%>/views/assets/styles/breadcrumb.css" />
+<link rel="stylesheet" type="text/css"
 	href="<%=request.getContextPath()%>/views/assets/styles/chitietSP.css" />
 <title>Chi tiết sản phẩm</title>
 </head>

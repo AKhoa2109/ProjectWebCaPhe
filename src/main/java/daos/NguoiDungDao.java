@@ -175,5 +175,65 @@ public class NguoiDungDao {
         }
         return false;
     }
+    
+    public boolean checkLogin(String username, String password)
+    {
+    	String sql = """
+    			SELECT COUNT(*) FROM NguoiDung WHERE TenDangNhap = ? AND MatKhau = ?
+    			""";
+    	try {
+            conn = DBConnection.getConnection();
+            ps = conn.prepareStatement(sql);
+            ps.setString(1, username);
+            ps.setString(2, password);
+            rs = ps.executeQuery(); 
+            if (rs.next()) {
+            	int count = rs.getInt(1);
+                return count > 0;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            DBConnection.close(rs, ps, conn);
+        }
+        return false;
+    }
+    
+    public NguoiDung getByAccount(String username, String password) {
+        String sql = """
+    		SELECT * 
+			FROM NguoiDung
+			WHERE TenDangNhap = ? AND MatKhau = ? 
+            """;
+        NguoiDung nguoiDung = null;
+
+        try {
+            conn = DBConnection.getConnection();
+            ps = conn.prepareStatement(sql);
+            ps.setString(1, username);
+            ps.setString(2, password);
+            rs = ps.executeQuery(); 
+            if (rs.next()) {
+            	nguoiDung = new NguoiDung(
+        			rs.getString("MaND"),  
+                    rs.getString("TenND"), 
+                    rs.getInt("NamSinh"), 
+                    rs.getString("GioiTinh"),
+                    rs.getString("SoDienThoai"),
+                    rs.getString("Email"),
+                    rs.getString("DiaChi"),
+                    rs.getString("AnhND"),
+                    rs.getString("VaiTro"),
+                    rs.getString("TenDangNhap"),
+                    rs.getString("MatKhau") 
+                );
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            DBConnection.close(rs, ps, conn);
+        }
+        return nguoiDung;
+    }
 
 }

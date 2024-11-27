@@ -1,11 +1,15 @@
 @charset "UTF-8";
-
+.body-container{
+	background-color: #E3D9CF;
+	background-repeat: no-repeat;
+	background-size: cover;
+}
 .profile-container {
 	width: 100%;
 	height: auto;
-	margin-top: 81px;
 	display: flex;
 	flex-direction: column;
+	
 }
 
 .fa-solid {
@@ -181,21 +185,51 @@ form-group-control {
 /* Login */
 .login-container {
 	display: flex;
-	justify-content: center;
-	align-items: center;
-	margin: 50px auto;
 	width: 100%;
-	max-width: 400px;
-	padding: 20px;
+	justify-content: center;
+	background-image: url('');
+	background-color: #E3D9CF;
+	background-repeat: no-repeat;
+	background-size: cover;
+  background-position: center;
+  height: 100%;
+}
+
+.login-container-group{
+	display: flex;
+	margin: 50px 50px;
+	width: 90%;
+	flex-direction: row;
+	border-radius: 10px;
+	justify-content: center;
+}
+
+.login-images{
+	width: 34%;
+	background-color: white;
+	box-shadow: 0px 5px 20px rgba(0, 0, 0, 0.1);
+	border-radius: 10px;
+}
+
+.login-images img{
+	width: 100%;
+	border-top-left-radius: 10px; 
+  	border-bottom-left-radius: 10px; 
+}
+.login-form-control{
+	display:flex;
+	box-shadow: 0px 5px 20px rgba(0, 0, 0, 0.1);
+	width: 30%;
+	background-color: white;
+	border-top-right-radius: 10px; 
+  	border-bottom-right-radius: 5px; 
+  	align-items: center;
 }
 
 .login-form {
 	width: 100%;
 	padding: 30px;
-	margin-top: 50px;
 	background-color: white;
-	box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.1);
-	border-radius: 10px;
 	text-align: center;
 }
 
@@ -220,7 +254,7 @@ form-group-control {
 	justify-content: center;
 }
 
-.login-form input[type="email"], .login-form input[type="password"] {
+.login-form input[type="text"], .login-form input[type="password"] {
 	padding: 10px;
 	margin: 10px 0;
 	border: 1px solid #ccc;

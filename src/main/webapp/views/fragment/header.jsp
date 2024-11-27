@@ -34,8 +34,8 @@
 						<ul class="dropdown-menu">
 							<li><a class="dropdown-item"
 								href="TrangChuServlet?action=profile">Thông tin cá nhân</a></li>
-							<li><a class="dropdown-item"
-								href="TrangChuServlet?action=login">Đăng nhập</a></li>
+							<li><a class="dropdown-item" href="DangNhapServlet">Đăng
+									nhập</a></li>
 							<li><a class="dropdown-item"
 								href="DangKyServlet?action=signup">Đăng kí</a></li>
 						</ul></li>
@@ -45,11 +45,19 @@
 			<nav class="nav-profile">
 				<div class="profile">
 					<div class="profile-images">
-						<c:if test="${not empty param.Anh}">
-							<img id="userImage"
-								src="${pageContext.request.contextPath}/imageProxy?url=${param.Anh}"
-								alt="User Image" />
-						</c:if>
+						<c:choose>
+							<c:when
+								test="${param.Anh.startsWith('http://') || param.Anh.startsWith('https://')}">
+								<img id="userImage"
+									src="${pageContext.request.contextPath}/imageProxy?url=${param.Anh}"
+									alt="" />
+							</c:when>
+							<c:otherwise>
+								<img id="userImage"
+									src="${pageContext.request.contextPath}/views/assets/images/HinhNguoiDung/${param.Anh}"
+									alt="" />
+							</c:otherwise>
+						</c:choose>
 					</div>
 					<div class="profile-names">
 						<p>${param.HoTen}</p>

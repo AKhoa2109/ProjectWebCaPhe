@@ -93,13 +93,16 @@ public class DangKyServlet extends HttpServlet {
 				if(ndDao.insert(nDung))
 				{
 					request.setAttribute("msg", "Thêm thành công");
+					request.setAttribute("typeMess", "success");
 				}
 				else {
                     request.setAttribute("msg", "Không thành công");
+                    request.setAttribute("typeMess", "error");
                 }
 			}
 			else {
 				request.setAttribute("msg", "Không thành công");
+				request.setAttribute("typeMess", "error");
 			}
             request.getRequestDispatcher("/views/template/signup.jsp").forward(request, response);
 		}
@@ -108,6 +111,7 @@ public class DangKyServlet extends HttpServlet {
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
+    @Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		doGet(request, response);

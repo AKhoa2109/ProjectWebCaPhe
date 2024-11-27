@@ -99,6 +99,11 @@
 		</section>
 		<button id="showMoreBtn" onclick="showMoreProducts()">Hiển thị thêm sản phẩm</button>
 	</div>
+	<!-- Toast để thông bao  -->
+		<jsp:include page="/views/fragment/toast.jsp" >
+			<jsp:param name="msg" value="${msg}" />
+			<jsp:param name="type" value="${typeMess}" />
+		</jsp:include>
 	<!-- Footer -->
 	<jsp:include page="/views/fragment/footer.jsp" />
 </body>

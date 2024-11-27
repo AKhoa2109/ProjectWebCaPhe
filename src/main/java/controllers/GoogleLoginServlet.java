@@ -16,6 +16,7 @@ import models.*;
 /**
  * Servlet implementation class GoogleLoginServlet
  */
+@WebServlet("/GoogleLoginServlet")
 public class GoogleLoginServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 

@@ -11,14 +11,19 @@
 <link rel="stylesheet" type="text/css"
 	href="<%=request.getContextPath()%>/views/assets/styles/toast.css" />
 <script src="<%=request.getContextPath()%>/views/assets/js/toast.js"></script>
-
+<link rel="stylesheet" type="text/css"
+	href="<%=request.getContextPath()%>/views/assets/styles/breadcrumb.css" />
 <script src="<%=request.getContextPath()%>/views/assets/js/script.js"></script>
 <title>Đăng kí</title>
 </head>
-<body>
-	<!-- HEADER -->
-	<jsp:include page="/views/fragment/header.jsp" />
-
+<body class="body-container">
+	
+	<nav aria-label="breadcrumb">
+			<ul class="breadcrumb">
+				<li><a href="DangNhapServlet">Đăng nhập</a></li>
+				<li><a href="#">Đăng kí</a></li>
+			</ul>
+		</nav>
 	<div class="profile-container">
 		<h1>Đăng kí</h1>
 		<hr />
@@ -29,7 +34,8 @@
 					enctype="multipart/form-data" onclick="setTextValues()">
 					<div class="profile-image">
 						<img src="https://via.placeholder.com/150" alt="" /> 
-						<input type="file" class="custom-file-input" id="anhND" name="anhND" />
+						<input type="file" class="custom-file-input" id="anhND" name="filename" />
+						<input type="hidden" name="anhND" value="" class="input-file-name"/>
 					</div>
 					<div class="profile-group-control">
 						<div class="profile-form-group-account">
@@ -146,15 +152,12 @@
 			</div>
 		</div>
 		<!-- Toast để thông bao  -->
-		<div id="custom-toast-container"></div>
-		<c:if test="${not empty msg}">
-			<script>
-			showSuccessToast('${msg}');
-		     </script>
-		</c:if>
+		<jsp:include page="/views/fragment/toast.jsp" >
+			<jsp:param name="msg" value="${msg}" />
+			<jsp:param name="type" value="${typeMess}" />
+		</jsp:include>
 	</div>
-	<!-- FOOTER -->
-	<jsp:include page="/views/fragment/footer.jsp" />
+	
 </body>
 <script>
 	function setTextValues() {
@@ -162,18 +165,28 @@
 		document.getElementById("districtName").value = document.getElementById("districts").options[document.getElementById("districts").selectedIndex].text;
 		document.getElementById("wardName").value = document.getElementById("wards").options[document.getElementById("wards").selectedIndex].text;
 	}
-    document.querySelector('.custom-file-input').addEventListener('change', function(e) {
-        var fileInput = e.target;
-        var file = fileInput.files[0];
-        var fileName = file?.name || 'Chọn file...';
-
-        if (file) {
-            var reader = new FileReader();
-            reader.onload = function(e) {
-                document.querySelector('.profile-image img').src = e.target.result;
-            };
-            reader.readAsDataURL(file);  
-        }
-    });
+	document.addEventListener('DOMContentLoaded', function() {
+		document.querySelector('.custom-file-input').addEventListener('change', function(e) {
+		    var fileInput = e.target;  // Lấy phần tử input file từ sự kiện
+		    if (fileInput.files.length > 0) {  // Kiểm tra xem có tệp nào được chọn không
+		        var file = fileInput.files[0];  // Lấy tệp đầu tiên
+		        var fileName = file.name || 'Chọn file...';
+		
+		
+		        // Cập nhật giá trị của input[type="hidden"]
+		        var hiddenInput = fileInput.parentElement.querySelector('.input-file-name');
+		        hiddenInput.value = fileName;
+		
+		        var reader = new FileReader();
+		        reader.onload = function(e) {
+		            document.querySelector('.profile-image img').src = e.target.result;
+		        };
+		        reader.readAsDataURL(file); // Đọc file và gán kết quả base64 vào src ảnh
+		    } else {
+		        // Nếu không có tệp nào được chọn, có thể xử lý thông báo hay làm gì đó
+		        console.log('No file selected');
+		    }
+		});
+	});
 </script>
 </html>

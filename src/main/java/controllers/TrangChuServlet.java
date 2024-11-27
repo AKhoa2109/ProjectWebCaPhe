@@ -5,6 +5,8 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
+
 import java.io.IOException;
 import java.sql.SQLException;
 
@@ -37,7 +39,20 @@ public class TrangChuServlet extends HttpServlet {
         SanPhamDao sanPhamDao = new SanPhamDao();
         LoaiSanPhamDao loaiSanPhamDao = new LoaiSanPhamDao();
 		String action = request.getParameter("action");
-		
+		HttpSession session = request.getSession(false);
+		if (session != null) {
+		    String msg = (String) session.getAttribute("msg");
+		    String typeMess = (String) session.getAttribute("typeMess");
+
+		    // Xử lý thông báo nếu có
+		    if (msg != null && typeMess != null) {
+		        request.setAttribute("msg", msg);
+		        request.setAttribute("typeMess", typeMess);
+		        // Sau khi xử lý, xóa thông báo khỏi session
+		        session.removeAttribute("msg");
+		        session.removeAttribute("typeMess");
+		    }
+		}
 		if(action==null)
 		{
 			request.setAttribute("listSlide", slDao.getByTrangThai("Hiển thị"));
