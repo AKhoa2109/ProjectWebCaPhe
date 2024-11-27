@@ -59,31 +59,32 @@
 		                <td>${status.index + 1}</td> <!-- STT tự động -->
 		                <td>${cthd.maSP}</td> 
 		                <td>${cthd.tenSP}</td>  
-		                <td><fmt:formatNumber value="${cthd.gia}"/></td>  
+		                <td><fmt:formatNumber value="${cthd.gia}"/></td>  <!-- Định dạng giá -->
 		                <td>${cthd.soLuong}</td> 
-		                <td><fmt:formatNumber value="${cthd.tongTien}"/></td>  
+		                <td><fmt:formatNumber value="${cthd.tongTien}"/></td>  <!-- Định dạng tổng tiền -->
 		            </tr>
 		        </c:forEach>
 		    </tbody>
 		    <tfoot>
-	       		<tr>
-				    <td colspan="5" class="text-right">Cộng tiền sản phẩm</td>
-				    <td><fmt:formatNumber value="${tongTienSanPham}" pattern="#,###" /></td>  
-				</tr>
-				<tr>
-				    <td colspan="5" class="text-right">Phí vận chuyển</td>
-				    <td><fmt:formatNumber value="${phiVanChuyen}" pattern="#,###" /></td>
-				</tr>
-				<tr>
-				    <td colspan="5" class="text-right">Giảm</td>
-				    <td><fmt:formatNumber value="${giam}" pattern="#,###" /></td>
-				</tr>
-				<tr>
-				    <td colspan="5" class="text-right">Thành tiền</td>
-				    <td><fmt:formatNumber value="${thanhTien}" pattern="#,###" /></td>
-				</tr>
+		        <tr>
+		            <td colspan="5" class="text-right">Cộng tiền sản phẩm</td>
+		            <td><fmt:formatNumber value="${tongTienSanPham}"/></td>  <!-- Định dạng tổng tiền sản phẩm -->
+		        </tr>
+		        <tr>
+		            <td colspan="5" class="text-right">Phí vận chuyển</td>
+		            <td><fmt:formatNumber value="${phiVanChuyen}"/></td>  <!-- Định dạng phí vận chuyển -->
+		        </tr>
+		        <tr>
+		            <td colspan="5" class="text-right">Giảm</td>
+		            <td><fmt:formatNumber value="${giam}"/></td>  <!-- Định dạng giảm -->
+		        </tr>
+		        <tr>
+		            <td colspan="5" class="text-right">Thành tiền</td>
+		            <td><fmt:formatNumber value="${thanhTien}"/></td>  <!-- Định dạng thành tiền -->
+		        </tr>
 		    </tfoot>
 		</table>
+	    
 	</div>
 
   	<!-- Print and action buttons -->
@@ -95,17 +96,21 @@
 </div>
 
 <script>
-    function printInvoice() {
-        var printContents = document.getElementById('invoiceContent').innerHTML;
-        var originalContents = document.body.innerHTML;
-        
-        // Tạm thời thay thế nội dung body bằng chỉ phần in
-        document.body.innerHTML = printContents;
-        
-        // In trang
-        window.print();
-        
-        // Phục hồi lại nội dung ban đầu sau khi in xong
-        document.body.innerHTML = originalContents;
-    }
+function printInvoice() {
+    // Lấy nội dung cần in (chỉ lấy phần hóa đơn)
+    var printContents = document.getElementById('invoiceContentIn').innerHTML;
+    
+    // Lưu lại nội dung gốc của trang
+    var originalContents = document.body.innerHTML;
+    
+    // Tạm thời thay thế toàn bộ nội dung body bằng chỉ phần hóa đơn
+    document.body.innerHTML = printContents;
+    
+    // In trang
+    window.print();
+    
+    // Khôi phục lại nội dung gốc sau khi in xong
+    document.body.innerHTML = originalContents;
+}
+
 </script>

@@ -12,6 +12,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.Part;
 import models.Slide;
+import utilities.XuLyAnh;
 
 /**
  * Servlet implementation class SlideServlet
@@ -71,7 +72,8 @@ public class SlideServlet extends HttpServlet {
         	String maND = "ND01";
         	
         	Slide newSlide = new Slide(maSlide, tenSlide, anhSlide, viTri, trangThai, maND);
-        	luuAnh(request);
+        	XuLyAnh xuLyAnh = new XuLyAnh();
+        	xuLyAnh.luuAnh(request,getServletContext(),"Slide"); 
         	
         	if (action.equals("insert")) {
                 if (sDao.insert(newSlide)) {
@@ -109,55 +111,7 @@ public class SlideServlet extends HttpServlet {
 		doGet(request, response);
 	}
 	
-	private String luuAnh(HttpServletRequest request) throws ServletException, IOException {
-		// Đường dẫn thư mục trên server  
-        String serverFilePath = getServletContext().getRealPath("") + File.separator + "views\\assets\\images\\Slide";
-        System.out.println("Server Path: " + serverFilePath);
-
-        // Đường dẫn thư mục trong gốc của dự án
-        int viTriCat = getServletContext().getRealPath("").indexOf(".metadata");
-        String localFilePath = getServletContext().getRealPath("").substring(0, viTriCat) + "ProjectWebCaPhe" + File.separator + "src\\main\\webapp\\views\\assets\\images\\Slide";
-        System.out.println("Local Path: " + localFilePath);
-          
-        // Tạo thư mục nếu chưa tồn tại (cho cả server và local)
-        File serverUploadDir = new File(serverFilePath);
-        if (!serverUploadDir.exists()) {
-            serverUploadDir.mkdirs();
-        }
-
-        File localUploadDir = new File(localFilePath);
-        if (!localUploadDir.exists()) {
-            localUploadDir.mkdirs();
-        }
-        
-        String fileName = "";
-        for (Part part : request.getParts()) {
-        	fileName = extractFileName(part); 
-            if (fileName != null && !fileName.isEmpty()) {
-            	System.out.println(fileName);
-            	
-                // Lưu vào thư mục trên server
-                String serverFile = serverFilePath + File.separator + fileName;
-                part.write(serverFile);  
-
-                // Lưu vào thư mục trong gốc dự án
-                String localFile = localFilePath + File.separator + fileName;
-                part.write(localFile);   
-            }
-        }
-        
-        return fileName;
-	}
 	
-	private String extractFileName(Part part) {
-        String contentDisp = part.getHeader("content-disposition"); // có dạng là: form-data; name="fileSlide"; filename="example.jpg"
-        for (String content : contentDisp.split(";")) {
-            if (content.trim().startsWith("filename")) {
-                return content.substring(content.indexOf("=") + 2, content.length() - 1);
-            }
-        }
-        return null;
-    }
 	
 	  
 }

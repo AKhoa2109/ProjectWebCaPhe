@@ -1,10 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="jakarta.tags.core" %>
+<%@ taglib prefix="fmt" uri="jakarta.tags.fmt"  %>
 
+<script type="text/javascript" src="${pageContext.request.contextPath}/views/assets/js/validate/nguoiDungValidate.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/views/assets/js/formatNumber.js"></script>
 
 <h3 class="mb-4 text-center font-weight-bold">Chỉnh sửa Thông Tin Người Dùng</h3>
 
-<form action="NguoiDungServlet?action=update" method="post" enctype="multipart/form-data" class="p-4 bg-light shadow rounded">
+<form action="NguoiDungServlet?action=update" id="formNguoiDung"  method="post" enctype="multipart/form-data" onsubmit="return removeSeparators() && validateForm()" class="p-4 bg-light shadow rounded">
     
     <!-- Row 1: Hình ảnh và thông tin người dùng -->
     <div class="form-group row">
@@ -72,7 +76,7 @@
     <!-- Email -->
     <div class="form-group">
         <label for="email" class="font-weight-bold">Email</label>
-        <input type="email" class="form-control" id="email" name="email" value="${nguoiDung.email}"/>
+        <input type="text" class="form-control" id="email" name="email" value="${nguoiDung.email}"/>
     </div>
 
     <!-- Địa chỉ -->

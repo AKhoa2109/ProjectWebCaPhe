@@ -38,9 +38,9 @@
         <c:forEach items="${donHangList}" var="dh">
             <tr>
                 <td>${dh.maDH}</td> 
-                <td>${dh.giaTriDH}</td>  
+                <td><fmt:formatNumber value='${dh.giaTriDH}'/></td>  
                 <td>
-                    <fmt:formatDate value="${dh.ngayMua}" pattern="yyyy-MM-dd"/>
+                    <fmt:formatDate value='${dh.ngayMua}' pattern="dd/MM/yyyy"/>
                 </td>  
                 <td>${dh.tenKV}</td>  
                 <td>${dh.trangThai}</td> 

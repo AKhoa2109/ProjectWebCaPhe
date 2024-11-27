@@ -70,7 +70,7 @@
                 localStorage.setItem("theme", theme);
                 applyTheme(theme);
 
-                alert("Settings saved! from theme.js");
+                //alert("Settings saved! from theme.js");
             });
 
             // Initialize settings on load

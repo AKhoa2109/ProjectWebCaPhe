@@ -2,9 +2,12 @@
 <%@ taglib prefix="c" uri="jakarta.tags.core" %>
 <%@ taglib prefix="fmt" uri="jakarta.tags.fmt" %>
 
+<script type="text/javascript" src="${pageContext.request.contextPath}/views/assets/js/validate/nguyenLieuValidate.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/views/assets/js/formatNumber.js"></script>
+
 <h3 class="mb-4 text-center font-weight-bold">Thêm mới Nguyên Liệu</h3>
 
-<form action="NguyenLieuServlet?action=insert" method="post" class="p-4 bg-light shadow rounded">    
+<form action="NguyenLieuServlet?action=insert" id="formNguyenLieu" method="post" onsubmit="return removeSeparators() && validateForm()" class="p-4 bg-light shadow rounded">    
 	<input type="hidden"name="maNL"/>
 	
     <!-- Tên nguyên liệu -->

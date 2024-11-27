@@ -1,12 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%> 
+<%@ taglib prefix="c" uri="jakarta.tags.core" %>
+<%@ taglib prefix="fmt" uri="jakarta.tags.fmt"  %>    
     
-    
+<script type="text/javascript" src="${pageContext.request.contextPath}/views/assets/js/validate/slideValidate.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/views/assets/js/formatNumber.js"></script>
     
 
 <h3 class="text-center mb-4 font-weight-bold">Chỉnh sửa Slide</h3>
 
-<form action="SlideServlet?action=update" method="post" name="formSlide" enctype="multipart/form-data" class="p-4 bg-light shadow rounded">
+<form action="SlideServlet?action=update" id="formSlide" method="post" name="formSlide" enctype="multipart/form-data" onsubmit="return removeSeparators() && validateForm()" class="p-4 bg-light shadow rounded">
     
     <div class="form-row">
         <div class="form-group col-md-6">
@@ -40,7 +43,7 @@
     <div class="form-row">
         <div class="form-group col-md-6">
             <label for="viTri" class="font-weight-bold">Vị trí</label>
-            <input type="number" class="form-control" id="viTri" name="viTri" value="${slide.viTri}"/>
+            <input type="number" class="form-control" id="viTri" name="viTri" value="${slide.viTri}" min="0" step="1"/>
         </div>
         <div class="form-group col-md-6">
             <label for="trangThai" class="font-weight-bold">Trạng thái</label>
@@ -56,5 +59,7 @@
         <a href="<%=request.getContextPath()%>/SlideServlet" class="btn btn-secondary" style="width:100px">Hủy</a> 
 	</div>
 </form>
+ 
+ 
  
  

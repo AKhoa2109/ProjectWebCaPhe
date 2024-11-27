@@ -16,10 +16,7 @@
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" >  <!--  Bootstrap 4 từ CDN -->
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"> <!-- Icon trên trang font-awesome -->
-    
-	<link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/views/assets/styles/toast.css"/> <!-- toast.css và toast.js -->
-	<script src="<%=request.getContextPath()%>/views/assets/js/toast.js"></script> 
-	
+     
 	<link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/views/assets/styles/admin.css"/>  <!-- admin.css và admin.js-->
 	<script src="<%=request.getContextPath()%>/views/assets/js/admin.js"></script> 
 	
@@ -101,19 +98,16 @@
 					<jsp:include page="/views/template/adminContents/headerAdmin.jsp"/> 
 				</div> 
 				
+				
 				<div class="row" style="margin-top:63px">
 					<div class="col-12"> <!-- Chiếm hết màn hình bên phải -->
 					 
 						<%-- <p>Thông báo: ${msg}</p>  --%> 
 					  	<%-- <div onclick="showInformationToast('${msg}');" class="custom-btn custom-btn--success">Show Information toast</div>  --%>
 		 					
-		 				<!-- Toast để thông bao  --> 
-						<div id="custom-toast-container"></div> 
-		                <c:if test="${not empty msg}">  
-		                    <script>
-		                        showInformationToast('${msg}');
-		                    </script>
-		                </c:if>
+		 				<jsp:include page="/views/fragment/toast.jsp">
+							<jsp:param name="msg" value="${msg}" />
+						</jsp:include>
 						   
 						<%--  <jsp:include page="adminContents/slideEdit.jsp"></jsp:include>   --%>
 						<!-- Include page -->   

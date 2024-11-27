@@ -2,9 +2,12 @@
 <%@ taglib prefix="c" uri="jakarta.tags.core" %>
 <%@ taglib prefix="fmt" uri="jakarta.tags.fmt" %>
 
+<script type="text/javascript" src="${pageContext.request.contextPath}/views/assets/js/validate/nguoiDungValidate.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/views/assets/js/formatNumber.js"></script>
+
 <h3 class="mb-4 text-center font-weight-bold">Thêm Mới Người Dùng</h3>
 
-<form action="NguoiDungServlet?action=insert" method="post" enctype="multipart/form-data" class="p-4 bg-light shadow rounded">
+<form action="NguoiDungServlet?action=insert" id="formNguoiDung" method="post" enctype="multipart/form-data" onsubmit="return removeSeparators() && validateForm()" class="p-4 bg-light shadow rounded">
 	<input type="hidden"name="maND"/>
 	
     <!-- Row 1: Hình ảnh và thông tin người dùng -->
@@ -66,7 +69,7 @@
     <!-- Email -->
     <div class="form-group">
         <label for="email" class="font-weight-bold">Email</label>
-        <input type="email" class="form-control" id="email" name="email"  />
+        <input type="text" class="form-control" id="email" name="email"  />
     </div>
 
     <!-- Địa chỉ -->

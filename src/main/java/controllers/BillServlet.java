@@ -50,11 +50,17 @@ public class BillServlet extends HttpServlet {
 			request.setAttribute("nguoiDung", ndDao.getById(ttDao.getById(maDH).getMaND()));
 			
 			// Khúc dưới là của table
-			request.setAttribute("chiTietHoaDonList", cthdDao.getChiTietHoaDonByMaDH(maDH));
-			request.setAttribute("tongTienSanPham", cthdDao.getTongTienSanPham(maDH));
-			request.setAttribute("phiVanChuyen", cthdDao.layPhiVanChuyenTheoMaDH(maDH));
-			request.setAttribute("giam", cthdDao.layGiaTriVoucherTheoMaDH(maDH));
-		    request.setAttribute("thanhTien", cthdDao.getThanhTienByMaDH(maDH)); 
+			request.setAttribute("chiTietHoaDonList", cthdDao.getChiTietHoaDonByMaDH(maDH));  
+			
+			double tongTienSanPham = cthdDao.getTongTienSanPham(maDH);
+		    double phiVanChuyen = cthdDao.layPhiVanChuyenTheoMaDH(maDH);
+		    double giam = cthdDao.layGiaTriVoucherTheoMaDH(maDH);
+		    double thanhTien = tongTienSanPham + phiVanChuyen - giam;
+		    request.setAttribute("tongTienSanPham", tongTienSanPham);
+		    request.setAttribute("phiVanChuyen", phiVanChuyen);
+		    request.setAttribute("giam", giam);
+		    request.setAttribute("thanhTien", thanhTien);
+			
 		    request.getRequestDispatcher("/views/template/admin.jsp?page=donHangBill").forward(request, response);
 		}
 	}

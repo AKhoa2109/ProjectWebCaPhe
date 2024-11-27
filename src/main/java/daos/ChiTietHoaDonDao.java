@@ -1,11 +1,14 @@
 package daos;
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import conn.DBConnection;
 import models.ChiTietHoaDon;
@@ -17,7 +20,7 @@ public class ChiTietHoaDonDao {
 
     public ChiTietHoaDonDao() {
     }
-    
+
     public List<ChiTietHoaDon> getChiTietHoaDonByMaDH(String maDH) {
         String sql = """
             SELECT cthd.MaDH, cthd.MaSP, sp.TenSP, sp.GiaSP, cthd.SoLuong, cthd.TongTien
@@ -35,7 +38,6 @@ public class ChiTietHoaDonDao {
             rs = ps.executeQuery();
 
             while (rs.next()) {
-                // Tạo đối tượng ChiTietHoaDon với constructor của bạn
                 ChiTietHoaDon cthd = new ChiTietHoaDon(
                     rs.getString("MaDH"),
                     rs.getString("MaSP"),
@@ -44,8 +46,6 @@ public class ChiTietHoaDonDao {
                     rs.getString("TenSP"),
                     rs.getFloat("GiaSP")
                 );
-
-                // Thêm vào danh sách kết quả
                 chiTietHoaDonList.add(cthd);
             }
         } catch (SQLException e) {
@@ -54,9 +54,9 @@ public class ChiTietHoaDonDao {
             DBConnection.close(rs, ps, conn);  // Đảm bảo đóng kết nối
         }
 
-        return chiTietHoaDonList;  // Trả về danh sách chi tiết hóa đơn
+        return chiTietHoaDonList;
     }
-    
+
     public float getTongTienSanPham(String maDH) {
         String sql = """
             SELECT COALESCE(SUM(cthd.TongTien), 0) AS TongTienSP
@@ -68,22 +68,22 @@ public class ChiTietHoaDonDao {
         float tongTienSP = 0;
 
         try {
-            conn = DBConnection.getConnection(); // Kết nối cơ sở dữ liệu
+            conn = DBConnection.getConnection();
             ps = conn.prepareStatement(sql);
-            ps.setString(1, maDH); // Gán tham số MaDH
+            ps.setString(1, maDH);
             rs = ps.executeQuery();
 
             if (rs.next()) {
-                tongTienSP = rs.getFloat("TongTienSP"); // Lấy giá trị tổng tiền
+                tongTienSP = rs.getFloat("TongTienSP");
             }
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
-            DBConnection.close(rs, ps, conn); // Đóng kết nối, PreparedStatement và ResultSet
+            DBConnection.close(rs, ps, conn);
         }
         return tongTienSP;
     }
-    
+
     public float layPhiVanChuyenTheoMaDH(String maDH) {
         String sql = """
             SELECT kv.PhiVanChuyen
@@ -91,36 +91,35 @@ public class ChiTietHoaDonDao {
             JOIN KhuVuc kv ON dh.MaKV = kv.MaKV
             WHERE dh.MaDH = ?
         """;
-        
+
         float phiVanChuyen = 0;
-        
+
         try {
             conn = DBConnection.getConnection();
             ps = conn.prepareStatement(sql);
-            ps.setString(1, maDH);  // Gán giá trị cho MaDH trong câu truy vấn
+            ps.setString(1, maDH);
             rs = ps.executeQuery();
 
-            // Kiểm tra nếu có kết quả trả về và lấy giá trị phí vận chuyển
             if (rs.next()) {
                 phiVanChuyen = rs.getFloat("PhiVanChuyen");
             }
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
-            DBConnection.close(rs, ps, conn);  // Đóng kết nối
+            DBConnection.close(rs, ps, conn);
         }
-        
-        return phiVanChuyen;  // Trả về phí vận chuyển
+
+        return phiVanChuyen;
     }
 
-
     public float layGiaTriVoucherTheoMaDH(String maDH) {
-        String sql = """ 
+        String sql = """
             SELECT COALESCE(vc.GiaTriVC, 0) AS GiaTriVC
             FROM Voucher vc
             JOIN DonHang dh ON vc.MaVC = dh.MaVC
             WHERE dh.MaDH = ?
         """;
+
         float giaTriVoucher = 0;
 
         try {
@@ -141,19 +140,25 @@ public class ChiTietHoaDonDao {
         return giaTriVoucher;
     }
 
-    
-    public float getThanhTienByMaDH(String maDH) { 
-        String sql = "SELECT dbo.func_TongTien_ChiTietHoaDon(?)";
-        float tongTien = -1;
+    // Dashboard methods
+    public float getTongGiaTriDonHangByDateRange(Date startDate, Date endDate) {
+        String sql = """
+            SELECT COALESCE(SUM(GiaTriDH), 0) AS TongGiaTriDH
+            FROM DonHang
+            WHERE NgayMua BETWEEN ? AND ?
+        """;
+
+        float tongGiaTriDH = 0;
 
         try {
             conn = DBConnection.getConnection();
             ps = conn.prepareStatement(sql);
-            ps.setString(1, maDH);
+            ps.setDate(1, startDate);
+            ps.setDate(2, endDate);
             rs = ps.executeQuery();
 
             if (rs.next()) {
-                tongTien = rs.getFloat(1);
+                tongGiaTriDH = rs.getFloat("TongGiaTriDH");
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -161,6 +166,175 @@ public class ChiTietHoaDonDao {
             DBConnection.close(rs, ps, conn);
         }
 
-        return tongTien;
+        return tongGiaTriDH;
     }
+
+    public int getTongSanPhamByDateRange(Date startDate, Date endDate) {
+        String sql = """
+            SELECT SUM(cthd.SoLuong) AS TotalQuantity
+            FROM ChiTietHoaDon cthd
+            JOIN DonHang dh ON cthd.MaDH = dh.MaDH
+            WHERE dh.NgayMua BETWEEN ? AND ?
+        """;
+
+        int totalQuantity = 0;
+
+        try {
+            conn = DBConnection.getConnection();
+            ps = conn.prepareStatement(sql);
+            ps.setDate(1, startDate);
+            ps.setDate(2, endDate);
+            rs = ps.executeQuery();
+
+            if (rs.next()) {
+                totalQuantity = rs.getInt("TotalQuantity");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            DBConnection.close(rs, ps, conn);
+        }
+
+        return totalQuantity;
+    }
+
+    public int getTongKhachHangByDateRange(Date startDate, Date endDate) {
+        String sql = """
+            SELECT COUNT(DISTINCT tt.MaND) AS DistinctCountMaND
+            FROM ThanhToan tt
+            JOIN DonHang dh ON tt.MaDH = dh.MaDH
+            WHERE dh.NgayMua BETWEEN ? AND ?
+        """;
+
+        int distinctCountMaND = 0;
+
+        try {
+            conn = DBConnection.getConnection();
+            ps = conn.prepareStatement(sql);
+            ps.setDate(1, startDate);
+            ps.setDate(2, endDate);
+            rs = ps.executeQuery();
+
+            if (rs.next()) {
+                distinctCountMaND = rs.getInt("DistinctCountMaND");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            DBConnection.close(rs, ps, conn);
+        }
+
+        return distinctCountMaND;
+    }
+    
+    public List<Map<String, Object>> getSanPhamVaTongSoLuongByDateRange(Date startDate, Date endDate) {
+        String sql = """
+            SELECT sp.TenSP, SUM(cthd.SoLuong) AS TongSoLuong
+            FROM ChiTietHoaDon cthd
+            JOIN DonHang dh ON cthd.MaDH = dh.MaDH
+            JOIN SanPham sp ON cthd.MaSP = sp.MaSP
+            WHERE dh.NgayMua BETWEEN ? AND ?
+            GROUP BY cthd.MaSP, sp.TenSP
+        """;
+
+        List<Map<String, Object>> result = new ArrayList<>();
+
+        try {
+            conn = DBConnection.getConnection();
+            ps = conn.prepareStatement(sql);
+            ps.setDate(1, startDate);
+            ps.setDate(2, endDate);
+            rs = ps.executeQuery();
+
+            while (rs.next()) {
+                // Tạo một Map để lưu tên sản phẩm và tổng số lượng
+                Map<String, Object> row = new HashMap<>();
+                row.put("TenSP", rs.getString("TenSP"));
+                row.put("TongSoLuong", rs.getInt("TongSoLuong"));
+
+                // Thêm vào danh sách kết quả
+                result.add(row);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            DBConnection.close(rs, ps, conn);
+        }
+
+        return result;
+    }
+    
+    public List<Map<String, Object>> getSanPhamVaTongTienByDateRange(Date startDate, Date endDate) {
+        String sql = """
+            SELECT sp.TenSP, SUM(cthd.TongTien) AS TongTien
+            FROM ChiTietHoaDon cthd
+            JOIN DonHang dh ON cthd.MaDH = dh.MaDH
+            JOIN SanPham sp ON cthd.MaSP = sp.MaSP
+            WHERE dh.NgayMua BETWEEN ? AND ?
+            GROUP BY cthd.MaSP, sp.TenSP
+        """;
+
+        List<Map<String, Object>> result = new ArrayList<>();
+
+        try {
+            conn = DBConnection.getConnection();
+            ps = conn.prepareStatement(sql);
+            ps.setDate(1, startDate);
+            ps.setDate(2, endDate);
+            rs = ps.executeQuery();
+
+            while (rs.next()) {
+                // Tạo một Map để lưu tên sản phẩm và tổng tiền
+                Map<String, Object> row = new HashMap<>();
+                row.put("TenSP", rs.getString("TenSP"));
+                row.put("TongTien", rs.getFloat("TongTien"));
+
+                // Thêm vào danh sách kết quả
+                result.add(row);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            DBConnection.close(rs, ps, conn);
+        }
+
+        return result;
+    }
+    
+    public List<Map<String, Object>> getNgayMuaVaGiaTriDHByDateRange(Date startDate, Date endDate) {
+        String sql = """
+            SELECT dh.NgayMua, dh.GiaTriDH
+            FROM DonHang dh
+            WHERE dh.NgayMua BETWEEN ? AND ?
+        """;
+
+        List<Map<String, Object>> result = new ArrayList<>();
+
+        try {
+            conn = DBConnection.getConnection();
+            ps = conn.prepareStatement(sql);
+            ps.setDate(1, startDate);
+            ps.setDate(2, endDate);
+            rs = ps.executeQuery();
+
+            while (rs.next()) {
+                // Tạo một Map để lưu Ngày Mua và Giá Trị Đơn Hàng
+                Map<String, Object> row = new HashMap<>();
+                row.put("NgayMua", rs.getDate("NgayMua")); // Ngày mua
+                row.put("GiaTriDH", rs.getFloat("GiaTriDH")); // Giá trị đơn hàng
+
+                // Thêm vào danh sách kết quả
+                result.add(row);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            DBConnection.close(rs, ps, conn);
+        }
+
+        return result;
+    }
+
+
+
 }

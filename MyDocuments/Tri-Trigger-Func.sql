@@ -36,7 +36,8 @@ BEGIN
     END CATCH
 END;
 
-GO
+GO 
+ 
 
 CREATE TRIGGER trg_TuDongTaoMaVC_Voucher
 ON Voucher
@@ -68,7 +69,7 @@ BEGIN
 
         -- Thực hiện chèn dữ liệu vào bảng Voucher với mã Voucher tự động
         INSERT INTO Voucher(MaVC, TenVC, GiaTriVC, SoLuotSuDungToiDa, SoLuotDaSuDung, NgayBatDau, NgayKetThuc, TrangThai)
-        SELECT @newMaVC, TenVC, GiaTriVC, SoLuotSuDungToiDa, SoLuotDaSuDung, NgayBatDau, NgayKetThuc, N'Còn hạn'
+        SELECT @newMaVC, TenVC, GiaTriVC, SoLuotSuDungToiDa, SoLuotDaSuDung, NgayBatDau, NgayKetThuc, TrangThai
         FROM inserted;
 
     END TRY

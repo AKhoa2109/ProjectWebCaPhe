@@ -2,9 +2,12 @@
 <%@ taglib prefix="c" uri="jakarta.tags.core" %>
 <%@ taglib prefix="fmt" uri="jakarta.tags.fmt" %>
 
+<script type="text/javascript" src="${pageContext.request.contextPath}/views/assets/js/validate/sanPhamValidate.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/views/assets/js/formatNumber.js"></script>
+
 <h3 class="mb-4 mt-4 text-center font-weight-bold">Thêm mới sản phẩm</h3>
 
-<form action="SanPhamServlet?action=insert" method="post" enctype="multipart/form-data" class="p-4 bg-light rounded shadow">
+<form action="SanPhamServlet?action=insert" id="formSanPham" method="post" enctype="multipart/form-data" onsubmit="return removeSeparators() && validateForm()" class="p-4 bg-light rounded shadow">
     <input type="hidden"name="maSP"/>
   
     <!-- Row 1: Hình ảnh sản phẩm và thông tin sản phẩm -->
@@ -44,7 +47,7 @@
             <div class="form-group">
                 <label for="giaSP" class="font-weight-bold">Giá sản phẩm</label>
                 <div class="input-group">
-                    <input type="number" class="form-control" id="giaSP" name="giaSP" min="0" step="1000" >
+                    <input type="text" class="form-control so" id="giaSP" name="giaSP" oninput="formatNumber(event)">
                     <div class="input-group-append">
                         <span class="input-group-text">VNĐ</span>
                     </div>
@@ -82,5 +85,5 @@
 <!-- CKEditor -->
 <script>
     CKEDITOR.replace('moTaSP');
-</script>
+</script> 
  

@@ -2,15 +2,18 @@
 <%@ taglib prefix="c" uri="jakarta.tags.core" %>
 <%@ taglib prefix="fmt" uri="jakarta.tags.fmt" %>
 
+<script type="text/javascript" src="${pageContext.request.contextPath}/views/assets/js/validate/loaiSanPhamValidate.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/views/assets/js/formatNumber.js"></script>
+
 <h3 class="mb-3 mt-3 text-center font-weight-bold">Thêm mới loại sản phẩm</h3>
 
-<form action="LoaiSanPhamServlet?action=insert" method="post" enctype="multipart/form-data" class="p-4 bg-light shadow rounded">
+<form action="LoaiSanPhamServlet?action=insert" id="formLoaiSanPham" method="post" enctype="multipart/form-data" onsubmit="return removeSeparators() && validateForm()" class="p-4 bg-light shadow rounded">
 	<input type="hidden"name="maLoaiSP"/>
 	
     <!-- Tên loại sản phẩm -->
     <div class="form-group">
         <label for="tenLoaiSP" class="font-weight-bold">Tên loại sản phẩm</label>
-        <input type="text" class="form-control" id="tenLoaiSP" name="tenLoaiSP" required />
+        <input type="text" class="form-control" id="tenLoaiSP" name="tenLoaiSP" />
     </div>
 
     <!-- Hình loại sản phẩm -->

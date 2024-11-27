@@ -2,9 +2,12 @@
 <%@ taglib prefix="c" uri="jakarta.tags.core" %>
 <%@ taglib prefix="fmt" uri="jakarta.tags.fmt" %>
 
+<script type="text/javascript" src="${pageContext.request.contextPath}/views/assets/js/validate/slideValidate.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/views/assets/js/formatNumber.js"></script>
+
 <h3 class="text-center mb-4 font-weight-bold">Thêm mới Slide</h3>
 
-<form action="SlideServlet?action=insert" method="post" name="formSlideAdd" enctype="multipart/form-data" class="p-4 bg-light shadow rounded">
+<form action="SlideServlet?action=insert" id="formSlide" method="post" name="formSlideAdd" enctype="multipart/form-data" onsubmit="return removeSeparators() && validateForm()" class="p-4 bg-light shadow rounded">
     <input type="hidden"name="maSlide"/>  <!-- Có trường này sẽ gửi "" thay vì null -->
      
     <div class="form-group ">
@@ -33,7 +36,7 @@
     <div class="form-row">
         <div class="form-group col-md-6">
             <label for="viTri" class="font-weight-bold">Vị trí</label>
-            <input type="number" class="form-control" id="viTri" name="viTri" />
+            <input type="number" class="form-control" id="viTri" name="viTri" value="0" min="0" step="1" />
         </div>
         <div class="form-group col-md-6">
             <label for="trangThai" class="font-weight-bold">Trạng thái</label>
@@ -49,5 +52,7 @@
         <a href="<%=request.getContextPath()%>/SlideServlet" class="btn btn-secondary" style="width:100px">Hủy</a> 
     </div>
 </form>
+
+<script type="text/javascript" src="${pageContext.request.contextPath}/views/assets/js/validate/slideValidate.js"></script>
 
  

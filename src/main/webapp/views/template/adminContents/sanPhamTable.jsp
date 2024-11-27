@@ -58,7 +58,7 @@
 	            <td>${sp.maSP}</td> 
 	            <td><img src="<%=request.getContextPath()%>/views/assets/images/HinhSanPham/${sp.anhSP}" class="img-fluid rounded" style="width:150px; height: auto;"></td>  
 	            <td>${sp.tenSP}</td>  
-	            <td>${sp.giaSP}</td>  
+	            <td><fmt:formatNumber value='${sp.giaSP}'/></td>  
 	            <td>${sp.tenLoaiSP}</td>  
 	            <td>${sp.moTaSP}</td>   
 	              

@@ -48,13 +48,13 @@
 	        <tr>
 	            <td>${v.maVC}</td> <!-- Mã voucher -->
 	            <td>${v.tenVC}</td> <!-- Tên voucher -->
-	            <td>${v.giaTriVC}</td> <!-- Giá trị voucher -->
+	            <td><fmt:formatNumber value='${v.giaTriVC}'/></td> <!-- Giá trị voucher -->
 	            <td>${v.soLuotSuDungToiDa}</td> <!-- Số lượt sử dụng tối đa -->
 	            <td>${v.soLuotDaSuDung}</td> <!-- Số lượt đã sử dụng -->
-	            <td><fmt:formatDate value="${v.ngayBatDau}" pattern="dd/MM/yyyy"/></td> <!-- Ngày bắt đầu -->
-	            <td><fmt:formatDate value="${v.ngayKetThuc}" pattern="dd/MM/yyyy"/></td> <!-- Ngày kết thúc -->
+	            <td><fmt:formatDate value='${v.ngayBatDau}' pattern="dd/MM/yyyy"/></td> <!-- Ngày bắt đầu -->
+	            <td><fmt:formatDate value='${v.ngayKetThuc}' pattern="dd/MM/yyyy"/></td> <!-- Ngày kết thúc -->
 	            <td >
-	            	 <span class="badge p-2 font-weight-bold rounded-pill ${v.trangThai == 'Còn hạn' ? 'bg-success' : 'bg-danger'} text-white" style="min-width: 70px; text-align: center;">
+	            	 <span class="badge p-2 font-weight-bold rounded-pill ${v.trangThai == 'Hết lượt' || v.trangThai == 'Hết hạn' ? 'bg-danger' : 'bg-success'} text-white" style="min-width: 70px; text-align: center;">
 					    ${v.trangThai}
 					  </span>
 	            </td>  

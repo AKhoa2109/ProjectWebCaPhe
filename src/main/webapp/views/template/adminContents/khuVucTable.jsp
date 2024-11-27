@@ -42,7 +42,7 @@
 	        <tr>
 	            <td>${kv.maKV}</td> 
 	            <td>${kv.tenKV}</td>  
-	            <td>${kv.phiVanChuyen}</td>  
+	            <td><fmt:formatNumber value='${kv.phiVanChuyen}'/></td>  
 	              
 			    <td>
 				    <div class="btn-group d-flex justify-content-center"> 

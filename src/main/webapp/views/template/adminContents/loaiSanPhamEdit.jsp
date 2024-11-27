@@ -1,9 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="jakarta.tags.core" %>
+<%@ taglib prefix="fmt" uri="jakarta.tags.fmt"  %>
+
+<script type="text/javascript" src="${pageContext.request.contextPath}/views/assets/js/validate/loaiSanPhamValidate.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/views/assets/js/formatNumber.js"></script>
 
 <h3 class="mb-3 mt-3 text-center font-weight-bold">Chỉnh sửa loại sản phẩm</h3>
 
-<form action="LoaiSanPhamServlet?action=update" method="post" enctype="multipart/form-data"> 
+<form action="LoaiSanPhamServlet?action=update" id = "formLoaiSanPham" method="post" onsubmit="return removeSeparators() && validateForm()" enctype="multipart/form-data"> 
     
     <div class="form-group">
         <label for="maLoaiSP" class="font-weight-bold">Mã loại sản phẩm</label> 

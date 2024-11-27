@@ -289,3 +289,43 @@
     background-color: #333 !important; /* Nền tối cho thumbnail */
 }
 
+/* Chart Container */
+.dark-theme .chart-container {
+    background-color: #333; /* Dark background for the container */
+    border-radius: 7px; /* Optional: Rounded corners for better aesthetics */
+    padding: 15px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3); /* Optional: Shadow to make it pop */
+}
+
+/* Set the canvas background to black */
+.dark-theme .chart-container canvas {
+    background-color: #111; /* Darker canvas background */
+}
+
+/* Make the text in chart container white */
+.dark-theme .chart-container h5 {
+    color: #fff; /* White text for headers */
+}
+
+/* Adjust the text of labels inside the charts */
+.dark-theme .chartjs-render-monitor {
+    color: #fff !important; /* Set the chart text color (labels, legend, etc.) to white */
+}
+
+/* Tooltip styling */
+.chartjs-tooltip {
+    background-color: #444 !important; /* Dark background for tooltips */
+    color: #fff !important;  /* White text in the tooltip */
+}
+
+/* Adjust color for axis ticks and labels */
+.dark-theme .chartjs-scale,
+.dark-theme .chartjs-legend {
+    color: #fff !important; /* White axis and legend text */
+}
+
+/* Chart lines and bars to make them visible on dark background */
+.dark-theme .chartjs-bar, .dark-theme .chartjs-line, .dark-theme .chartjs-pie, .dark-theme .chartjs-doughnut {
+    border-color: #fff !important;  /* Set chart border color to white */
+    color: #fff !important; /* Set general item colors for visibility */
+}
