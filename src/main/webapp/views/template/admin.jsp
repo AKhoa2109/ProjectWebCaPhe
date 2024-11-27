@@ -29,12 +29,24 @@
  	
  	<script src="https://cdn.jsdelivr.net/npm/chart.js"></script> <!-- nhúng Chart.js, một thư viện JavaScript phổ biến dùng để tạo các biểu đồ tương tác trên trang web. -->
  	
+ 	
+ 	<link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/views/assets/styles/themeDark.css"/> 
+  	<script src="<%=request.getContextPath()%>/views/assets/js/theme.js"></script> 
+	
+ 	
 	<style>   
-		
-          
+		 
+         
+ 
+ 
 	</style>
 </head>
-<body>   
+<body>
+	<script>
+	    // Phát sự kiện "contentLoaded" khi nội dung JSP được thêm
+	    document.dispatchEvent(new Event("contentLoaded"));
+	</script> 
+
   	<!-- Fullscreen -->
 	<div class="container-fluid">
 		<div class="row">
@@ -110,7 +122,6 @@
 							
 								<jsp:include page="adminContents/${param.page}.jsp"></jsp:include>
 								
-								 
 							</c:if>  
 						</div> 
 					</div>
@@ -128,7 +139,8 @@
 	 <!-- Thêm các tệp JavaScript của Bootstrap từ CDN -->
  	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
 	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"></script>
-	<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"></script> 
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"></script>  
+	
 	
 </body>
 </html>

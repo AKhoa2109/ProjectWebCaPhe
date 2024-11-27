@@ -64,12 +64,15 @@
 	              
 			    <td>
 				    <div class="btn-group d-flex justify-content-center"> 
+				    	<a href="<%=request.getContextPath()%>/PhaCheServlet?maSP=${sp.maSP}&tenSP=${sp.tenSP}" class="text-primary mr-3" style="font-size: 20px;">
+						    <i class="fas fa-eye"></i> 
+						</a>
 				        <a href="<%=request.getContextPath()%>/SanPhamServlet?action=edit&maSP=${sp.maSP}" class="text-info mr-3" style="font-size: 20px;">
 				            <i class="fas fa-edit"></i>
 				        </a> 
-				        <a href="<%=request.getContextPath()%>/SanPhamServlet?action=delete&maSP=${sp.maSP}" class="text-danger mr-3" onclick="return confirm('Bạn có chắc muốn xóa?');" style="font-size: 20px;">
+				        <a href="<%=request.getContextPath()%>/SanPhamServlet?action=delete&maSP=${sp.maSP}" class="text-danger" onclick="return confirm('Bạn có chắc muốn xóa?');" style="font-size: 20px;">
 				            <i class="fas fa-trash-alt"></i>
-				        </a>
+				        </a> 
 				    </div>
 				</td> 
 	        </tr>

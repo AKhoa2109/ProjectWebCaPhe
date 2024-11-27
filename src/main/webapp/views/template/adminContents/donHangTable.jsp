@@ -8,7 +8,7 @@
 
 <div class="d-flex align-items-center justify-content-between">  
     <form class="input-group ml-auto mb-2 mt-1" method="get" style="width: auto;">  
-        <input type="hidden" name="action" value="search" />
+        <!-- <input type="hidden" name="action" value="search" /> -->
         <div class="d-flex align-items-center">
             <label for="fromDate" class="mr-2 font-weight-bold">Từ ngày:</label>
             <input type="date" class="form-control mr-3" id="fromDate" name="fromDate">
@@ -39,10 +39,16 @@
             <tr>
                 <td>${dh.maDH}</td> 
                 <td>${dh.giaTriDH}</td>  
-                <td>${dh.ngayMua}</td>  
+                <td>
+                    <fmt:formatDate value="${dh.ngayMua}" pattern="yyyy-MM-dd"/>
+                </td>  
                 <td>${dh.tenKV}</td>  
                 <td>${dh.trangThai}</td> 
-                <td><button>Chi tiết hóa đơn</button></td>
+                <td>
+                    <a href="<%=request.getContextPath()%>/BillServlet?maDH=${dh.maDH}" class="text-primary mr-3">
+                        <i class="fas fa-eye"></i>
+                    </a>
+                </td>
             </tr>
         </c:forEach>
     </tbody> 

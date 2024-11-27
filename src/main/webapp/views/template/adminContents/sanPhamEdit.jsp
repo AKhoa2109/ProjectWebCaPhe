@@ -5,10 +5,6 @@
 <h3 class="mb-4 mt-4 text-center font-weight-bold">Chỉnh sửa sản phẩm</h3>
 
 <form action="SanPhamServlet?action=update" method="post" enctype="multipart/form-data" class="p-4 bg-light rounded shadow">
-	 <div class="form-group">
-		        <label class="font-weight-bold text-danger bg-warning">Thêm cái công thức gì đó</label>
-		        <input type="text" class="form-control" value="">
-    </div>
     <!-- Row 1: Hình ảnh sản phẩm và thông tin sản phẩm -->
     <div class="form-group row">
         <!-- Cột 1: Hình ảnh sản phẩm --> 

@@ -20,8 +20,8 @@
 					         class="rounded-circle" style="width:30px; margin-right: 8px;"/> Admin
                     </a>
                     <div class="dropdown-menu dropdown-menu-right">
-                        <a class="dropdown-item" href="#" style="color: black;">Profile</a>
-                        <a class="dropdown-item" href="#" style="color: black;">Settings</a>
+                        <a class="dropdown-item" href="<%=request.getContextPath()%>/NguoiDungServlet?action=edit&maND=ND01" style="color: black;">Profile</a>
+                        <a class="dropdown-item" href="<%=request.getContextPath()%>/views/template/setting.jsp" style="color: black;">Settings</a>
                         <div class="dropdown-divider"></div>
                         <a class="dropdown-item text-danger" href="#" onclick="return confirm('Bạn có chắc muốn đăng xuất?');">Logout</a>
                     </div>

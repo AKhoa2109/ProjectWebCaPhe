@@ -4,8 +4,8 @@
   
 <%@ taglib prefix="c" uri="jakarta.tags.core" %>
 <%@ taglib prefix="fmt" uri="jakarta.tags.fmt"  %>
-    
      
+
 <!-- <img class="container-fluid" src="https://cdn.pixabay.com/photo/2022/12/12/12/58/dog-7651002_1280.jpg"> -->
 <div class="container my-4">
     <!-- Header cards -->

@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.IOException;
 
 import daos.LoaiSanPhamDao;
+import daos.NguyenLieuDao;
 import daos.SanPhamDao;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.MultipartConfig;
@@ -41,6 +42,7 @@ public class SanPhamServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
 		LoaiSanPhamDao lspDao = new LoaiSanPhamDao();
+		NguyenLieuDao nlDao = new NguyenLieuDao();
         SanPhamDao spDao = new SanPhamDao();
         String action = request.getParameter("action"); 
         
@@ -59,13 +61,13 @@ public class SanPhamServlet extends HttpServlet {
                 request.setAttribute("loaiSPList", lspDao.getAll());
         		request.getRequestDispatcher("/views/template/admin.jsp?page=sanPhamTable").forward(request, response);
         	} 
-        }else if (action.equals("add")) {  
-        	request.setAttribute("loaiSPList", lspDao.getAll()); 
+        } else if (action.equals("add")) {  
+        	request.setAttribute("loaiSPList", lspDao.getAll());  
             request.getRequestDispatcher("/views/template/admin.jsp?page=sanPhamAdd").forward(request, response);
         } else if (action.equals("edit")) {
             String maSP = request.getParameter("maSP");
             request.setAttribute("sanPham", spDao.getById(maSP));
-            request.setAttribute("loaiSPList", lspDao.getAll());  
+            request.setAttribute("loaiSPList", lspDao.getAll());   
             request.getRequestDispatcher("/views/template/admin.jsp?page=sanPhamEdit").forward(request, response);
         } else if (action.equals("insert") || action.equals("update")) { 
         	// public SanPham(String maSP, String tenSP, float giaSP, String anhSP, String maLoaiSP, String moTaSP) { //Table SanPham
@@ -106,7 +108,7 @@ public class SanPhamServlet extends HttpServlet {
             request.setAttribute("loaiSPList", lspDao.getAll());
             request.setAttribute("sanPhamList", spDao.getAll());
             request.getRequestDispatcher("/views/template/admin.jsp?page=sanPhamTable").forward(request, response);
-        }
+        } 
 	}
 
 	/**

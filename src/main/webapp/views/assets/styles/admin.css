@@ -149,6 +149,31 @@ header.full-width { /* Khi drawer thu gọn */
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     margin-bottom: 20px;
 } 
+/* Bill*/
+.invoice-header {
+    text-align: center;
+    margin-bottom: 30px;
+}
+.invoice-header img {
+    width: 80px;
+    height: 80px;
+}
+.invoice-info {
+    margin-bottom: 20px;
+}
+.invoice-table {
+    margin-top: 20px;
+}
+.table-total {
+    font-weight: bold;
+}
+.btn-container {
+    text-align: center;
+    margin-top: 20px;
+}
+.btn-container button {
+    margin: 5px;
+}
 
 
 

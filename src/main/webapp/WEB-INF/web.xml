@@ -3,5 +3,6 @@
   <display-name>WebsiteBanCaPhe</display-name>
   <welcome-file-list>
     <welcome-file>DashBoardServlet</welcome-file>
-  </welcome-file-list> 
+  </welcome-file-list>
+
 </web-app>
