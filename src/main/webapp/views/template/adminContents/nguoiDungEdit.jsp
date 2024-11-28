@@ -87,8 +87,8 @@
  
     <!-- Vai trò -->
     <div class="form-group">
-        <label for="vaiTro" class="font-weight-bold">Vai Trò</label>
-        <select class="form-control" id="vaiTro" name="vaiTro">
+        <label for="vaiTro" class="font-weight-bold" >Vai Trò</label>
+        <select class="form-control" id="vaiTro" name="vaiTro" disabled>
             <option value="Admin" ${nguoiDung.vaiTro == 'Admin' ? 'selected' : ''}>Admin</option>
             <option value="User" ${nguoiDung.vaiTro == 'User' ? 'selected' : ''}>User</option>
         </select>

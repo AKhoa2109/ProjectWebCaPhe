@@ -97,20 +97,7 @@
 
 <script>
 function printInvoice() {
-    // Lấy nội dung cần in (chỉ lấy phần hóa đơn)
-    var printContents = document.getElementById('invoiceContentIn').innerHTML;
-    
-    // Lưu lại nội dung gốc của trang
-    var originalContents = document.body.innerHTML;
-    
-    // Tạm thời thay thế toàn bộ nội dung body bằng chỉ phần hóa đơn
-    document.body.innerHTML = printContents;
-    
-    // In trang
     window.print();
-    
-    // Khôi phục lại nội dung gốc sau khi in xong
-    document.body.innerHTML = originalContents;
 }
 
 </script>
