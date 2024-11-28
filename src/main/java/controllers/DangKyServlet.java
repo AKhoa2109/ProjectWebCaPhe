@@ -20,38 +20,36 @@ import utilities.XuLyAnh;
  * Servlet implementation class DangKyServlet
  */
 @WebServlet("/DangKyServlet")
-@MultipartConfig(
-	    fileSizeThreshold = 1024 * 1024 * 2, // 2MB
-	    maxFileSize = 1024 * 1024 * 10,      // 10MB
-	    maxRequestSize = 1024 * 1024 * 50    // 50MB
-	)
+@MultipartConfig(fileSizeThreshold = 1024 * 1024 * 2, // 2MB
+		maxFileSize = 1024 * 1024 * 10, // 10MB
+		maxRequestSize = 1024 * 1024 * 50 // 50MB
+)
 public class DangKyServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public DangKyServlet() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
 
 	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#HttpServlet()
 	 */
-    @Override
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	public DangKyServlet() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	/**
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
+	 *      response)
+	 */
+	@Override
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		NguoiDungDao ndDao = new NguoiDungDao();
 		String action = request.getParameter("action");
-		if(action.equals("signup"))
-		{
-			 request.getRequestDispatcher("/views/template/signup.jsp").forward(request, response);
-		}
-		else if(action.equals("register"))
-		{
-			
-            String tenDangNhap = request.getParameter("tenDangNhap");
+		if (action.equals("signup")) {
+			request.getRequestDispatcher("/views/template/signup.jsp").forward(request, response);
+		} else if (action.equals("register")) {
+
+			String tenDangNhap = request.getParameter("tenDangNhap");
 			String matKhau = request.getParameter("matKhau");
 			String matKhauRetry = request.getParameter("matKhauRetry");
 			String hoTen = request.getParameter("hoTen");
@@ -67,49 +65,48 @@ public class DangKyServlet extends HttpServlet {
 			String soNha = request.getParameter("soNha");
 
 			String diaChi = soNha + "," + xa + "," + huyen + "," + tp;
-			
+
 			SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-			Date date=null;
+			Date date = null;
 			try {
 				date = dateFormat.parse(ngay);
 			} catch (ParseException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			
+
 			Calendar calendar = Calendar.getInstance();
-	        calendar.setTime(date);
-	        int year = calendar.get(Calendar.YEAR);
-	        
-			NguoiDung nDung = new NguoiDung("",hoTen,year,gioiTinh,sdt,email,diaChi,anhND,"Client",tenDangNhap,matKhau);
+			calendar.setTime(date);
+			int year = calendar.get(Calendar.YEAR);
+
+			NguoiDung nDung = new NguoiDung("", hoTen, year, gioiTinh, sdt, email, diaChi, anhND, "Client", tenDangNhap,
+					matKhau);
 			XuLyAnh xLyAnh = new XuLyAnh();
-			xLyAnh.luuAnh(request,getServletContext(),"HinhNguoiDung");
-			
-			if(matKhau.equals(matKhauRetry))
-			{
-				if(ndDao.insert(nDung))
-				{
+			xLyAnh.luuAnh(request, getServletContext(), "HinhNguoiDung");
+
+			if (matKhau.equals(matKhauRetry)) {
+				if (ndDao.insert(nDung)) {
 					request.setAttribute("msg", "Thêm thành công");
 					request.setAttribute("typeMess", "success");
+				} else {
+					request.setAttribute("msg", "Không thành công");
+					request.setAttribute("typeMess", "error");
 				}
-				else {
-                    request.setAttribute("msg", "Không thành công");
-                    request.setAttribute("typeMess", "error");
-                }
-			}
-			else {
+			} else {
 				request.setAttribute("msg", "Không thành công");
 				request.setAttribute("typeMess", "error");
 			}
-            request.getRequestDispatcher("/views/template/signup.jsp").forward(request, response);
+			request.getRequestDispatcher("/views/template/signup.jsp").forward(request, response);
 		}
 	}
 
 	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
+	 *      response)
 	 */
-    @Override
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	@Override
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		doGet(request, response);
 	}
