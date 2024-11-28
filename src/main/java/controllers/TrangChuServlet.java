@@ -1,16 +1,18 @@
 package controllers;
 
-import jakarta.servlet.ServletException;
-import jakarta.servlet.annotation.WebServlet;
-import jakarta.servlet.http.HttpServlet;
-import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.sql.SQLException;
+import java.util.List;
 
+import daos.GioHangDao;
 import daos.LoaiSanPhamDao;
 import daos.SanPhamDao;
 import daos.SlideDao;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.http.HttpServlet;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
+import models.GioHang;
 
 
 /**
@@ -36,6 +38,16 @@ public class TrangChuServlet extends HttpServlet {
         SanPhamDao sanPhamDao = new SanPhamDao();
         LoaiSanPhamDao loaiSanPhamDao = new LoaiSanPhamDao();
 		String action = request.getParameter("action");
+		
+		// Code của Thiện
+		GioHangDao ghDao = new GioHangDao();
+		HttpSession session = request.getSession();
+        String maND = (String) session.getAttribute("maND"); // Lấy mã người dùng từ session
+        if (maND == null) {
+            maND = "ND01";
+        }
+        List<GioHang> cart = ghDao.getById(maND);
+        session.setAttribute("soSPDat", cart.size());
 		
 		if(action==null)
 		{

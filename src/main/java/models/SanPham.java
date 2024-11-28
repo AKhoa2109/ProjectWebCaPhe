@@ -103,5 +103,4 @@ public class SanPham {
 		DecimalFormat formatter = new DecimalFormat("#,###");
 		return formatter.format(getGiaSP())+"đ";
 	}
-
 }
