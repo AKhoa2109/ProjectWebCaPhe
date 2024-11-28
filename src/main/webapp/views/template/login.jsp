@@ -23,7 +23,7 @@
 				<input
 					type="password" placeholder="Mật khẩu" name="password" required />
 				<div class="login-forget-pass">
-					<a class="forget-pass" href="">Quên mật khẩu</a>
+					<a class="forget-pass" href="QuenMatKhauServlet">Quên mật khẩu</a>
 				</div>
 
 			<div class="sign-up">

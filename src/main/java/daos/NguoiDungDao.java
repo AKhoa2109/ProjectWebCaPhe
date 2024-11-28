@@ -155,6 +155,28 @@ public class NguoiDungDao {
         }
         return false;
     }
+    
+    public boolean updatePassword(String password,String email,String username) {
+        String sql = """
+            UPDATE NguoiDung
+            SET MatKhau = ?
+            WHERE Email = ? AND TenDangNhap = ?
+        """;
+
+        try {
+            conn = DBConnection.getConnection();
+            ps = conn.prepareStatement(sql);
+            ps.setString(1, password);
+            ps.setString(2, email);
+            ps.setString(3, username);
+            return ps.executeUpdate() > 0;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            DBConnection.close(rs, ps, conn);
+        }
+        return false;
+    }
 
     public boolean delete(String maND) {
         String sql = """
@@ -226,6 +248,29 @@ public class NguoiDungDao {
             ps = conn.prepareStatement(sql);
             ps.setString(1, username);
             ps.setString(2, password);
+            rs = ps.executeQuery(); 
+            if (rs.next()) {
+            	int count = rs.getInt(1);
+                return count > 0;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            DBConnection.close(rs, ps, conn);
+        }
+        return false;
+    }
+    
+    public boolean checkMail(String email,String username)
+    {
+    	String sql = """
+    			SELECT COUNT(*) FROM NguoiDung WHERE Email = ? AND TenDangNhap = ?
+    			""";
+    	try {
+            conn = DBConnection.getConnection();
+            ps = conn.prepareStatement(sql);
+            ps.setString(1, email);
+            ps.setString(2, username);
             rs = ps.executeQuery(); 
             if (rs.next()) {
             	int count = rs.getInt(1);

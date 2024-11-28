@@ -21,7 +21,7 @@ header {
 }
 
 .container > img {
-  width: 100px;
+  width: 80px;
 }
 
 .container {
@@ -398,3 +398,4 @@ footer {
   height: 300px;
   border: none;
 }
+

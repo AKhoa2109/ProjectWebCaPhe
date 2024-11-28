@@ -67,7 +67,10 @@ public class GoogleLogin {
         googleUser.setSdt("");  // Số điện thoại (Google API không cung cấp)
         googleUser.setDiaChi("");  // Địa chỉ (Google API không cung cấp)
         googleUser.setNamSinh(0);  // Năm sinh (Google API không cung cấp)
-
+        googleUser.setTenDangNhap("");
+        googleUser.setMatKhau("");
+        googleUser.setVaiTro("User");
+        googleUser.setMaND("");
         return googleUser;
 
     }
