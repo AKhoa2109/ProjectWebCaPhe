@@ -33,8 +33,28 @@
  	
 	<style>   
 		 
-         
- 
+	@media print {
+	    body * { 
+	        visibility: hidden; /* Ẩn mọi thành phần */
+	    }
+	    #invoiceContentIn, #invoiceContentIn * {
+	        visibility: visible; /* Hiển thị nội dung cần in */
+	    }
+	    #invoiceContentIn {
+	        position: absolute;
+	        top: 0;
+	        left: 0;
+	        width: 100%; /* Đảm bảo chiếm toàn bộ chiều rộng trang */
+	        padding: 0; /* Loại bỏ padding nếu có */
+	        margin: 0; /* Loại bỏ margin nếu có */
+	    }
+	
+	    /* Ẩn hoàn toàn drawer nhưng không chiếm không gian */
+	    #drawer {
+	        display: none !important;
+	    }
+	}
+
  
 	</style>
 </head>

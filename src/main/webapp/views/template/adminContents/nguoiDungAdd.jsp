@@ -80,8 +80,8 @@
  
     <!-- Vai trò -->
     <div class="form-group">
-        <label for="vaiTro" class="font-weight-bold">Vai Trò</label>
-        <select class="form-control" id="vaiTro" name="vaiTro"> 	
+        <label for="vaiTro" class="font-weight-bold" >Vai Trò</label>
+        <select class="form-control" id="vaiTro" name="vaiTro" disabled> 	
             <option value="Admin">Admin</option>
             <option value="User" selected>User</option>
         </select>
