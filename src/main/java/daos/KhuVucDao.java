@@ -8,17 +8,19 @@ import java.util.ArrayList;
 import java.util.List;
 
 import conn.DBConnection;
+
 import models.KhuVuc;
-import models.SanPham;
 
 public class KhuVucDao {
 	private Connection conn = null;
     private PreparedStatement ps = null;
     private ResultSet rs = null;
     
-	public List<KhuVuc> getAll()
-	{
-		String sql = "SELECT * FROM KhuVuc"; 
+    public List<KhuVuc> getAll()  { 
+        String sql = """
+        		SELECT * 
+    			FROM KhuVuc
+        		"""; 
         List<KhuVuc> data = new ArrayList<>(); 
 
         try { 
@@ -26,49 +28,141 @@ public class KhuVucDao {
             ps = conn.prepareStatement(sql);
             rs = ps.executeQuery();
             
-            while (rs.next()) { 
-                // Khởi tạo đối tượng Slide từ dữ liệu trong ResultSet
+            while (rs.next()) {  
             	KhuVuc kv = new KhuVuc(
+                    rs.getString("MaKV"),  
+                    rs.getString("TenKV"), 
+                    rs.getFloat("PhiVanChuyen")
+                ); 
+                data.add(kv);  
+            }
+        } catch (SQLException e) {
+            e.printStackTrace(); 
+        } finally {
+            DBConnection.close(rs, ps, conn); 
+        }  
+
+        return data;  
+    }
+    
+    public KhuVuc getById(String maKV) {
+        String sql = """
+    		SELECT * 
+			FROM KhuVuc
+			WHERE MaKV = ? 
+            """;
+        KhuVuc khuVuc = null;
+
+        try {
+            conn = DBConnection.getConnection();
+            ps = conn.prepareStatement(sql);
+            ps.setString(1, maKV);
+            rs = ps.executeQuery(); 
+            if (rs.next()) {
+            	khuVuc = new KhuVuc(
+	    			rs.getString("MaKV"),  
+	                rs.getString("TenKV"), 
+	                rs.getFloat("PhiVanChuyen")
+                );
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            DBConnection.close(rs, ps, conn);
+        }
+        return khuVuc;
+    }
+    
+    public boolean insert(KhuVuc k) {
+        String sql = """
+            INSERT INTO KhuVuc(MaKV, TenKV, PhiVanChuyen)
+            VALUES (?, ?, ?)
+            """;
+        try {
+            conn = DBConnection.getConnection();
+            ps = conn.prepareStatement(sql);
+            ps.setString(1, k.getMaKV());   
+            ps.setString(2, k.getTenKV());   
+            ps.setFloat(3, k.getPhiVanChuyen());   
+
+            return ps.executeUpdate() > 0;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            DBConnection.close(null, ps, conn);
+        }
+        return false;
+    }
+ 
+    public boolean update(KhuVuc k) {
+        String sql = """ 
+            UPDATE KhuVuc
+            SET TenKV = ?, PhiVanChuyen = ?
+            WHERE MaKV = ?
+            """;
+        try {
+            conn = DBConnection.getConnection();
+            ps = conn.prepareStatement(sql);
+            ps.setString(1, k.getTenKV());  
+            ps.setFloat(2, k.getPhiVanChuyen());  
+            ps.setString(3, k.getMaKV());  
+
+            return ps.executeUpdate() > 0;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            DBConnection.close(null, ps, conn);
+        }
+        return false;
+    }
+ 
+    public boolean delete(String maKV) {
+        String sql = """
+            DELETE FROM KhuVuc
+            WHERE MaKV = ?
+            """;
+        try {
+            conn = DBConnection.getConnection();
+            ps = conn.prepareStatement(sql);
+            ps.setString(1, maKV);  
+
+            return ps.executeUpdate() > 0;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            DBConnection.close(null, ps, conn);
+        }
+        return false;
+    }
+    
+    public List<KhuVuc> searchByName(String tenKV) {
+        String sql = """
+            SELECT * 
+            FROM KhuVuc
+            WHERE TenKV LIKE ?
+        """;
+        List<KhuVuc> data = new ArrayList<>();
+
+        try {
+            conn = DBConnection.getConnection();
+            ps = conn.prepareStatement(sql);
+            ps.setString(1, "%" + tenKV + "%"); 
+            rs = ps.executeQuery();
+
+            while (rs.next()) {
+                KhuVuc kv = new KhuVuc(
                     rs.getString("MaKV"),
                     rs.getString("TenKV"),
                     rs.getFloat("PhiVanChuyen")
                 );
-                data.add(kv);  // Thêm slide vào danh sách
+                data.add(kv);
             }
         } catch (SQLException e) {
-            e.printStackTrace(); 
+            e.printStackTrace();
         } finally {
-            DBConnection.close(rs, ps, conn); // Đảm bảo đóng kết nối
-        }  
+            DBConnection.close(rs, ps, conn);
+        }
 
-        return data;  // Trả về danh sách các slide
-	}
-	
-	public KhuVuc getById(String maKV)
-	{
-		String sql = "SELECT * FROM KhuVuc WHERE maKV = ?"; 
-		
-		KhuVuc kv = null;
-        try { 
-            conn = DBConnection.getConnection();
-            ps = conn.prepareStatement(sql);
-            ps.setString(1, maKV);
-            rs = ps.executeQuery();
-            
-            while (rs.next()) { 
-                // Khởi tạo đối tượng Slide từ dữ liệu trong ResultSet
-            	kv = new KhuVuc(
-                    rs.getString("MaKV"),
-                    rs.getString("TenKV"),
-                    rs.getFloat("PhiVanChuyen")
-                );           
-            }
-        } catch (SQLException e) {
-            e.printStackTrace(); 
-        } finally {
-            DBConnection.close(rs, ps, conn); // Đảm bảo đóng kết nối
-        }  
-
-        return kv;  
-	}
+        return data;
+    }
 }

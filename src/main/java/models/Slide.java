@@ -1,7 +1,7 @@
 package models;
 
 public class Slide {
-	private String maSilde;
+	private String maSlide;
 	private String tenSlide;
 	private String anhSlide;
 	private String viTri;
@@ -10,29 +10,30 @@ public class Slide {
 	public Slide() {
 		
 	}
-	public Slide(String maSilde, String tenSlide, String anhSlide) {
-		super();
-		this.maSilde = maSilde;
-		this.tenSlide = tenSlide;
-		this.anhSlide = anhSlide;
-	}
 	
-	
-	public Slide(String maSilde, String tenSlide, String anhSlide, String viTri, String trangThai, String maND) {
-		super();
-		this.maSilde = maSilde;
+	public Slide(String maSlide, String tenSlide, String anhSlide, String viTri, String trangThai, String maND) { //Table Slide
+		this.maSlide = maSlide;
 		this.tenSlide = tenSlide;
 		this.anhSlide = anhSlide;
 		this.viTri = viTri;
 		this.trangThai = trangThai;
 		this.maND = maND;
 	}
-	public String getMaSilde() {
-		return maSilde;
+	
+	public Slide(String maSlide, String tenSlide, String anhSlide) {
+		this.maSlide = maSlide;
+		this.tenSlide = tenSlide;
+		this.anhSlide = anhSlide;
+	}	 
+	 
+	public String getMaSlide() {
+		return maSlide;
 	}
-	public void setMaSilde(String maSilde) {
-		this.maSilde = maSilde;
+
+	public void setMaSlide(String maSlide) {
+		this.maSlide = maSlide;
 	}
+
 	public String getTenSlide() {
 		return tenSlide;
 	}

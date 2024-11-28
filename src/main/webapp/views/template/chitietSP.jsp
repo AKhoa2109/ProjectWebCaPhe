@@ -10,6 +10,8 @@
 <link rel="stylesheet" type="text/css"
 	href="<%=request.getContextPath()%>/views/assets/styles/style.css" />
 <link rel="stylesheet" type="text/css"
+	href="<%=request.getContextPath()%>/views/assets/styles/breadcrumb.css" />
+<link rel="stylesheet" type="text/css"
 	href="<%=request.getContextPath()%>/views/assets/styles/chitietSP.css" />
 <title>Chi tiết sản phẩm</title>
 </head>
@@ -82,6 +84,10 @@
 			</div>
 		</div>
 	</div>
+	
+	<!-- Footer -->
+	<jsp:include page="/views/fragment/footer.jsp" />
+	
 	<script>
       // Đổi hình ảnh chính khi bấm vào hình nhỏ
       function changeImage(thumbnail) {

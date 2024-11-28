@@ -8,15 +8,17 @@ public class SanPham {
 	private float giaSP;
 	private String anhSP;
 	private String maLoaiSP;
-	private String tenLoaiSP;
+
 	private String moTaSP;
+	
+	private String tenLoaiSP;
+
 	private double trungBinhSoSao;
 	public SanPham() {
 		
 	}
 	
-	public SanPham(String maSP, String tenSP, float giaSP, String anhSP, String maLoaiSP) {
-		super();
+	public SanPham(String maSP, String tenSP, float giaSP, String anhSP, String maLoaiSP, String moTaSP) { //Table SanPham
 		this.maSP = maSP;
 		this.tenSP = tenSP;
 		this.giaSP = giaSP;
@@ -24,21 +26,18 @@ public class SanPham {
 		this.maLoaiSP = maLoaiSP;
 		this.moTaSP = moTaSP;
 	}
-	public SanPham(String maSP, String tenSP, float giaSP, String anhSP, String maLoaiSP, String tenLoaiSP, String moTaSP) {
-		super();
+	
+	public SanPham(String maSP, String tenSP, float giaSP, String anhSP, String maLoaiSP, String moTaSP, String tenLoaiSP) { //Table SanPham join LoaiSanPham
 		this.maSP = maSP;
 		this.tenSP = tenSP;
 		this.giaSP = giaSP;
 		this.anhSP = anhSP;
 		this.maLoaiSP = maLoaiSP;
-		this.tenLoaiSP = tenLoaiSP;
 		this.moTaSP = moTaSP;
 	}
 	
 	
-	public SanPham(String maSP,String tenSP, float giaSP, String anhSP, String maLoaiSP,double trungBinhSoSao)
-	{
-		super();
+	public SanPham(String maSP,String tenSP, float giaSP, String anhSP, String maLoaiSP,double trungBinhSoSao) { //Table SanPham join DanhGia
 		this.maSP = maSP;
 		this.tenSP = tenSP;
 		this.giaSP = giaSP;

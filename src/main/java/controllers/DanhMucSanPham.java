@@ -9,14 +9,18 @@ import models.LoaiSanPham;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import daos.LoaiSanPhamDao;
 import daos.SanPhamDao;
+import models.*;
 
 /**
  * Servlet implementation class DanhMucSanPham
  */
+@WebServlet("/DanhMucSanPham")
 public class DanhMucSanPham extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -36,19 +40,24 @@ public class DanhMucSanPham extends HttpServlet {
 		String id = request.getParameter("id");
 		SanPhamDao sanPhamDao = new SanPhamDao();
 		LoaiSanPhamDao loaiSanPhamDao = new LoaiSanPhamDao();
+		
+		
 		List<LoaiSanPham> listLoaiSanPham = new ArrayList<>();
 		listLoaiSanPham = loaiSanPhamDao.getAll();
 		request.setAttribute("listLoaiSP", loaiSanPhamDao.getAll());
-		if (id==null || id.equals("0")) 
-		{
-			for (LoaiSanPham loaiSanPham : listLoaiSanPham) {
-				request.setAttribute(loaiSanPham.getMaLoaiSP(), sanPhamDao.getSanPhamByLoaiSP(loaiSanPham.getMaLoaiSP()));
-				 
-			}
-			 
-	    } 
-		else {
-			request.setAttribute("listSanPham", sanPhamDao.getSanPhamByLoaiSP(id));
+		
+		
+		if (id == null || id.equals("0")) {
+		    Map<String, List<SanPham>> allProductsByCategory = new HashMap<>();
+		    for (LoaiSanPham loaiSanPham : listLoaiSanPham) {
+		        List<SanPham> products = sanPhamDao.getSanPhamByLoaiSP(loaiSanPham.getMaLoaiSP());
+		        if (!products.isEmpty()) {
+		            allProductsByCategory.put(loaiSanPham.getMaLoaiSP(), products);
+		        }
+		    }
+		    request.setAttribute("listToanBoSP", allProductsByCategory);
+		} else {
+		    request.setAttribute("listSanPham", sanPhamDao.getSanPhamByLoaiSP(id));
 		}
 		request.getRequestDispatcher("/views/template/danhmucSP.jsp").forward(request, response);
 

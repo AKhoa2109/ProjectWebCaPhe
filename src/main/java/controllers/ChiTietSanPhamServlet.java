@@ -1,12 +1,12 @@
 package controllers;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 
 import daos.GioHangDao;
 import daos.SanPhamDao;
 import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -17,6 +17,7 @@ import models.SanPham;
 /**
  * Servlet implementation class ChiTietSanPhamServlet
  */
+@WebServlet("/ChiTietSanPhamServlet")
 public class ChiTietSanPhamServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -42,9 +43,7 @@ public class ChiTietSanPhamServlet extends HttpServlet {
 		
 		request.setAttribute("product", sanPhamDao.getSanPhamByLoaiId(id));
 		request.setAttribute("listProduct", sanPhamDao.getSanPhamCungLoaiSP(idLoaiSp,id));
-		request.getRequestDispatcher("/views/template/chitietSP.jsp").forward(request, response);
-		
-		
+		request.getRequestDispatcher("/views/template/chitietSP.jsp").forward(request, response);	
 	}
 
 	/**

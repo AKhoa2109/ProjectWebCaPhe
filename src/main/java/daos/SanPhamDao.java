@@ -7,11 +7,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.eclipse.tags.shaded.org.apache.regexp.recompile;
-
 import conn.DBConnection;
-import models.SanPham;
-import models.Slide;
+import models.SanPham; 
 
 public class SanPhamDao {
 	private Connection conn = null;
@@ -20,8 +17,188 @@ public class SanPhamDao {
 	public SanPhamDao() {
 		// TODO Auto-generated constructor stub
 	}
+	 
+	public List<SanPham> getAll()
+	{
+		String sql = """
+				SELECT sp.*, lsp.TenLoaiSP 
+				FROM SanPham sp
+				LEFT OUTER JOIN LoaiSanPham lsp ON sp.MaLoaiSP = lsp.MaLoaiSP
+				"""; 
+        List<SanPham> data = new ArrayList<>(); 
+
+        try { 
+            conn = DBConnection.getConnection();
+            ps = conn.prepareStatement(sql);
+            rs = ps.executeQuery();
+            
+            while (rs.next()) {  
+            	SanPham sp = new SanPham(
+                    rs.getString("MaSP"),  
+                    rs.getString("TenSP"), 
+                    rs.getFloat("GiaSP"),  
+                    rs.getString("AnhSP"),  
+                    rs.getString("MaLoaiSP"),
+                    rs.getString("MoTaSP"),
+                    rs.getString("TenLoaiSP")
+                );
+                data.add(sp);   
+            }
+        } catch (SQLException e) {
+            e.printStackTrace(); 
+        } finally {
+            DBConnection.close(rs, ps, conn);  
+        }  
+
+        return data;   
+	}
 	
-	public List<SanPham> getAllHot()
+	public SanPham getById(String maSP) {
+        String sql = """
+    		SELECT sp.*, lsp.TenLoaiSP 
+			FROM SanPham sp
+			LEFT OUTER JOIN LoaiSanPham lsp ON sp.MaLoaiSP = lsp.MaLoaiSP
+			WHERE sp.MaSP = ? 
+            """;
+        SanPham sanPham = null;
+
+        try {
+            conn = DBConnection.getConnection();
+            ps = conn.prepareStatement(sql);
+            ps.setString(1, maSP);
+            rs = ps.executeQuery(); 
+            if (rs.next()) {
+            	sanPham = new SanPham(
+        			rs.getString("MaSP"),  
+                    rs.getString("TenSP"), 
+                    rs.getFloat("GiaSP"),  
+                    rs.getString("AnhSP"),  
+                    rs.getString("MaLoaiSP"),
+                    rs.getString("MoTaSP"),
+                    rs.getString("TenLoaiSP")
+                );
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            DBConnection.close(rs, ps, conn);
+        }
+        return sanPham;
+    }
+	 
+    public boolean insert(SanPham sp) {
+        String sql = """
+            INSERT INTO SanPham(MaSP, TenSP, GiaSP, AnhSP, MaLoaiSP, MoTaSP)
+            VALUES (?, ?, ?, ?, ?, ?)
+            """;
+
+        try {
+            conn = DBConnection.getConnection();
+            ps = conn.prepareStatement(sql);
+            ps.setString(1, sp.getMaSP());
+            ps.setString(2, sp.getTenSP());
+            ps.setFloat(3, sp.getGiaSP());
+            ps.setString(4, sp.getAnhSP());
+            ps.setString(5, sp.getMaLoaiSP());
+            ps.setString(6, sp.getMoTaSP());
+
+            return ps.executeUpdate() > 0;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            DBConnection.close(rs, ps, conn);
+        }
+        return false;
+    }
+ 
+    public boolean update(SanPham sp) {
+        String sql = """
+            UPDATE SanPham
+            SET TenSP = ?, GiaSP = ?, AnhSP = ?, MaLoaiSP = ?, MoTaSP = ?
+            WHERE MaSP = ?
+            """;
+
+        try {
+            conn = DBConnection.getConnection();
+            ps = conn.prepareStatement(sql);
+            ps.setString(1, sp.getTenSP());
+            ps.setFloat(2, sp.getGiaSP());
+            ps.setString(3, sp.getAnhSP());
+            ps.setString(4, sp.getMaLoaiSP());
+            ps.setString(5, sp.getMoTaSP());
+            ps.setString(6, sp.getMaSP());
+
+            return ps.executeUpdate() > 0;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            DBConnection.close(rs, ps, conn);
+        }
+        return false;
+    }
+ 
+    public boolean delete(String maSP) {
+        String sql = """
+            DELETE FROM SanPham
+            WHERE MaSP = ?
+            """;
+
+        try {
+            conn = DBConnection.getConnection();
+            ps = conn.prepareStatement(sql);
+            ps.setString(1, maSP);
+
+            return ps.executeUpdate() > 0;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            DBConnection.close(rs, ps, conn);
+        }
+        return false;
+    }
+    
+    public List<SanPham> searchByMaLoaiSP(String maLoaiSP) {
+        String sql = """
+            SELECT sp.*, lsp.TenLoaiSP
+            FROM SanPham sp
+            LEFT OUTER JOIN LoaiSanPham lsp ON sp.MaLoaiSP = lsp.MaLoaiSP
+            WHERE sp.MaLoaiSP = ?
+        """;
+        List<SanPham> data = new ArrayList<>();
+
+        try {
+            conn = DBConnection.getConnection();
+            ps = conn.prepareStatement(sql);
+            ps.setString(1, maLoaiSP);   
+            rs = ps.executeQuery();
+
+            while (rs.next()) {
+                SanPham sp = new SanPham(
+                    rs.getString("MaSP"),
+                    rs.getString("TenSP"),
+                    rs.getFloat("GiaSP"),
+                    rs.getString("AnhSP"),
+                    rs.getString("MaLoaiSP"),
+                    rs.getString("MoTaSP"),
+                    rs.getString("TenLoaiSP")
+                );
+                data.add(sp);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            DBConnection.close(rs, ps, conn);
+        }
+
+        return data;
+    }
+
+    
+ 
+    
+    
+	 
+    public List<SanPham> getAllHot()
 	{
 		String sql = """
 				SELECT SanPham.MaSP, 
@@ -59,37 +236,7 @@ public class SanPhamDao {
 
         return data;  // Trả về danh sách các slide
 	}
-	
-	public List<SanPham> getAll()
-	{
-		String sql = "SELECT * FROM SanPham"; 
-        List<SanPham> data = new ArrayList<>(); 
-
-        try { 
-            conn = DBConnection.getConnection();
-            ps = conn.prepareStatement(sql);
-            rs = ps.executeQuery();
-            
-            while (rs.next()) { 
-                // Khởi tạo đối tượng Slide từ dữ liệu trong ResultSet
-            	SanPham s = new SanPham(
-                    rs.getString("MaSP"), // Mã slide
-                    rs.getString("TenSP"), // Tên slide
-                    rs.getFloat("GiaSP"), // Ảnh slide
-                    rs.getString("AnhSP"), // Vị trí slide
-                    rs.getString("MaLoaiSP")
-                );
-                data.add(s);  // Thêm slide vào danh sách
-            }
-        } catch (SQLException e) {
-            e.printStackTrace(); 
-        } finally {
-            DBConnection.close(rs, ps, conn); // Đảm bảo đóng kết nối
-        }  
-
-        return data;  // Trả về danh sách các slide
-	}
-	
+	 
 	public List<SanPham> getAllSP()
 	{
 		String sql = """
@@ -111,8 +258,8 @@ public class SanPhamDao {
                     rs.getFloat("GiaSP"), // Ảnh slide
                     rs.getString("AnhSP"), // Vị trí slide
                     rs.getString("MaLoaiSP"),
-                    rs.getString("TenLoaiSP"),
-                    rs.getString("MoTaSP")
+                    rs.getString("MoTaSP"),
+                    rs.getString("TenLoaiSP")
                 );
                 data.add(s);  // Thêm slide vào danh sách
             }
@@ -148,8 +295,8 @@ public class SanPhamDao {
                     rs.getFloat("GiaSP"), 
                     rs.getString("AnhSP"), 
                     rs.getString("MaLoaiSP"),
-                    rs.getString("TenLoaiSP"),
-                    rs.getString("MoTaSP")
+                    rs.getString("MoTaSP"),
+                    rs.getString("TenLoaiSP")
                 );
                 data.add(s);  
             }
@@ -186,8 +333,8 @@ public class SanPhamDao {
                     rs.getFloat("GiaSP"), 
                     rs.getString("AnhSP"), 
                     rs.getString("MaLoaiSP"),
-                    rs.getString("TenLoaiSP"),
-                    rs.getString("MoTaSP")
+                    rs.getString("MoTaSP"),
+                    rs.getString("TenLoaiSP")
                 );
                 data.add(s);  
             }

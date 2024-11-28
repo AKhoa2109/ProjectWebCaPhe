@@ -8,16 +8,17 @@ import daos.LoaiSanPhamDao;
 import daos.SanPhamDao;
 import daos.SlideDao;
 import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import models.GioHang;
 
-
 /**
  * Servlet implementation class TrangChuServlet
  */
+@WebServlet("/TrangChuServlet")
 public class TrangChuServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -39,9 +40,24 @@ public class TrangChuServlet extends HttpServlet {
         LoaiSanPhamDao loaiSanPhamDao = new LoaiSanPhamDao();
 		String action = request.getParameter("action");
 		
+		// Code Khoa
+		HttpSession session = request.getSession();
+		if (session != null) {
+		    String msg = (String) session.getAttribute("msg");
+		    String typeMess = (String) session.getAttribute("typeMess");
+
+		    // Xử lý thông báo nếu có
+		    if (msg != null && typeMess != null) {
+		        request.setAttribute("msg", msg);
+		        request.setAttribute("typeMess", typeMess);
+		        // Sau khi xử lý, xóa thông báo khỏi session
+		        session.removeAttribute("msg");
+		        session.removeAttribute("typeMess");
+		    }
+		}
+		
 		// Code của Thiện
 		GioHangDao ghDao = new GioHangDao();
-		HttpSession session = request.getSession();
         String maND = (String) session.getAttribute("maND"); // Lấy mã người dùng từ session
         if (maND == null) {
             maND = "ND01";

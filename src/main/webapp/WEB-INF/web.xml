@@ -1,39 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="https://jakarta.ee/xml/ns/jakartaee" xsi:schemaLocation="https://jakarta.ee/xml/ns/jakartaee https://jakarta.ee/xml/ns/jakartaee/web-app_5_0.xsd" id="WebApp_ID" version="5.0">
   <display-name>WebsiteBanCaPhe</display-name>
-  <welcome-file-list>
+  <welcome-file-list> 
+    <welcome-file>DashBoardServlet</welcome-file>
     <welcome-file>TrangChuServlet</welcome-file>
-    <welcome-file>DanhMucSanPham</welcome-file>
-    <welcome-file>VoucherServlet</welcome-file>
-  </welcome-file-list>
-  <servlet>
-    <description></description>
-    <display-name>TrangChuServlet</display-name>
-    <servlet-name>TrangChuServlet</servlet-name>
-    <servlet-class>controllers.TrangChuServlet</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>TrangChuServlet</servlet-name>
-    <url-pattern>/TrangChuServlet</url-pattern>
-  </servlet-mapping>
-  <servlet>
-    <description></description>
-    <display-name>DanhMucSanPham</display-name>
-    <servlet-name>DanhMucSanPham</servlet-name>
-    <servlet-class>controllers.DanhMucSanPham</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>DanhMucSanPham</servlet-name>
-    <url-pattern>/DanhMucSanPham</url-pattern>
-  </servlet-mapping>
-  <servlet>
-    <description></description>
-    <display-name>ChiTietSanPhamServlet</display-name>
-    <servlet-name>ChiTietSanPhamServlet</servlet-name>
-    <servlet-class>controllers.ChiTietSanPhamServlet</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>ChiTietSanPhamServlet</servlet-name>
-    <url-pattern>/ChiTietSanPhamServlet</url-pattern>
-  </servlet-mapping>
+  </welcome-file-list> 
 </web-app>

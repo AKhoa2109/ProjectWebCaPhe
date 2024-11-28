@@ -5,16 +5,30 @@ public class NguyenLieu {
 	private String tenNL;
 	private int soLuongTonKho;
 	private String maDV;
+	
+	private String tenDV;
+	
 	public NguyenLieu() {
 		
 	}
-	public NguyenLieu(String maNL, String tenNL, int soLuongTonKho, String maDV) {
-		super();
+	
+	public NguyenLieu(String maNL, String tenNL, int soLuongTonKho, String maDV) { // Table NguyenLieu
 		this.maNL = maNL;
 		this.tenNL = tenNL;
 		this.soLuongTonKho = soLuongTonKho;
 		this.maDV = maDV;
 	}
+	
+	public NguyenLieu(String maNL, String tenNL, int soLuongTonKho, String  maDV, String tenDV) { // Table NguyenLieu join DonVi
+		this.maNL = maNL;
+		this.tenNL = tenNL;
+		this.soLuongTonKho = soLuongTonKho; 
+		this.maDV = maDV;
+		this.tenDV = tenDV;
+	}
+	
+	
+	
 	public String getMaNL() {
 		return maNL;
 	}
@@ -39,5 +53,13 @@ public class NguyenLieu {
 	public void setMaDV(String maDV) {
 		this.maDV = maDV;
 	}
+	public String getTenDV() {
+		return tenDV;
+	}
+	public void setTenDV(String tenDV) {
+		this.tenDV = tenDV;
+	} 
+	
+	
 	
 }

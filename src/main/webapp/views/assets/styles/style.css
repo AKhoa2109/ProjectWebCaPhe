@@ -21,7 +21,7 @@ header {
 }
 
 .container > img {
-  width: 100px;
+  width: 70px;
 }
 
 .container {
@@ -49,6 +49,10 @@ header {
   padding: 10px;
 }
 
+nav-link {
+	display:flex;
+}
+
 .nav-links li a {
   color: white;
   text-decoration: none;
@@ -73,6 +77,10 @@ header {
   display: block;
 }
 
+.nav-item {
+	display: inline-flex;
+}
+
 .feature .dropdown-menu {
   width: 100%;
   display: none;
@@ -84,9 +92,20 @@ header {
   width: 100%;
 }
 
+.dropdown-menu li:hover{
+	width: 100%;
+}
+
+
 .dropdown-menu .dropdown-item:hover {
   background-color: #ccc;
   color: #000;
+  width: 100%;
+}
+
+.dropdown-menu .dropdown-item {
+  font-size: 18px; 
+  padding: 0px 10px; 
 }
 
 .feature li a {
@@ -101,6 +120,30 @@ header {
 }
 .feature .fa-solid {
   color: #fff;
+}
+
+.feature .dropdown-menu {
+  width: auto; /* Điều chỉnh cho dropdown không quá rộng */
+}
+
+.nav-profile .profile{
+	display:flex;
+}
+
+
+.profile-images img{
+	width:50px;
+	margin-right:5px;
+	align-content: center;
+}
+
+.profile-names{
+	align-content: center;
+}
+
+.profile-names p{
+	font-size:16px;
+	margin-top:10px;
 }
 
 /* Định dạng slider tổng thể */
@@ -118,7 +161,6 @@ footer {
   padding: 20px;
   bottom: 0;
   width: 100%;
-  z-index: 10;
   position: relative;
 }
 
@@ -356,3 +398,4 @@ footer {
   height: 300px;
   border: none;
 }
+
