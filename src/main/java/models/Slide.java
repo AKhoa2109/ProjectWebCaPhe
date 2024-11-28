@@ -24,8 +24,7 @@ public class Slide {
 		this.maSlide = maSlide;
 		this.tenSlide = tenSlide;
 		this.anhSlide = anhSlide;
-	}
-	 
+	}	 
 	 
 	public String getMaSlide() {
 		return maSlide;

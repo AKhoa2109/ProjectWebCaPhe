@@ -9,7 +9,8 @@ import java.util.List;
 
 import conn.DBConnection;
 import models.Slide;
-import models.Voucher;
+
+
 
 
 public class SlideDao {
@@ -21,10 +22,12 @@ public class SlideDao {
 	}
 	
 	public List<Slide> getAll()  { 
+
         String sql = """
         		SELECT * 
         		FROM Slide
         		""";  
+ 
         List<Slide> data = new ArrayList<>(); 
 
         try { 
@@ -32,6 +35,7 @@ public class SlideDao {
             ps = conn.prepareStatement(sql);
             rs = ps.executeQuery();
             
+ 
             while (rs.next()) {  
             	Slide s = new Slide(
                     rs.getString("MaSlide"),  
@@ -42,10 +46,12 @@ public class SlideDao {
                     rs.getString("MaND") 
                 );
                 data.add(s);   
+
             }
         } catch (SQLException e) {
             e.printStackTrace(); 
         } finally {
+
             DBConnection.close(rs, ps, conn);  
         }  
 
@@ -202,8 +208,7 @@ public class SlideDao {
             ps = conn.prepareStatement(sql);
             ps.setString(1, tt);
             rs = ps.executeQuery();
-            
-            
+             
             while (rs.next()) {  
             	Slide s = new Slide(
                     rs.getString("MaSlide"), 
@@ -217,6 +222,7 @@ public class SlideDao {
 		}
 		finally {
             DBConnection.close(rs, ps, conn);  
+
         }
 		return data;
 	}

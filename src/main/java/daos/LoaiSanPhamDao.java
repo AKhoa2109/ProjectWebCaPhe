@@ -8,8 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import conn.DBConnection;
-import models.KhuVuc;
-import models.LoaiSanPham;
+import models.LoaiSanPham; 
 
 public class LoaiSanPhamDao {
 	private Connection conn = null;
@@ -19,25 +18,25 @@ public class LoaiSanPhamDao {
 		// TODO Auto-generated constructor stub
 	}
 	public List<LoaiSanPham> getAll()
-	{
+	{ 
 		String sql = """
 				SELECT * 
 				FROM LoaiSanPham
-				"""; 
+				""";  
         List<LoaiSanPham> data = new ArrayList<>(); 
 
         try { 
             conn = DBConnection.getConnection();
             ps = conn.prepareStatement(sql);
             rs = ps.executeQuery();
-            
+             
             while (rs.next()) {  
             	LoaiSanPham lsp = new LoaiSanPham(
                     rs.getString("MaLoaiSP"), 
                     rs.getString("TenLoaiSP"), 
                     rs.getString("HinhLoaiSP") 
                 );
-                data.add(lsp);   
+                data.add(lsp);    
             }
         } catch (SQLException e) {
             e.printStackTrace(); 
@@ -47,7 +46,7 @@ public class LoaiSanPhamDao {
 
         return data;  
 	}
-	
+	 
 	public LoaiSanPham getById(String maLoaiSP) {
         String sql = """
     		SELECT * 
@@ -171,9 +170,5 @@ public class LoaiSanPhamDao {
 
 	    return data;
 	}
-
-
-
-
-	
+ 
 }

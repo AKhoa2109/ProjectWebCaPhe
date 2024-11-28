@@ -8,9 +8,11 @@ public class SanPham {
 	private float giaSP;
 	private String anhSP;
 	private String maLoaiSP;
+
 	private String moTaSP;
 	
 	private String tenLoaiSP;
+
 	private double trungBinhSoSao;
 	public SanPham() {
 		
@@ -26,19 +28,16 @@ public class SanPham {
 	}
 	
 	public SanPham(String maSP, String tenSP, float giaSP, String anhSP, String maLoaiSP, String moTaSP, String tenLoaiSP) { //Table SanPham join LoaiSanPham
-		super();
 		this.maSP = maSP;
 		this.tenSP = tenSP;
 		this.giaSP = giaSP;
 		this.anhSP = anhSP;
 		this.maLoaiSP = maLoaiSP;
-		this.tenLoaiSP = tenLoaiSP;
 		this.moTaSP = moTaSP;
 	}
 	
 	
 	public SanPham(String maSP,String tenSP, float giaSP, String anhSP, String maLoaiSP,double trungBinhSoSao) { //Table SanPham join DanhGia
-		super();
 		this.maSP = maSP;
 		this.tenSP = tenSP;
 		this.giaSP = giaSP;

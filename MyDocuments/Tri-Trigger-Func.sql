@@ -333,41 +333,6 @@ END;
 
 -- --------------------------------------------Func----------------------------------------------
 
-CREATE FUNCTION func_TongTien_ChiTietHoaDon 
-(
-	@MaDH NVARCHAR(50)
-)
-RETURNS FLOAT  
-AS
-BEGIN  
-	DECLARE @TongTienSP FLOAT = 0
-	DECLARE @PhiVanChuyen FLOAT = 0  
-	DECLARE @GiaTriVC FLOAT = 0 
-
-	DECLARE @TongThanhToan FLOAT = 0 
-
-	--Dùng COALESCE đảm bảo các giá trị NULL trong SUM, PhiVanChuyen, hoặc GiaTriVC được thay bằng 0 để tránh lỗi.
-	SELECT @TongTienSP = COALESCE(SUM(cthd.TongTien), 0) 
-	FROM DonHang dh  
-	JOIN ChiTietHoaDon cthd ON dh.MaDH = cthd.MaDH 
-	JOIN SanPham sp ON cthd.MaSP = sp.MaSP 
-	WHERE dh.MaDH = @MaDH
-	 
-	SELECT @PhiVanChuyen = COALESCE(kv.PhiVanChuyen, 0)
-	FROM DonHang dh 
-	JOIN KhuVuc kv ON dh.MaKV = kv.MaKV
-	WHERE dh.MaDH = @MaDH
-	 
-	SELECT @GiaTriVC = COALESCE(vc.GiaTriVC, 0)
-	FROM Voucher vc
-	JOIN DonHang dh ON vc.MaVC = dh.MaVC
-	WHERE dh.MaDH = @MaDH
-	 
-	SET @TongThanhToan = (@TongTienSP + @PhiVanChuyen) - @GiaTriVC
-
-	RETURN @TongThanhToan  
-END;
-
 
 -- --------------------------------------Lệnh update dữ liệu--------------------------------------------------------
 select sp.GiaSP, cthd.SoLuong, cthd.TongTien 

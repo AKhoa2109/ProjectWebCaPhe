@@ -71,3 +71,4 @@ function getProvinces(event) {
 function getDistricts(event) {
   fetchWards(event.target.value);
 }
+

@@ -4,12 +4,14 @@ public class LoaiSanPham {
 	private String maLoaiSP;
 	private String tenLoaiSP;
 	private String hinhLoaiSP;
+
 	
 	public LoaiSanPham() {
 		
 	}
 	
 	public LoaiSanPham(String maLoaiSP, String tenLoaiSP, String hinhLoaiSP) { 
+
 		this.maLoaiSP = maLoaiSP;
 		this.tenLoaiSP = tenLoaiSP;
 		this.hinhLoaiSP = hinhLoaiSP;
