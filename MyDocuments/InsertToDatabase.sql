@@ -5,18 +5,18 @@ GO
 -- BEGIN TRANSACTION
 
 INSERT INTO Voucher (MaVC, TenVC, GiaTriVC, SoLuotSuDungToiDa, SoLuotDaSuDung, NgayBatDau, NgayKetThuc, TrangThai) VALUES
-('VC01', N'Giảm giá 10%', 0.1, 100, 5, '2024-11-01', '2024-12-01', N'Còn hạn'),
-('VC02', N'Giảm giá 20%', 0.2, 50, 10, '2024-11-01', '2024-12-01', N'Còn hạn'),
-('VC03', N'Giảm giá 15%', 0.15, 30, 5, '2024-11-01', '2024-12-01', N'Hết hạn'),
-('VC04', N'Giảm giá 5%', 0.05, 20, 0, '2024-11-01', '2024-12-01', N'Còn hạn'),
-('VC05', N'Giảm giá 25%', 0.25, 10, 1, '2024-11-01', '2024-12-01', N'Còn hạn');
+('VC01', N'Giảm giá 10%', 10000, 100, 5, '2024-11-01', '2024-12-01', N'Còn hạn'),
+('VC02', N'Giảm giá 20%', 20000, 50, 10, '2024-11-01', '2024-12-01', N'Còn hạn'),
+('VC03', N'Giảm giá 15%', 15000, 30, 5, '2024-11-01', '2024-12-01', N'Hết hạn'),
+('VC04', N'Giảm giá 5%', 5000, 20, 0, '2024-11-01', '2024-12-01', N'Còn hạn'),
+('VC05', N'Giảm giá 25%', 25000, 10, 1, '2024-11-01', '2024-12-01', N'Còn hạn');
 
 INSERT INTO NguoiDung (MaND, TenND, NamSinh, GioiTinh, SoDienThoai, Email, DiaChi, AnhND, VaiTro, TenDangNhap, MatKhau) VALUES
-('ND01', N'Nguyen Van A', 1990, N'Nam', '0912345678', 'a@gmail.com', N'Hồ Chí Minh', 'nd1.jpg', 'Admin', 'nd1', '123123'),
-('ND02', N'Tran Thi B', 1992, N'Nữ', '0987654321', 'b@gmail.com', N'Hà Nội', 'nd2.jpg', 'Client', 'nd2', '123123'),
-('ND03', N'Le Van C', 1985, N'Nam', '0911223344', 'c@gmail.com', N'Đà Nẵng', 'nd3.jpg', 'Client', 'nd3', '123123'),
-('ND04', N'Pham Thi D', 1993, N'Nữ', '0977554433', 'd@gmail.com', N'Cần Thơ', 'nd4.jpg', 'Client', 'nd4', '123123'),
-('ND05', N'Hoang Van E', 1988, N'Nam', '0966887766', 'e@gmail.com', N'Bình Dương', 'nd5.jpg' , 'Client', 'nd5', '123123');
+('ND01', N'Nguyen Van A', 1990, N'Nam', '0912345678', 'a@gmail.com', N'Hồ Chí Minh', 'Avt1.jpg', 'Admin', 'nd1', '123123'),
+('ND02', N'Tran Thi B', 1992, N'Nữ', '0987654321', 'b@gmail.com', N'Hà Nội', 'Avt2.jpg', 'Client', 'nd2', '123123'),
+('ND03', N'Le Van C', 1985, N'Nam', '0911223344', 'c@gmail.com', N'Đà Nẵng', 'Avt3.jpg', 'Client', 'nd3', '123123'),
+('ND04', N'Pham Thi D', 1993, N'Nữ', '0977554433', 'd@gmail.com', N'Cần Thơ', 'Avt4.jpg', 'Client', 'nd4', '123123'),
+('ND05', N'Hoang Van E', 1988, N'Nam', '0966887766', 'e@gmail.com', N'Bình Dương', 'Avt5.jpg' , 'Client', 'nd5', '123123');
 
 INSERT INTO KhuVuc (MaKV, TenKV, PhiVanChuyen) VALUES
 ('KV01', N'Thành phố Thủ Đức', 20000),

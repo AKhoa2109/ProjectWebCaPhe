@@ -284,6 +284,28 @@ public class NguoiDungDao {
         return false;
     }
     
+    public boolean checkMailExsist(String email)
+    {
+    	String sql = """
+    			SELECT COUNT(*) FROM NguoiDung WHERE Email = ?
+    			""";
+    	try {
+            conn = DBConnection.getConnection();
+            ps = conn.prepareStatement(sql);
+            ps.setString(1, email);
+            rs = ps.executeQuery(); 
+            if (rs.next()) {
+            	int count = rs.getInt(1);
+                return count > 0;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            DBConnection.close(rs, ps, conn);
+        }
+        return false;
+    }
+    
     public NguoiDung getByAccount(String username, String password) {
         String sql = """
     		SELECT * 
@@ -319,6 +341,29 @@ public class NguoiDungDao {
             DBConnection.close(rs, ps, conn);
         } 
         return nguoiDung;
+    }
+    public String getRole(String username, String password,String email)
+    {
+    	String sql = """
+    			SELECT VaiTro FROM NguoiDung WHERE (TenDangNhap = ? AND MatKhau = ?) OR Email = ?
+    			""";
+    	 String role = null;
+    	try {
+            conn = DBConnection.getConnection();
+            ps = conn.prepareStatement(sql);
+            ps.setString(1, username);
+            ps.setString(2, password);
+            ps.setString(3, email);
+            rs = ps.executeQuery(); 
+            if (rs.next()) {
+            	role = rs.getString("VaiTro");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            DBConnection.close(rs, ps, conn);
+        }
+    	return role;
     }
  
 }

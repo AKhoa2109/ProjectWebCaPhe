@@ -58,29 +58,13 @@ public class DangKyServlet extends HttpServlet {
 			String gioiTinh = request.getParameter("gioiTinh");
 			String email = request.getParameter("email");
 			String anhND = request.getParameter("anhND");
-			System.out.print(anhND);
-			String tp = request.getParameter("provinceName");
-			String huyen = request.getParameter("districtName");
-			String xa = request.getParameter("wardName");
-			String soNha = request.getParameter("soNha");
+			String diaChi = request.getParameter("diaChi");
 
-			String diaChi = soNha + "," + xa + "," + huyen + "," + tp;
 
-			SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-			Date date = null;
-			try {
-				date = dateFormat.parse(ngay);
-			} catch (ParseException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+			
+			int year = Integer.parseInt(ngay);
 
-			Calendar calendar = Calendar.getInstance();
-			calendar.setTime(date);
-			int year = calendar.get(Calendar.YEAR);
-
-			NguoiDung nDung = new NguoiDung("", hoTen, year, gioiTinh, sdt, email, diaChi, anhND, "Client", tenDangNhap,
-					matKhau);
+			NguoiDung nDung = new NguoiDung("", hoTen, year, gioiTinh, sdt, email, diaChi, anhND, "User", tenDangNhap, matKhau);
 			XuLyAnh xLyAnh = new XuLyAnh();
 			xLyAnh.luuAnh(request, getServletContext(), "HinhNguoiDung");
 

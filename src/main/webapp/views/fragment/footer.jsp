@@ -33,7 +33,7 @@
 					<div class="footer-contact-info">
 						<div class="footer-phone">
 							<i class="fa-solid fa-phone"></i>
-							<p>0949617948</p>
+							<p>0949617941</p>
 						</div>
 						<div class="footer-email">
 							<i class="fa-regular fa-envelope"></i>

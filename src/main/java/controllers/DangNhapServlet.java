@@ -44,11 +44,25 @@ public class DangNhapServlet extends HttpServlet {
 			HttpSession session = request.getSession();
 			if(ndDao.checkLogin(username, password))
 			{
+				String role = ndDao.getRole(username, password, "");
+				if(role.equals("User"))
+				{
+					session.setAttribute("nguoiDung", ndDao.getByAccount(username, password));
+					session.setAttribute("role", "User");
+					session.setAttribute("msg", "Đăng nhập thành công");
+					session.setAttribute("typeMess", "success");
+					response.sendRedirect(request.getContextPath() + "/TrangChuServlet");
+					return;
+				}
+				else {
+					session.setAttribute("nguoiDung", ndDao.getByAccount(username, password));
+					session.setAttribute("role", "Admin");
+					session.setAttribute("msg", "Đăng nhập thành công");
+					session.setAttribute("typeMess", "success");
+					response.sendRedirect(request.getContextPath() + "/DashBoardServlet");
+					return;
+				}
 				
-				session.setAttribute("nguoiDung", ndDao.getByAccount(username, password));
-				session.setAttribute("msg", "Đăng nhập thành công");
-				session.setAttribute("typeMess", "success");
-				response.sendRedirect(request.getContextPath() + "/TrangChuServlet");
 			}
 			else 
 			{

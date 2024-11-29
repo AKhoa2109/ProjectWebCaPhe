@@ -40,6 +40,12 @@
 					<div class="card-body">
 						<p class="text-center">Hãy nhập mã OTP được gửi đến email của
 							bạn</p>
+						<div class="row justify-content-center">
+							<div class="col-6 timer p-3"
+								style="font-size: 3rem; font-weight: bold; text-align: center;">
+								<span id="minutes">05</span>:<span id="seconds">00</span>
+							</div>
+						</div>
 						<c:url var="url" value="QuenMatKhauServlet?action=confirm"></c:url>
 						<form id="otp-form" action="${url}" method="post">
 							<div class="mb-3">
@@ -63,4 +69,25 @@
 		<jsp:param name="type" value="${typeMess}" />
 	</jsp:include>
 </body>
+<script>
+	const timerMinutes = document.getElementById('minutes');
+	const timerSeconds = document.getElementById('seconds');
+	
+	let time = 5 * 60; // 5 minutes in seconds
+	
+	const countdown = setInterval(() => {
+	    const minutes = Math.floor(time / 60);
+	    const seconds = time % 60;
+	
+	    timerMinutes.textContent = minutes.toString().padStart(2, '0');
+	    timerSeconds.textContent = seconds.toString().padStart(2, '0');
+	
+	    time--;
+	
+	    if (time < 0) {
+	        clearInterval(countdown);
+	        alert("Time's up!");
+	    }
+	}, 1000);
+</script>
 </html>

@@ -22,7 +22,10 @@
 <body>
 
 	<!-- Header -->
-	<jsp:include page="/views/fragment/header.jsp" />
+		<jsp:include page="/views/fragment/header.jsp">
+			<jsp:param name="HoTen" value="${nguoiDung.tenND}" />
+			<jsp:param name="Anh" value="${nguoiDung.anhND}" />
+		</jsp:include>
 	<!-- Nội dung -->
 	<div class="contact-container">
 		<div class="contact-introduce">

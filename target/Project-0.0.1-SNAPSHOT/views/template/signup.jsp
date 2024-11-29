@@ -14,6 +14,9 @@
 <link rel="stylesheet" type="text/css"
 	href="<%=request.getContextPath()%>/views/assets/styles/breadcrumb.css" />
 <script src="<%=request.getContextPath()%>/views/assets/js/script.js"></script>
+<script src="<%=request.getContextPath()%>/views/assets/js/profile.js"></script>
+<link rel="stylesheet" type="text/css"
+	href="<%=request.getContextPath()%>/views/assets/styles/signup.css" />
 <title>Đăng kí</title>
 </head>
 <body class="body-container">
@@ -29,10 +32,11 @@
 		<hr />
 		<div class="profile-container-feature">
 			<div class="profile-form">
+
 				<form action="DangKyServlet?action=register"
 					class="profile-form-control" method="post"
 					enctype="multipart/form-data" onclick="setTextValues()">
-					<div class="profile-image">
+					<div class="profile-image" style="border: none">
 						<img src="https://via.placeholder.com/150" alt="" /> 
 						<input type="file" class="custom-file-input" id="anhND" name="filename" />
 						<input type="hidden" name="anhND" value="" class="input-file-name"/>
@@ -81,7 +85,7 @@
 							<div class="profile-form-user">
 								<label for="">Ngày sinh</label>
 								<div class="form-group-user">
-									<input type="date" name="ngay" required />
+									<input type="text" name="ngay" required />
 								</div>
 							</div>
 						</div>
@@ -116,30 +120,9 @@
 						<div class="profile-form-group">
 							<div class="profile-form-user">
 								<label for="">Địa chỉ</label>
-								<hr />
-								<div class="form-group-address">
-									<div class="form-group-country">
-										<label for="">Tỉnh/Thành phố</label> <select name="tp"
-											required id="provinces" onchange="getProvinces(event)">
-											<option value=""></option>
-										</select> <input type="hidden" name="provinceName" id="provinceName">
-									</div>
-									<div class="form-group-country">
-										<label for="">Quận/Huyện</label> <select name="huyen" required
-											id="districts" onchange="getDistricts(event)">
-											<option value=""></option>
-										</select> <input type="hidden" name="districtName" id="districtName">
-									</div>
-									<div class="form-group-country">
-										<label for="">Xã/Phường</label> <select name="xa" required
-											id="wards">
-											<option value=""></option>
-										</select> <input type="hidden" name="wardName" id="wardName">
-									</div>
-								</div>
 								<div class="form-group-country number-house">
-									<label for="">Số nhà,đường</label> <input type="text"
-										name="soNha" required />
+									<input type="text"
+										name="diaChi" required />
 								</div>
 							</div>
 						</div>
@@ -159,34 +142,4 @@
 	</div>
 	
 </body>
-<script>
-	function setTextValues() {
-		document.getElementById("provinceName").value = document.getElementById("provinces").options[document.getElementById("provinces").selectedIndex].text;
-		document.getElementById("districtName").value = document.getElementById("districts").options[document.getElementById("districts").selectedIndex].text;
-		document.getElementById("wardName").value = document.getElementById("wards").options[document.getElementById("wards").selectedIndex].text;
-	}
-	document.addEventListener('DOMContentLoaded', function() {
-		document.querySelector('.custom-file-input').addEventListener('change', function(e) {
-		    var fileInput = e.target;  // Lấy phần tử input file từ sự kiện
-		    if (fileInput.files.length > 0) {  // Kiểm tra xem có tệp nào được chọn không
-		        var file = fileInput.files[0];  // Lấy tệp đầu tiên
-		        var fileName = file.name || 'Chọn file...';
-		
-		
-		        // Cập nhật giá trị của input[type="hidden"]
-		        var hiddenInput = fileInput.parentElement.querySelector('.input-file-name');
-		        hiddenInput.value = fileName;
-		
-		        var reader = new FileReader();
-		        reader.onload = function(e) {
-		            document.querySelector('.profile-image img').src = e.target.result;
-		        };
-		        reader.readAsDataURL(file); // Đọc file và gán kết quả base64 vào src ảnh
-		    } else {
-		        // Nếu không có tệp nào được chọn, có thể xử lý thông báo hay làm gì đó
-		        console.log('No file selected');
-		    }
-		});
-	});
-</script>
 </html>

@@ -370,8 +370,8 @@ public class SanPhamDao {
                     rs.getFloat("GiaSP"), 
                     rs.getString("AnhSP"), 
                     rs.getString("MaLoaiSP"),
-                    rs.getString("TenLoaiSP"),
-                    rs.getString("MoTaSP")
+                    rs.getString("MoTaSP"),
+                    rs.getString("TenLoaiSP")
                 );
                
             }

@@ -43,8 +43,8 @@ public class TrangChuServlet extends HttpServlet {
         LoaiSanPhamDao loaiSanPhamDao = new LoaiSanPhamDao();
 		String action = request.getParameter("action");
 		
-		HttpSession session = request.getSession();
-		if (session != null) {
+		HttpSession session = request.getSession(false);
+		if (session != null || session.getAttribute("role").equals("User")) {
 		    String msg = (String) session.getAttribute("msg");
 		    String typeMess = (String) session.getAttribute("typeMess");
 
@@ -56,33 +56,42 @@ public class TrangChuServlet extends HttpServlet {
 		        session.removeAttribute("msg");
 		        session.removeAttribute("typeMess");
 		    }
-		}
-		// Code của Thiện
-		GioHangDao ghDao = new GioHangDao();
-        String maND = (String) session.getAttribute("maND"); // Lấy mã người dùng từ session
-        if (maND == null) {
-            maND = "ND01";
-        }
-        List<GioHang> cart = ghDao.getById(maND);
-        session.setAttribute("soSPDat", cart.size());
-		
-		if(action==null)
-		{
-			request.setAttribute("listSlide", slDao.getByTrangThai("Hiển thị"));
-			request.setAttribute("listProduct", sanPhamDao.getAllHot());
-			request.setAttribute("listSP", sanPhamDao.getAll());
-			request.setAttribute("listLoaiSP", loaiSanPhamDao.getAll());
-            request.getRequestDispatcher("/views/template/home.jsp").forward(request, response);
-		}
-		else if(action.equals("login"))
-		{
-			request.getRequestDispatcher("/views/template/login.jsp").forward(request, response);
-		}
-		else if(action.equals("signup"))
-		{
-			request.getRequestDispatcher("/views/template/signup.jsp").forward(request, response);
-		}
+		 // Code của Thiện
+			GioHangDao ghDao = new GioHangDao();
+	        String maND = (String) session.getAttribute("maND"); // Lấy mã người dùng từ session
+	        if (maND == null) {
+	            maND = "ND01";
+	        }
+	        List<GioHang> cart = ghDao.getById(maND);
+	        session.setAttribute("soSPDat", cart.size());
+			
+			if(action==null)
+			{
+				request.setAttribute("listSlide", slDao.getByTrangThai("Hiển thị"));
+				request.setAttribute("listProduct", sanPhamDao.getAllHot());
+				request.setAttribute("listSP", sanPhamDao.getAll());
+				request.setAttribute("listLoaiSP", loaiSanPhamDao.getAll());
+	            request.getRequestDispatcher("/views/template/home.jsp").forward(request, response);
+			}
+			else if(action.equals("login"))
+			{
+				request.getRequestDispatcher("/views/template/login.jsp").forward(request, response);
+			}
+			else if(action.equals("signup"))
+			{
+				request.getRequestDispatcher("/views/template/signup.jsp").forward(request, response);
+			}
+			else if(action.equals("contact"))
+			{
+				request.getRequestDispatcher("/views/template/contact.jsp").forward(request, response);
+			}
+			else if(action.equals("about"))
+			{
+				request.getRequestDispatcher("/views/template/about.jsp").forward(request, response);
+			}
 
+		}
+		
 	}
 
 	/**

@@ -204,3 +204,100 @@
 #showMoreBtn:hover {
 	background-color: #0056b3;
 }
+.infor-container {
+    max-width: 1300px;
+    margin: 40px auto;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #f8f9fa; 
+}
+
+/* Row Layout */
+.infor-row {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 20px;
+}
+
+.infor-image {
+    flex: 1 1 50%;
+    text-align: center;
+}
+
+.custom-img {
+    max-width: 100%;
+    border-radius: 8px;
+}
+
+/* Content Section */
+.infor-content {
+    flex: 1 1 50%;
+    color: #343a40;
+}
+
+.infor-label {
+    font-size: 1rem;
+    color: #D4AC0D;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.infor-image{
+	max-width: 500px;
+}
+
+.infor-title {
+    font-size: 2rem;
+    color: #212529;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+.infor-divider {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: 20px 0;
+}
+
+.divider-line {
+    flex-grow: 1;
+    height: 2px;
+    background-color: #A0522D;
+    border: none;
+}
+
+.divider-dot {
+    color: #212529;
+    font-size: 1.5rem;
+    line-height: 0;
+}
+
+/* Text */
+.infor-text {
+    font-size: 1rem;
+    line-height: 1.6;
+    color: #495057;
+    margin-bottom: 20px;
+}
+
+/* Button */
+.infor-button {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #A0522D;
+    color: #fff;
+    font-size: 1rem;
+    font-weight: bold;
+    text-decoration: none;
+    border-radius: 25px;
+    transition: background-color 0.3s ease;
+}
+
+.infor-button:hover {
+    background-color: #D4AC0D;
+    text-decoration: none;
+}

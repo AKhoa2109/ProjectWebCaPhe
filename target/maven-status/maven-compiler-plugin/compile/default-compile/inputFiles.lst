@@ -17,6 +17,7 @@ C:\new_workspace\ProjectWebCaPhe\src\main\java\daos\ChiTietHoaDonDao.java
 C:\new_workspace\ProjectWebCaPhe\src\main\java\daos\SlideDao.java
 C:\new_workspace\ProjectWebCaPhe\src\main\java\models\PhaChe.java
 C:\new_workspace\ProjectWebCaPhe\src\main\java\models\LoaiSanPham.java
+C:\new_workspace\ProjectWebCaPhe\src\main\java\utilities\UserFilter.java
 C:\new_workspace\ProjectWebCaPhe\src\main\java\daos\SanPhamDao.java
 C:\new_workspace\ProjectWebCaPhe\src\main\java\models\SanPham.java
 C:\new_workspace\ProjectWebCaPhe\src\main\java\conn\SQLServerConnection.java
@@ -40,6 +41,7 @@ C:\new_workspace\ProjectWebCaPhe\src\main\java\controllers\KhuVucSerlet.java
 C:\new_workspace\ProjectWebCaPhe\src\main\java\controllers\DangKyServlet.java
 C:\new_workspace\ProjectWebCaPhe\src\main\java\daos\PhaCheDao.java
 C:\new_workspace\ProjectWebCaPhe\src\main\java\controllers\GoogleLoginServlet.java
+C:\new_workspace\ProjectWebCaPhe\src\main\java\controllers\LogoutServlet.java
 C:\new_workspace\ProjectWebCaPhe\src\main\java\controllers\QuenMatKhauServlet.java
 C:\new_workspace\ProjectWebCaPhe\src\main\java\models\DonHang.java
 C:\new_workspace\ProjectWebCaPhe\src\main\java\controllers\ChiTietSanPhamServlet.java

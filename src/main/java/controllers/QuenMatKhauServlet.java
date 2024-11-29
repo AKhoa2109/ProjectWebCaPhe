@@ -61,12 +61,14 @@ public class QuenMatKhauServlet extends HttpServlet {
 				} else {
 					request.setAttribute("msg", "Gửi thất bại");
 					request.setAttribute("typeMess", "error");
-					response.sendRedirect(request.getContextPath() + "/QuenMatKhauServlet");
+					request.getRequestDispatcher("/views/template/quenMatKhauContent/quenMatKhau.jsp").forward(request,
+							response);
 				}
 			} else {
 				request.setAttribute("msg", "Email của bạn không tồn tại!");
 				request.setAttribute("typeMess", "error");
-				response.sendRedirect(request.getContextPath() + "/QuenMatKhauServlet");
+				request.getRequestDispatcher("/views/template/quenMatKhauContent/quenMatKhau.jsp").forward(request,
+						response);
 			}
 
 		} else if (action.equals("confirm")) {
