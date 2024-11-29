@@ -20,6 +20,27 @@ public class ChiTietHoaDonDao {
 
     public ChiTietHoaDonDao() {
     }
+	public boolean insert(ChiTietHoaDon ctHD) {
+		String sql = """
+				INSERT INTO ChiTietHoaDon(MaDH, MaSP, SoLuong, TongTien)
+				VALUES(?,?,?,?)
+				""";
+		try {
+			conn = DBConnection.getConnection();
+			ps = conn.prepareStatement(sql);
+			ps.setString(1, ctHD.getMaDH());
+			ps.setString(2, ctHD.getMaSP());
+			ps.setInt(3, ctHD.getSoLuong());
+			ps.setFloat(4, ctHD.getTongTien());
+			
+			return ps.executeUpdate() > 0;
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			DBConnection.close(rs, ps, conn);
+		}
+		return false;
+	}
 
     public List<ChiTietHoaDon> getChiTietHoaDonByMaDH(String maDH) {
         String sql = """
@@ -34,7 +55,7 @@ public class ChiTietHoaDonDao {
         try {
             conn = DBConnection.getConnection();
             ps = conn.prepareStatement(sql);
-            ps.setString(1, maDH); // Gán giá trị mã đơn hàng vào tham số
+            ps.setString(1, maDH); // G�n gi� tr? m� don h�ng v�o tham s?
             rs = ps.executeQuery();
 
             while (rs.next()) {
@@ -51,7 +72,7 @@ public class ChiTietHoaDonDao {
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
-            DBConnection.close(rs, ps, conn);  // Đảm bảo đóng kết nối
+            DBConnection.close(rs, ps, conn);  // �?m b?o d�ng k?t n?i
         }
 
         return chiTietHoaDonList;
@@ -247,12 +268,12 @@ public class ChiTietHoaDonDao {
             rs = ps.executeQuery();
 
             while (rs.next()) {
-                // Tạo một Map để lưu tên sản phẩm và tổng số lượng
+                // T?o m?t Map d? luu t�n s?n ph?m v� t?ng s? lu?ng
                 Map<String, Object> row = new HashMap<>();
                 row.put("TenSP", rs.getString("TenSP"));
                 row.put("TongSoLuong", rs.getInt("TongSoLuong"));
 
-                // Thêm vào danh sách kết quả
+                // Th�m v�o danh s�ch k?t qu?
                 result.add(row);
             }
         } catch (SQLException e) {
@@ -284,12 +305,12 @@ public class ChiTietHoaDonDao {
             rs = ps.executeQuery();
 
             while (rs.next()) {
-                // Tạo một Map để lưu tên sản phẩm và tổng tiền
+                // T?o m?t Map d? luu t�n s?n ph?m v� t?ng ti?n
                 Map<String, Object> row = new HashMap<>();
                 row.put("TenSP", rs.getString("TenSP"));
                 row.put("TongTien", rs.getFloat("TongTien"));
 
-                // Thêm vào danh sách kết quả
+                // Th�m v�o danh s�ch k?t qu?
                 result.add(row);
             }
         } catch (SQLException e) {
@@ -318,12 +339,12 @@ public class ChiTietHoaDonDao {
             rs = ps.executeQuery();
 
             while (rs.next()) {
-                // Tạo một Map để lưu Ngày Mua và Giá Trị Đơn Hàng
+                // T?o m?t Map d? luu Ng�y Mua v� Gi� Tr? �on H�ng
                 Map<String, Object> row = new HashMap<>();
-                row.put("NgayMua", rs.getDate("NgayMua")); // Ngày mua
-                row.put("GiaTriDH", rs.getFloat("GiaTriDH")); // Giá trị đơn hàng
+                row.put("NgayMua", rs.getDate("NgayMua")); // Ng�y mua
+                row.put("GiaTriDH", rs.getFloat("GiaTriDH")); // Gi� tr? don h�ng
 
-                // Thêm vào danh sách kết quả
+                // Th�m v�o danh s�ch k?t qu?
                 result.add(row);
             }
         } catch (SQLException e) {

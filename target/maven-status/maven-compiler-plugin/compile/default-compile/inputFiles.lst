@@ -26,6 +26,7 @@ C:\new_workspace\ProjectWebCaPhe\src\main\java\controllers\NguyenLieuServlet.jav
 C:\new_workspace\ProjectWebCaPhe\src\main\java\models\NguyenLieu.java
 C:\new_workspace\ProjectWebCaPhe\src\main\java\utilities\ResetAccount.java
 C:\new_workspace\ProjectWebCaPhe\src\main\java\utilities\XuLyAnh.java
+C:\new_workspace\ProjectWebCaPhe\src\main\java\controllers\HoaDonServlet.java
 C:\new_workspace\ProjectWebCaPhe\src\main\java\models\ThanhToan.java
 C:\new_workspace\ProjectWebCaPhe\src\main\java\daos\PhuongThucThanhToanDao.java
 C:\new_workspace\ProjectWebCaPhe\src\main\java\daos\KhuVucDao.java
@@ -51,4 +52,6 @@ C:\new_workspace\ProjectWebCaPhe\src\main\java\models\DonVi.java
 C:\new_workspace\ProjectWebCaPhe\src\main\java\controllers\DonHangServlet.java
 C:\new_workspace\ProjectWebCaPhe\src\main\java\controllers\LoaiSanPhamServlet.java
 C:\new_workspace\ProjectWebCaPhe\src\main\java\models\Slide.java
+C:\new_workspace\ProjectWebCaPhe\src\main\java\controllers\ThanhToanServlet.java
+C:\new_workspace\ProjectWebCaPhe\src\main\java\daos\GioHangDao.java
 C:\new_workspace\ProjectWebCaPhe\src\main\java\controllers\ImageProxyServlet.java

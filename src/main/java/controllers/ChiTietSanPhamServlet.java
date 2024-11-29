@@ -1,13 +1,19 @@
 package controllers;
 
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+
+import daos.GioHangDao;
+import daos.SanPhamDao;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import java.io.IOException;
-
-import daos.SanPhamDao;
+import jakarta.servlet.http.HttpSession;
+import models.GioHang;
+import models.SanPham;
 
 /**
  * Servlet implementation class ChiTietSanPhamServlet
@@ -27,6 +33,8 @@ public class ChiTietSanPhamServlet extends HttpServlet {
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
+    GioHangDao ghDao = new GioHangDao();
+    
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		String id = request.getParameter("id");
@@ -45,8 +53,49 @@ public class ChiTietSanPhamServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
-	}
+		// TODO Auto-generated method stub		
+		HttpSession session = request.getSession();
+        String maND = (String) session.getAttribute("maND");  // Lấy mã người dùng từ session
+        if (maND == null) {
+            maND = "ND01";
+        }
+        
+		String id = request.getParameter("id");
+        String type = request.getParameter("type");
+		
+		String maSP = request.getParameter("maSP");
+		int soLuong = Integer.parseInt(request.getParameter("soLuong"));
+		
+        SanPhamDao spDAO = new SanPhamDao();
+		SanPham sp = spDAO.getSanPhamByLoaiId(maSP);
+		
+		List<GioHang> cart = ghDao.getById(maND);
+		boolean tonTai = false;
+		
+		for (GioHang gh :cart) {
+			if (gh.getMaSP().equals(maSP)) {
+				ghDao.updateSoLuongSanPham(maSP, soLuong);
+				tonTai = true;
+				break;
+			}
+		}
+		
+		if (!tonTai) {
+			ghDao.insert(new GioHang(maND, maSP, soLuong, sp.getTenSP(), sp.getGiaSP()));
+			cart = ghDao.getById(maND);
+		}
+		
+		session.setAttribute("soSPDat", cart.size());	
+		
+		// Kiếm tra cart
+		for (GioHang gh :cart) {
+			System.out.println("Số lượng: " + gh.getMaSP() + " Số lượng: " + gh.getSoLuong());
+		}		
 
+		// Tạo lại URL cho chuyển hướng
+        String redirectURL = "ChiTietSanPhamServlet?id=" + id + "&type=" + type;
+
+        // Chuyển hướng trở lại trang đã gửi form
+        response.sendRedirect(redirectURL);
+	}
 }

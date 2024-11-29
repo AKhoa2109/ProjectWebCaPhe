@@ -17,11 +17,13 @@ daos\ThanhToanDao.class
 controllers\VoucherServlet.class
 controllers\DashBoardServlet.class
 controllers\DanhMucSanPham.class
+controllers\HoaDonServlet.class
 models\NguyenLieu.class
 daos\PhuongThucThanhToanDao.class
 models\ThanhToan.class
 controllers\NguoiDungServlet.class
 daos\NguyenLieuDao.class
+controllers\ThanhToanServlet.class
 models\DonHang.class
 daos\LoaiSanPhamDao.class
 models\PhuongThucThanhToan.class
@@ -45,6 +47,7 @@ models\LoaiSanPham.class
 controllers\NguyenLieuServlet.class
 daos\DonHangDao.class
 daos\KhuVucDao.class
+daos\GioHangDao.class
 daos\NguoiDungDao.class
 controllers\GoogleLoginServlet.class
 daos\DonViDao.class

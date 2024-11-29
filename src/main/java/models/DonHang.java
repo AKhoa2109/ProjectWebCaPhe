@@ -34,6 +34,15 @@ public class DonHang {
 		this.maVC = maVC;
 		this.tenKV = tenKV;
 	}
+	
+	public DonHang(String maDH,float giaTriDH, Date ngayMua, String trangThai, String maKV)
+	{
+		this.maDH = maDH;
+		this.giaTriDH = giaTriDH;
+		this.ngayMua = ngayMua;
+		this.trangThai = trangThai;
+		this.maKV = maKV;
+	}
 	public String getMaDH() {
 		return maDH;
 	}

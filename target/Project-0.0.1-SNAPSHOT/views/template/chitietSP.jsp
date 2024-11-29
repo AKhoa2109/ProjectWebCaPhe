@@ -45,15 +45,24 @@
 				<h1>${product.tenSP}</h1>
 				<div class="product-price">${product.getPriceFormat()}</div>
 				<p class="product-description">${product.moTaSP}</p>
-
-				<!-- Số lượng sản phẩm -->
-				<div class="quantity">
-					<label for="quantity">Số lượng:</label> <input type="number"
-						id="quantity" name="quantity" value="1" min="1" />
-				</div>
-
-				<!-- Nút thêm vào giỏ hàng -->
-				<a href="#" class="add-to-cart">Thêm vào giỏ hàng</a>
+				
+				<!-- Thêm sản phẩm vào giỏ hàng -->
+				<form action ="ChiTietSanPhamServlet" method="post">
+					<!-- Thiếu mã người dùng -->
+					<input type="hidden" name="maSP" value="${product.maSP}" />
+					
+					<!-- Thêm id và type -->
+    				<input type="hidden" name="id" value="${param.id}" />
+    				<input type="hidden" name="type" value="${param.type}" />
+					
+					<div class="quantity">
+						<label for="soLuong">Số lượng:</label>
+						<input type="number" id="soLuong" name="soLuong" value="1" min="1" />
+					</div>
+					
+					<!-- Nút thêm vào giỏ hàng -->
+					<button type="submit" class="add-to-cart">Thêm vào giỏ hàng</button>
+				</form>			
 			</div>
 		</div>
 
@@ -71,8 +80,6 @@
 							<div class="price">${list.getPriceFormat()}</div>
 						</a>
 					</div>
-
-
 				</c:forEach>
 			</div>
 		</div>

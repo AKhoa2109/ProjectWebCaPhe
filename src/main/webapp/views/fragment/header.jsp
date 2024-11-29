@@ -21,12 +21,6 @@
 			</nav>
 			<nav class="nav-feature">
 				<ul class="feature">
-					<li class="feature-cart"><a href="#" class="cart"> <i
-							class="fa-solid fa-cart-shopping"></i> <span
-							class="position-absolute top-10 translate-middle badge rounded-pill bg-danger">
-								1+ <span class="visually-hidden">unread messages</span>
-						</span>
-					</a></li>
 					<li class="nav-item dropdown"><a class="nav-link"
 						href="ThongTinCaNhanServlet" data-bs-toggle="dropdown"
 						aria-expanded="false"> <i class="fa-solid fa-user"></i>
@@ -40,6 +34,11 @@
 								href="DangKyServlet?action=signup">Đăng kí</a></li>
 						</ul></li>
 
+					<li class="feature-cart"><a href="HoaDonServlet" class="cart"><i
+							class="fa-solid fa-cart-shopping"></i> <span
+							class="position-absolute top-10 translate-middle badge rounded-pill bg-danger">
+								${sessionScope.soSPDat > 0 ? sessionScope.soSPDat : '0'}<span class="visually-hidden">unread messages</span>
+						</span> </a></li>
 				</ul>
 			</nav>
 			<nav class="nav-profile">

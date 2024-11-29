@@ -1,5 +1,4 @@
 package daos;
-
 import conn.DBConnection;
 import models.ThanhToan;
 
@@ -47,4 +46,25 @@ public class ThanhToanDao {
         }
         return thanhToan;   
     }
+	
+	public boolean insert(ThanhToan tt) {
+		String sql = """
+				INSERT INTO ThanhToan(MaND, MaDH, MaPTTT)
+				VALUES(?,?,?)
+				""";
+		try {
+			conn = DBConnection.getConnection();
+			ps = conn.prepareStatement(sql);
+			ps.setString(1, tt.getMaND());
+			ps.setString(2, tt.getMaDH());
+			ps.setString(3, tt.getMaPTTT());
+			
+			return ps.executeUpdate() > 0;
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			DBConnection.close(rs, ps, conn);
+		}
+		return false;
+	}
 }
