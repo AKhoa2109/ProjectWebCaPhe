@@ -332,7 +332,16 @@ BEGIN
 END; 
 
 -- --------------------------------------------Func----------------------------------------------
-
+CREATE FUNCTION [dbo].[FUNC_TaoMaDH]()
+RETURNS NVARCHAR(50)
+AS
+BEGIN
+    DECLARE @MaxNumber INT;
+    SELECT @MaxNumber = ISNULL(MAX(CAST(SUBSTRING(MaDH, 3, LEN(MaDH) - 2) AS INT)), 0)
+    FROM DonHang;
+    SET @MaxNumber = @MaxNumber + 1;
+    RETURN 'DH' + RIGHT('00' + CAST(@MaxNumber AS NVARCHAR(50)), 2);
+END;
 
 -- --------------------------------------Lệnh update dữ liệu--------------------------------------------------------
 select sp.GiaSP, cthd.SoLuong, cthd.TongTien 
