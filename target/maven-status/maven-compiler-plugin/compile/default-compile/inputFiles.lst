@@ -23,6 +23,7 @@ C:\new_workspace\ProjectWebCaPhe\src\main\java\models\SanPham.java
 C:\new_workspace\ProjectWebCaPhe\src\main\java\conn\SQLServerConnection.java
 C:\new_workspace\ProjectWebCaPhe\src\main\java\controllers\DanhMucSanPham.java
 C:\new_workspace\ProjectWebCaPhe\src\main\java\models\PhuongThucThanhToan.java
+C:\new_workspace\ProjectWebCaPhe\src\main\java\controllers\HoaDonInServlet.java
 C:\new_workspace\ProjectWebCaPhe\src\main\java\controllers\NguyenLieuServlet.java
 C:\new_workspace\ProjectWebCaPhe\src\main\java\models\NguyenLieu.java
 C:\new_workspace\ProjectWebCaPhe\src\main\java\utilities\ResetAccount.java

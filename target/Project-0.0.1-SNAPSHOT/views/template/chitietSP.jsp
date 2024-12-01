@@ -82,6 +82,7 @@
 				<div class="col-md-6">
 					<h5 class="text-center">Bình luận</h5>
 					<form action="DanhGiaServlet?action=gui" method="post">
+						<input type="hidden" name="idNguoiDungHT" value="" id="idNgdung">
 						<div class="d-flex flex-row p-4 justify-content-start">
 							<div class="d-flex flex-column justify-content-start">
 								<!-- Đánh giá sao -->
@@ -124,8 +125,9 @@
 									placeholder="Viết bình luận..." rows="4" name="comment"></textarea>
 							</div>
 						</div>
-						<div class="button-group d-flex justify-content-end me-4">
+						<div class="button-group d-flex justify-content-end me-4 gap-2">
 							<button class="btn btn-success w-1" type="submit">Gửi</button>
+							<button class="btn btn-success w-1" type="submit">Sửa</button>
 						</div>
 
 					</form>
@@ -174,14 +176,12 @@
 											</button>
 											<ul class="dropdown-menu"
 												aria-labelledby="dropdownMenuButton">
-												<li><a class="dropdown-item" href="DanhGiaServlet?action=update">Sửa</a></li>
-												<li><a class="dropdown-item" href="DanhGiaServlet?action=delete">Xóa</a></li>
+												<li><a class="dropdown-item" href="DanhGiaServlet?id=${review.maND}&action=delete">Xóa</a></li>
 											</ul>
 										</div>
 									</c:if>
 								</div>
-								<input type="hidden" id="idNguoiDung"
-									value="${sessionScope.nguoiDung.maND != null ? sessionScope.nguoiDung.maND : ''}" />
+								<input type="hidden" id="idNg" value="${review.maND}">
 								<div class="customer-comment d-flex flex-row">
 									<input type="text" id="cmtText"
 										class="form-control mb-1 ms-5 border border-success rounded-3 bg-light text-success p-1"
@@ -225,6 +225,7 @@
 	<jsp:include page="/views/fragment/footer.jsp" />
 
 	<script>
+		document.getElementById("idNgdung").value = document.getElementById("idNg").value;
       // Đổi hình ảnh chính khi bấm vào hình nhỏ
       function changeImage(thumbnail) {
         // Thay đổi ảnh chính

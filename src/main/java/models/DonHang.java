@@ -24,7 +24,6 @@ public class DonHang {
 		this.maVC = maVC;
 	}
 	
-	
 	public DonHang(String maDH, float giaTriDH, Date ngayMua, String trangThai, String maKV, String maVC, String tenKV) { //Table DonHang join KhuVuc
 		this.maDH = maDH;
 		this.giaTriDH = giaTriDH;

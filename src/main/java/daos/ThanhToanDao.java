@@ -1,4 +1,5 @@
 package daos;
+
 import conn.DBConnection;
 import models.ThanhToan;
 
@@ -8,14 +9,33 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class ThanhToanDao {
-    private Connection conn = null;
-    private PreparedStatement ps = null;
-    private ResultSet rs = null;
- 
-    public ThanhToanDao() {
-         
-    }
- 
+	Connection conn = null;
+	PreparedStatement ps = null;
+	ResultSet rs = null;
+	
+	public ThanhToanDao () {}
+	
+	public boolean insert(ThanhToan tt) {
+		String sql = """
+				INSERT INTO ThanhToan(MaND, MaDH, MaPTTT)
+				VALUES(?,?,?)
+				""";
+		try {
+			conn = DBConnection.getConnection();
+			ps = conn.prepareStatement(sql);
+			ps.setString(1, tt.getMaND());
+			ps.setString(2, tt.getMaDH());
+			ps.setString(3, tt.getMaPTTT());
+			
+			return ps.executeUpdate() > 0;
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			DBConnection.close(rs, ps, conn);
+		}
+		return false;
+	}
+
     public ThanhToan getById(String maDH) {
         String sql = """
             SELECT maND, maDH, maPTTT
@@ -46,25 +66,4 @@ public class ThanhToanDao {
         }
         return thanhToan;   
     }
-	
-	public boolean insert(ThanhToan tt) {
-		String sql = """
-				INSERT INTO ThanhToan(MaND, MaDH, MaPTTT)
-				VALUES(?,?,?)
-				""";
-		try {
-			conn = DBConnection.getConnection();
-			ps = conn.prepareStatement(sql);
-			ps.setString(1, tt.getMaND());
-			ps.setString(2, tt.getMaDH());
-			ps.setString(3, tt.getMaPTTT());
-			
-			return ps.executeUpdate() > 0;
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} finally {
-			DBConnection.close(rs, ps, conn);
-		}
-		return false;
-	}
 }

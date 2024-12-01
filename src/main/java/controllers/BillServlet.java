@@ -40,6 +40,7 @@ public class BillServlet extends HttpServlet {
 		NguoiDungDao ndDao =new NguoiDungDao();
 		
 		String action = request.getParameter("action"); 
+		String role = request.getParameter("role");
 		
 		if (action == null) {
 			String maDH = request.getParameter("maDH"); 
@@ -61,7 +62,14 @@ public class BillServlet extends HttpServlet {
 		    request.setAttribute("giam", giam);
 		    request.setAttribute("thanhTien", thanhTien);
 			
-		    request.getRequestDispatcher("/views/template/admin.jsp?page=donHangBill").forward(request, response);
+		    if (role != null)
+		    {
+		    	request.getRequestDispatcher("/views/template/adminContents/donHangBill.jsp").forward(request, response);
+		    }
+		    else 
+		    {
+		    	 request.getRequestDispatcher("/views/template/admin.jsp?page=donHangBill").forward(request, response);
+		    }	   
 		}
 	}
 	

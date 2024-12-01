@@ -7,8 +7,13 @@ GO
 INSERT INTO Voucher (MaVC, TenVC, GiaTriVC, SoLuotSuDungToiDa, SoLuotDaSuDung, NgayBatDau, NgayKetThuc, TrangThai) VALUES
 ('VC01', N'Giảm giá 10%', 10000, 100, 5, '2024-11-01', '2024-12-01', N'Còn hạn'),
 ('VC02', N'Giảm giá 20%', 20000, 50, 10, '2024-11-01', '2024-12-01', N'Còn hạn'),
+<<<<<<< HEAD
+('VC03', N'Giảm giá 15%', 150000, 30, 5, '2024-11-01', '2024-12-01', N'Hết hạn'),
+('VC04', N'Giảm giá 5%', 50000, 20, 0, '2024-11-01', '2024-12-01', N'Còn hạn'),
+=======
 ('VC03', N'Giảm giá 15%', 15000, 30, 5, '2024-11-01', '2024-12-01', N'Hết hạn'),
 ('VC04', N'Giảm giá 5%', 5000, 20, 0, '2024-11-01', '2024-12-01', N'Còn hạn'),
+>>>>>>> remotes/origin/develop
 ('VC05', N'Giảm giá 25%', 25000, 10, 1, '2024-11-01', '2024-12-01', N'Còn hạn');
 
 INSERT INTO NguoiDung (MaND, TenND, NamSinh, GioiTinh, SoDienThoai, Email, DiaChi, AnhND, VaiTro, TenDangNhap, MatKhau) VALUES

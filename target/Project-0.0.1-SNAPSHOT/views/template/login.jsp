@@ -27,8 +27,7 @@
 				</div>
 
 			<div class="sign-up">
-				<label>Nếu chưa có tài khoản? <a href="DangKyServlet?action=signup">Đăng
-						kí</a></label>
+				<label>Nếu chưa có tài khoản? <a href="DangKyServlet?action=signup">Đăng kí</a></label>
 				<center>
 					<label for="">Hoặc đặng nhập với</label>
 				</center>

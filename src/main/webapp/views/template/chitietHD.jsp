@@ -14,8 +14,17 @@
 	href="<%=request.getContextPath()%>/views/assets/styles/chitietHD.css" />
 <title>Insert title here</title>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+<!-- toast.css và toast.js -->
+<link rel="stylesheet" type="text/css"
+	href="<%=request.getContextPath()%>/views/assets/styles/toast.css" />
+<script src="<%=request.getContextPath()%>/views/assets/js/toast.js"></script>
 </head>
 <body>
+	<!-- Include isp thông báo -->
+	<jsp:include page="/views/fragment/toast.jsp">
+		<jsp:param name="msg" value="${msg}" />
+	</jsp:include>
+
     <!-- Header -->
     <jsp:include page="/views/fragment/header.jsp" />
 
@@ -46,6 +55,12 @@
 			               </select>
 			           </div>
 			       </div>
+			       <div class="section">
+			           <h2><i class="fa-solid fa-ticket"></i> Mã giảm giá</h2>
+                       <button type="submit" name="themVoucher" value="true" style="padding: 5px 10px; background-color: #ff9900; color: white; border: none; border-radius: 4px; cursor: pointer;">Áp dụng</button>
+                       <input type="text" name="maGiamGia" value="${sessionScope.maGiamGia != null ? sessionScope.maGiamGia : ''}" placeholder="Nhập mã giảm giá" style="width: 142px; padding: 5px; border: 1px solid #ccc; border-radius: 4px;">
+                   	   <button type="submit" name="xoaVoucher" value="true" style="padding: 5px 10px; background-color: #f44336; color: white; border: none; border-radius: 4px; cursor: pointer;">Hủy</button>
+                   </div>
                 </div>               
             </div>
         </div>       
@@ -61,15 +76,15 @@
                         <!-- Các trường thông tin giao hàng khác -->
                         <div class="input-group">
                             <label>Địa chỉ chi tiết</label>
-                            <input type="text" placeholder="Nhập địa chỉ chi tiết">
+                            <input type="text" name="diaChi" value="Lê Văn Việt, Quận 9" placeholder="Nhập địa chỉ chi tiết">
                         </div>
                         <div class="input-group">
                             <label>Tên</label>
-                            <input type="text" value="Anh Khoa Dev Tool">
+                            <input type="text" name="ten" value="Anh Khoa Dev Tool" placeholder="Nhập họ và tên">
                         </div>
                         <div class="input-group">
                             <label>Số điện thoại</label>
-                            <input type="text" value="0326433123">
+                            <input type="text" name="soDT" value="0326433123" placeholder="Nhập số điện thoại">
                         </div>
                     </div>                              
                 </div>
@@ -95,20 +110,20 @@
                         <div class="order-total">
                             <p>Thành tiền</p>                           
                             <p><fmt:formatNumber value="${thanhTien}" type="number" pattern="#,##0" />đ</p>
+                            <input type="hidden" name="thanhTien" value="${thanhTien}" />
                         </div>
                         <div class="order-total">
                             <p>Phí giao hàng</p>
                             <p><fmt:formatNumber value="${sessionScope.kvPhi}" type="number" pattern="#,##0" />đ</p>
                         </div>
-                        <div class="order-total">
-                            <p>Bạn có mã giảm giá trong mục Ưu đãi</p>
-                            <p>0</p>
-                        </div>
-                        <hr>
+                         <div class="order-total">
+					        <p>Giảm giá</p>
+					        <p><fmt:formatNumber value="${sessionScope.giamGia}" type="number" pattern="#,##0" />đ</p>
+					    </div>
                         <div class="order-total">
 					        <p>Tổng tiền</p>
-					        <input type="hidden" name="thanhTien" value="${thanhTien + sessionScope.kvPhi}" />
-					        <p><fmt:formatNumber value="${thanhTien + sessionScope.kvPhi}" type="number" pattern="#,##0" />đ</p>
+						    <input type="hidden" name="tongTien" value="${(thanhTien + sessionScope.kvPhi <= sessionScope.giamGia) ? 0 : (thanhTien - sessionScope.giamGia + sessionScope.kvPhi)}" />						
+						    <p><fmt:formatNumber value="${(thanhTien + sessionScope.kvPhi <= sessionScope.giamGia) ? 0 : (thanhTien - sessionScope.giamGia + sessionScope.kvPhi)}" type="number" pattern="#,##0" />đ</p>
 					    </div>
                     </div>
                     <div class="place-order">

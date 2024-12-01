@@ -16,11 +16,19 @@
             <label for="toDate" class="mr-2 font-weight-bold">Đến ngày:</label>
             <input type="date" class="form-control mr-3" id="toDate" name="toDate">
             
+            <!-- Combobox lọc theo trạng thái -->
+            <label for="trangThai" class="mr-2 font-weight-bold">Trạng thái:</label>
+            <select class="form-control mr-3" id="trangThai" name="trangThai">
+                <option value="">Tất cả</option>
+                <option value="Đang giao">Đang giao</option>
+                <option value="Đã giao">Đã giao</option>
+                <option value="Đã hủy">Đã hủy</option>
+            </select>
+            
             <input class="btn btn-primary rounded" type="submit" value="Lọc">
         </div>
     </form>
 </div>
-
 
 <table class="table table-bordered table-hover table-striped">
     <thead>

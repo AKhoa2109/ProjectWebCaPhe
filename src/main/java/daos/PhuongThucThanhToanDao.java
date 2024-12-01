@@ -8,6 +8,8 @@ import java.util.ArrayList;
 import java.util.List;
 import models.*;
 import conn.DBConnection;
+import models.PhuongThucThanhToan;
+
 
 public class PhuongThucThanhToanDao {
 
@@ -97,5 +99,4 @@ public class PhuongThucThanhToanDao {
 
         return pTTT;  
 	}
-
 }

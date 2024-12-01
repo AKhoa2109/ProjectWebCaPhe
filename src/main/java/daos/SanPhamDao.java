@@ -382,7 +382,5 @@ public class SanPhamDao {
         }  
 
         return s;  
-	} 
-
-
+	}	
 }

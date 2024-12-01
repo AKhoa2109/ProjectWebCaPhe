@@ -15,11 +15,7 @@ public class KhuVucDao {
 	private Connection conn = null;
     private PreparedStatement ps = null;
     private ResultSet rs = null;
-    
-    public KhuVucDao() {
-    	
-    }
-    
+
     public List<KhuVuc> getAll()  { 
         String sql = """
         		SELECT * 
@@ -169,6 +165,4 @@ public class KhuVucDao {
 
         return data;
     }
-
-
 }

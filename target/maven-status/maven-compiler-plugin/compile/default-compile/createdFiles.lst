@@ -52,6 +52,7 @@ daos\DonHangDao.class
 daos\KhuVucDao.class
 daos\GioHangDao.class
 controllers\LogoutServlet.class
+controllers\HoaDonInServlet.class
 daos\NguoiDungDao.class
 controllers\TrangThaiDHServlet.class
 controllers\GoogleLoginServlet.class
