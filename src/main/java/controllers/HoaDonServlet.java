@@ -1,23 +1,24 @@
 package controllers;
 
 import java.io.IOException;
-import java.sql.Connection;
-import java.util.ArrayList;
 import java.util.List;
 
-import conn.DBConnection;
+import daos.ChiTietHoaDonDao;
 import daos.GioHangDao;
 import daos.KhuVucDao;
 import daos.PhuongThucThanhToanDao;
+import daos.VoucherDao;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
+import models.ChiTietHoaDon;
 import models.GioHang;
 import models.KhuVuc;
 import models.PhuongThucThanhToan;
+import models.Voucher;
 
 /**
  * Servlet implementation class HoaDonServlet
@@ -48,8 +49,42 @@ public class HoaDonServlet extends HttpServlet {
         if (maND == null) {
             maND = "ND01";
         }
-		
-	    
+		            
+	    // Xử lí mã giảm giá
+        String maGG = request.getParameter("maGiamGia");  
+        // Xử lí hủy voucher
+        String themVoucher = request.getParameter("themVoucher");
+        if ("true".equals(themVoucher)) {
+        	try {
+                // Kiểm tra nếu mã giảm giá không phải là null hoặc chuỗi rỗng
+                if (maGG != null && !maGG.isEmpty()) {
+                    VoucherDao vcDao = new VoucherDao();
+                    Voucher vc = vcDao.getById(maGG); // Lấy mã giảm giá từ database
+                    if (vc != null) {
+                        // Nếu tìm thấy voucher hợp lệ, đưa giá trị giảm giá vào request
+                    	session.setAttribute("maGiamGia", maGG);
+                        session.setAttribute("giamGia", vc.getGiaTriVC());
+                        request.setAttribute("msg", "Đã áp dụng mã giảm giá");
+                    } else {
+                        // Nếu không tìm thấy voucher tương ứng, thông báo lỗi
+                        request.setAttribute("msg", "Mã giảm giá không hợp lệ");
+                    }
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+                request.setAttribute("msg", "Lỗi khi xử lý mã giảm giá");
+            }
+        }     
+        
+        // Xử lí hủy voucher
+        String xoaVoucher = request.getParameter("xoaVoucher");
+        if ("true".equals(xoaVoucher)) {
+        	session.removeAttribute("maGiamGia");
+            session.setAttribute("giamGia", 0);
+            request.setAttribute("msg", "Mã giảm giá đã bị hủy");
+        }
+        
+        // Xử lí khu vực
 	    List<KhuVuc> dSKhuVuc = kvDAO.getAll();
         List<PhuongThucThanhToan> dSPTTT = ptttDAO.getAll();
 		
@@ -87,12 +122,22 @@ public class HoaDonServlet extends HttpServlet {
 	    
 	    if (action == null) action = "";
 
+	    String maDH = request.getParameter("maDH");
 	    // Nếu action == delete thì thực hiện xóa
 	    if (action.equals("delete") && maSP != null) {
 	    	ghDao.removeItem(maND, maSP);
 	    	cart = ghDao.getById(maND);
 	        session.setAttribute("soSPDat", cart.size());
 	    }
+	    else if (action.equals("xoaDH") && maDH != null) {
+	    	// Thêm từng sản phẩm trong giỏ hàng vào chi tiết hóa đơn
+	        for (GioHang gh : cart) {	        
+	            ghDao.removeItem(maND, gh.getMaSP()); // Xóa sản phẩm đã đặt khỏi giỏ hàng
+	        }
+	        
+	        cart = ghDao.getById(maND); // Lấy lại giỏ hàng sau khi xóa
+	        session.setAttribute("soSPDat", cart.size()); // Cập nhật số sản phẩm đã đặt
+	    }	    
 	    
 	    // Tính tổng tiền
 	    int thanhTien = 0;
@@ -105,6 +150,10 @@ public class HoaDonServlet extends HttpServlet {
 	    request.setAttribute("thanhTien", thanhTien);
 	    request.setAttribute("cart", cart);
 
+	    // Lấy tham số để hiện thông báo
+	    String msg = (String) request.getAttribute("msg");
+	    request.setAttribute("msg", msg);
+	    	
 	    // Chuyển tiếp sang JSP (chỉ gọi 1 lần)
 	    getServletContext().getRequestDispatcher("/views/template/chitietHD.jsp").forward(request, response);
 	}

@@ -109,16 +109,12 @@
 			    </ul>
 			</div>
 		
-						
-			 
 			<!-- Content nằm bên phải-->
 			<div id="content" class="col bg-white p-3">  
 				<div class="row" >  
 					<!-- Header -->
 					<jsp:include page="/views/template/adminContents/headerAdmin.jsp"/> 
 				</div> 
-				
-				
 				<div class="row" style="margin-top:63px">
 					<div class="col-12"> <!-- Chiếm hết màn hình bên phải -->
 					 
@@ -133,28 +129,18 @@
 						<!-- Include page -->   
 						<div id="content-page">
 							<c:if test="${!(empty param.page)}"> 
-							
 								<jsp:include page="adminContents/${param.page}.jsp"></jsp:include>
-								
 							</c:if>  
 						</div> 
 					</div>
 				</div>
-			
-				
-				
 			</div>
-			
-			
 		</div>
 	</div>
 
-	   
 	 <!-- Thêm các tệp JavaScript của Bootstrap từ CDN -->
  	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
 	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"></script>
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"></script>  
-	
-	
 </body>
 </html>

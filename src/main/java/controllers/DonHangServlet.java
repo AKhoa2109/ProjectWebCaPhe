@@ -30,8 +30,26 @@ public class DonHangServlet extends HttpServlet {
         request.setCharacterEncoding("UTF-8");
         DonHangDao dhDao = new DonHangDao();
         String action = request.getParameter("action");
+        String role = request.getParameter("role");
+        String maDH = request.getParameter("maDH");
+        String suaTT = request.getParameter("suaTT");
+        String huyTT = request.getParameter("huyTT");       
+        String trangThai = request.getParameter("trangThai");        
 
-        if (action == null) {
+        if (action == null) {   
+        	if (suaTT != null)
+        	{
+            	if (suaTT.equals("edit")) {
+                	dhDao.updateTrangThai("Đã giao", maDH);
+                }    	
+        	}
+        	if  (huyTT != null)
+        	{
+        		if (huyTT.equals("edit")) {
+                	dhDao.updateTrangThai("Đã hủy", maDH);
+                }
+        	}
+        	
             String fromDateStr = request.getParameter("fromDate");
             String toDateStr = request.getParameter("toDate");
 
@@ -42,18 +60,40 @@ public class DonHangServlet extends HttpServlet {
                     Date sqlToDate = Date.valueOf(toDateStr);
 
                     // Fetch filtered data based on date range
-                    request.setAttribute("donHangList", dhDao.getByDateRange(sqlFromDate, sqlToDate));
+                    if (role != null) {
+                    	request.setAttribute("donHangList", dhDao.getByRange(sqlFromDate, sqlToDate, "ND02", trangThai));
+                    }
+                    else {
+                    	request.setAttribute("donHangList", dhDao.getByRange(sqlFromDate, sqlToDate, null, trangThai));
+                    }                  
                 } catch (IllegalArgumentException e) {
                     e.printStackTrace();
                     // Thêm thông báo lỗi nếu cần
                     request.setAttribute("errorMessage", "Định dạng ngày không hợp lệ.");
                 }
-            } else {
-                // Fetch all data if no date filter
-                request.setAttribute("donHangList", dhDao.getAll());
+            } else if (trangThai != null && !trangThai.isEmpty()) {
+            	if (role != null) {
+                	request.setAttribute("donHangList", dhDao.getByRange(null, null, "ND02", trangThai));
+                }
+                else {
+                	request.setAttribute("donHangList", dhDao.getByRange(null, null, null, trangThai));
+                }  
             }
-
-            request.getRequestDispatcher("/views/template/admin.jsp?page=donHangTable").forward(request, response);
+            else {
+                // Fetch all data if no date filter
+            	if (role != null) {
+                    request.setAttribute("donHangList", dhDao.getByNDId("ND02"));
+            	}
+            	else {
+                    request.setAttribute("donHangList", dhDao.getAll());
+            	}
+            }
+            if (role != null) {
+            	request.getRequestDispatcher("/views/template/quanlyhoadon.jsp").forward(request, response);
+            }
+            else {
+            	request.getRequestDispatcher("/views/template/admin.jsp?page=donHangTable").forward(request, response);
+            }    
         }
     }
 

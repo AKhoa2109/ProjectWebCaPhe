@@ -17,6 +17,7 @@
 					<li><a href="#">Giới thiệu</a></li>
 					<li><a href="DanhMucSanPham">Danh mục sản phẩm</a></li>
 					<li><a href="contact.jsp">Liên hệ</a></li>
+					<li><a href="DonHangServlet?role=client">Quản Lý Đơn Hàng</a></li>
 				</ul>
 			</nav>
 			<nav class="nav-feature">
@@ -36,8 +37,8 @@
 					</li>
 					<li class="feature-cart"><a href="HoaDonServlet" class="cart"><i
 							class="fa-solid fa-cart-shopping"></i> <span
-							class="position-absolute top-10 translate-middle badge rounded-pill bg-danger">
-								${sessionScope.soSPDat > 0 ? sessionScope.soSPDat : '0'}<span class="visually-hidden">unread messages</span>
+							class="position-absolute top-10 translate-middle badge rounded-pill bg-danger" style="color: white;">
+								${sessionScope.soSPDat > 0 ? sessionScope.soSPDat : '0'}<span class="visually-hidden"></span>
 						</span></a>
 					</li>					
 				</ul>
