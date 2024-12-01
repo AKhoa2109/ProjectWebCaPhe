@@ -23,7 +23,7 @@
                         <a class="dropdown-item" href="<%=request.getContextPath()%>/NguoiDungServlet?action=edit&maND=ND01" style="color: black;">Profile</a>
                         <a class="dropdown-item" href="<%=request.getContextPath()%>/views/template/setting.jsp" style="color: black;">Settings</a>
                         <div class="dropdown-divider"></div>
-                        <a class="dropdown-item text-danger" href="#" onclick="return confirm('Bạn có chắc muốn đăng xuất?');">Logout</a>
+                        <a class="dropdown-item text-danger" href="LogoutServlet" onclick="return confirm('Bạn có chắc muốn đăng xuất?');">Logout</a>
                     </div>
                 </li>
             </ul>

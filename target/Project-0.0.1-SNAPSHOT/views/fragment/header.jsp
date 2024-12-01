@@ -7,7 +7,7 @@
 </head>
 <body>
 	<header id="header">
-		<div class="container">
+		<div class="container header-container">
 			<img
 				src="<%=request.getContextPath()%>/views/assets/favicon/logo.png"
 				alt="Logo" />
@@ -33,7 +33,7 @@
 							<li><a class="dropdown-item"
 								href="DangKyServlet?action=signup">Đăng kí</a></li>
 							<li><a class="dropdown-item"
-								href="LogoutServlet">Log out</a></li>
+								href="TrangThaiDHServlet">Log out</a></li>
 						</ul></li>
 							
 

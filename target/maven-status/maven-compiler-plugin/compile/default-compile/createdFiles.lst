@@ -8,6 +8,7 @@ utilities\XuLyAnh.class
 controllers\LoaiSanPhamServlet.class
 daos\SanPhamDao.class
 daos\SlideDao.class
+controllers\DanhGiaServlet.class
 models\KhuVuc.class
 controllers\SlideServlet.class
 models\ChiTietHoaDon.class
@@ -41,6 +42,7 @@ controllers\PhaCheServlet.class
 daos\ChiTietHoaDonDao.class
 controllers\DonViServlet.class
 models\Slide.class
+daos\DanhGiaDao.class
 daos\PhaCheDao.class
 models\GoogleLogin.class
 conn\SQLServerConnection.class
@@ -51,6 +53,7 @@ daos\KhuVucDao.class
 daos\GioHangDao.class
 controllers\LogoutServlet.class
 daos\NguoiDungDao.class
+controllers\TrangThaiDHServlet.class
 controllers\GoogleLoginServlet.class
 daos\DonViDao.class
 models\Voucher.class

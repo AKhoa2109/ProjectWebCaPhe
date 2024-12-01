@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import daos.DanhGiaDao;
 import daos.GioHangDao;
 import daos.SanPhamDao;
 import jakarta.servlet.ServletException;
@@ -12,7 +13,9 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
+import models.DanhGia;
 import models.GioHang;
+import models.NguoiDung;
 import models.SanPham;
 
 /**
@@ -39,14 +42,22 @@ public class ChiTietSanPhamServlet extends HttpServlet {
 		// TODO Auto-generated method stub
 		String id = request.getParameter("id");
 		String idLoaiSp = request.getParameter("type");
+		String action = request.getParameter("action");
 		System.out.println(idLoaiSp);
 		SanPhamDao sanPhamDao = new SanPhamDao();
-		
-		request.setAttribute("product", sanPhamDao.getSanPhamByLoaiId(id));
-		request.setAttribute("listProduct", sanPhamDao.getSanPhamCungLoaiSP(idLoaiSp,id));
-		request.getRequestDispatcher("/views/template/chitietSP.jsp").forward(request, response);
-		
-		
+		DanhGiaDao dgDao = new DanhGiaDao(); 
+		HttpSession session = request.getSession();
+		NguoiDung nd = (NguoiDung) session.getAttribute("nguoiDung");	
+		session.setAttribute("id", id);
+		session.setAttribute("idLoaiSp", idLoaiSp);
+		if(action==null)
+		{
+			session.setAttribute("nguoiDung", nd);
+			request.setAttribute("product", sanPhamDao.getSanPhamByLoaiId(id));
+			request.setAttribute("listReview", dgDao.getAllByIdSP(id));
+			request.setAttribute("listProduct", sanPhamDao.getSanPhamCungLoaiSP(idLoaiSp,id));
+			request.getRequestDispatcher("/views/template/chitietSP.jsp").forward(request, response);
+		}
 	}
 
 	/**

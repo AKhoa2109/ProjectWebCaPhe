@@ -27,7 +27,8 @@ public class UserFilter implements Filter {
         "QuenMatKhauServlet?action=forget",
         "QuenMatKhauServlet?action=confirm",
         "QuenMatKhauServlet?action=reset",
-        "/GoogleLoginServlet"
+        "/GoogleLoginServlet",
+        "/TrangThaiDHServlet"
     );
     @Override
     public void init(FilterConfig filterConfig) throws ServletException {

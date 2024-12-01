@@ -46,7 +46,7 @@ public class LogoutServlet extends HttpServlet {
           }
 
           // Chuyển hướng về trang chủ
-          response.sendRedirect(request.getContextPath() + "/TrangChuServlet");
+          response.sendRedirect(request.getContextPath() + "/DangNhapServlet");
 	}
 
 	/**

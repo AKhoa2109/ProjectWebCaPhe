@@ -151,3 +151,99 @@
 .thumbnail:hover, .thumbnail.active {
 	border-color: #4caf50;
 }
+
+/* REIVEW */
+/* styles.css */
+.comment {
+	width: 100%;
+}
+/* Định dạng sao */
+.rating-stars {
+	display: flex;
+	gap: 5px;
+}
+
+.rating-stars .star {
+	font-size: 20px;
+	color: #ccc;
+	cursor: pointer;
+	transition: color 0.3s;
+}
+
+.rating-stars .star:hover, .rating-stars .star:hover ~ .star {
+	color: #ffd700;
+}
+
+/* Định dạng hình ảnh và text */
+img.rounded-circle {
+	width: 50px;
+	height: 50px;
+	object-fit: cover;
+}
+
+textarea.form-control {
+	resize: none;
+}
+
+.customer-rate {
+	gap: 10px;
+}
+
+/* Phần mở rộng cho bình luận */
+.customer-comment-container {
+	display: none; /* Initially hidden */
+	overflow: hidden;
+	transition: max-height 0.5s ease-in-out; /* Smooth transition */
+}
+
+.customer-comment-container.open {
+	display: block; /* Show when opened */
+}
+
+.customer-review {
+	cursor: pointer;
+	color: rgb(0, 0, 0);
+}
+
+.customer-comment-container {
+	display: none;
+}
+
+.review .setting-button {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+/* Hiển thị nút setting khi hover vào review */
+.review:hover .setting-button {
+    opacity: 1;
+}
+
+/* Cải thiện giao diện dropdown */
+.dropdown-menu {
+    min-width: 150px;
+}
+
+.dropdown-item {
+    cursor: pointer;
+}
+
+/* Nếu bạn muốn cải thiện thêm hiệu ứng hover trên các item */
+.dropdown-item:hover {
+    background-color: #f8f9fa;
+}
+
+.btn-save {
+    margin-left: 10px;
+    text-decoration: none; /* Hiển thị dạng liên kết */
+    display: none; /* Mặc định ẩn */
+    cursor: pointer;
+    color: #000;
+    border: 1px solid #000;
+    border-radius: 10px;
+    width: 10%;
+    text-align: center;
+}

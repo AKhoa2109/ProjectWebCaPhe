@@ -31,6 +31,12 @@ public class NguoiDung {
 		this.tenDangNhap = tenDangNhap;
 		this.matKhau = matKhau;
 	}
+	
+	public NguoiDung(String tenND, String anhND)
+	{
+		this.tenND = tenND;
+		this.anhND = anhND;
+	}
 
 	public String getMaND() {
 		return maND;

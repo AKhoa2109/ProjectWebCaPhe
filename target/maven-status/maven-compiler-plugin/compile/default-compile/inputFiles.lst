@@ -27,6 +27,7 @@ C:\new_workspace\ProjectWebCaPhe\src\main\java\controllers\NguyenLieuServlet.jav
 C:\new_workspace\ProjectWebCaPhe\src\main\java\models\NguyenLieu.java
 C:\new_workspace\ProjectWebCaPhe\src\main\java\utilities\ResetAccount.java
 C:\new_workspace\ProjectWebCaPhe\src\main\java\utilities\XuLyAnh.java
+C:\new_workspace\ProjectWebCaPhe\src\main\java\controllers\TrangThaiDHServlet.java
 C:\new_workspace\ProjectWebCaPhe\src\main\java\controllers\HoaDonServlet.java
 C:\new_workspace\ProjectWebCaPhe\src\main\java\models\ThanhToan.java
 C:\new_workspace\ProjectWebCaPhe\src\main\java\daos\PhuongThucThanhToanDao.java
@@ -44,6 +45,8 @@ C:\new_workspace\ProjectWebCaPhe\src\main\java\controllers\GoogleLoginServlet.ja
 C:\new_workspace\ProjectWebCaPhe\src\main\java\controllers\LogoutServlet.java
 C:\new_workspace\ProjectWebCaPhe\src\main\java\controllers\QuenMatKhauServlet.java
 C:\new_workspace\ProjectWebCaPhe\src\main\java\models\DonHang.java
+C:\new_workspace\ProjectWebCaPhe\src\main\java\daos\DanhGiaDao.java
+C:\new_workspace\ProjectWebCaPhe\src\main\java\controllers\DanhGiaServlet.java
 C:\new_workspace\ProjectWebCaPhe\src\main\java\controllers\ChiTietSanPhamServlet.java
 C:\new_workspace\ProjectWebCaPhe\src\main\java\controllers\VoucherServlet.java
 C:\new_workspace\ProjectWebCaPhe\src\main\java\models\KhuVuc.java
