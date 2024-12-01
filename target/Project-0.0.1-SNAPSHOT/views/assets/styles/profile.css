@@ -1,6 +1,5 @@
 @charset "UTF-8";
 .body-container{
-	background-color: #E3D9CF;
 	background-repeat: no-repeat;
 	background-size: cover;
 }
@@ -12,7 +11,7 @@
 	
 }
 
-.fa-solid {
+.profile-form-control .fa-solid {
 	color: #000;
 }
 
@@ -26,10 +25,10 @@
 }
 
 .profile-container-feature form {
-	display: flex;
 	flex-direction: row;
-	justify-content: space-between;
-	gap: 20px;
+	flex-wrap: wrap;
+	justify-content: center;
+	gap: 5%;
 	width: 100%;
 }
 
@@ -157,19 +156,30 @@ form-group-control {
 }
 
 .profile-button-control {
+	display: flex;
 	padding: 10px;
 	text-align: center;
+	flex-direction: row;
+	justify-content: center;
+	gap: 10px;
 }
 
-.profile-button-control button {
-	width: 10%;
+.profile-button-control button, .profile-button-control a {
+	width: 15%;
 	height: 40px;
 	border-radius: 15px;
 	background-color: transparent;
 	cursor: pointer;
 }
 
-.profile-button-control button:hover {
+.profile-button-control a{
+	color: #000;
+	text-decoration: none;
+	border: 2px solid #000;
+	text-align: center;
+}
+
+.profile-button-control button:hover, .profile-button-control a:hover {
 	background-color: aqua;
 }
 

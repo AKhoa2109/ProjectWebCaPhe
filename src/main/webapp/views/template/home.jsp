@@ -35,6 +35,7 @@
 			<button class="next" onclick="changeSlide(1)">&#10095;</button>
 		</div>
 	</div>
+	
 	<!-- Danh mục loại sản phẩm -->
 	<section class="category-container">
 		<h1>DANH MỤC</h1>
@@ -50,6 +51,34 @@
 			</c:forEach>
 		</section>
 	</section>
+	
+	<!-- Begin more information -->
+	<div class="infor-container">
+		<div class="infor-row">
+			<div class="infor-image">
+				<img src="<%=request.getContextPath()%>/views/assets/images/Slide/slide15.jpg" alt="Tea Leaf"
+					class="custom-img">
+			</div>
+			<div class="infor-content">
+				<p class="infor-label">Tiểu sử</p>
+				<h2 class="infor-title">Lịch sử của cà phê</h2>
+				<div class="infor-divider">
+					<hr class="divider-line">
+					<span class="divider-dot">•</span>
+					<hr class="divider-line">
+				</div>
+				<p class="infor-text">Cà phê có một lịch sử lâu đời và đầy thú vị, 
+				bắt nguồn từ vùng cao nguyên Ethiopia vào khoảng thế kỷ thứ 9, 
+				nơi truyền thuyết kể rằng một người chăn dê phát hiện 
+				ra hạt cà phê khi nhận thấy đàn dê của mình trở nên năng động sau khi ăn loại quả này</p>
+				<p class="infor-text">Ngày nay, cà phê là thức uống toàn cầu, biểu tượng của sự sáng tạo 
+				và kết nối con người qua mọi nền văn hóa.</p>
+				<a href="DanhMucSanPham" class="infor-button">Tìm hiểu</a>
+			</div>
+		</div>
+	</div>
+	<!-- End more information -->
+	
 
 	<!-- Danh mục sản phẩm hot -->
 	<div class="catalog-product-container">
@@ -106,6 +135,11 @@
 		<button id="showMoreBtn" onclick="showMoreProducts()">Hiển
 			thị thêm sản phẩm</button>
 	</div>
+	
+		<!-- Begin About -->
+	<jsp:include page="/views/fragment/about_us.jsp" />
+	<!-- End About -->
+
 	<!-- Toast để thông bao  -->
 	<jsp:include page="/views/fragment/toast.jsp">
 		<jsp:param name="msg" value="${msg}" />

@@ -40,9 +40,8 @@ public class TrangChuServlet extends HttpServlet {
         LoaiSanPhamDao loaiSanPhamDao = new LoaiSanPhamDao();
 		String action = request.getParameter("action");
 		
-		// Code Khoa
-		HttpSession session = request.getSession();
-		if (session != null) {
+		HttpSession session = request.getSession(false);
+		if (session != null || session.getAttribute("role").equals("User")) {
 		    String msg = (String) session.getAttribute("msg");
 		    String typeMess = (String) session.getAttribute("typeMess");
 
@@ -54,8 +53,7 @@ public class TrangChuServlet extends HttpServlet {
 		        session.removeAttribute("msg");
 		        session.removeAttribute("typeMess");
 		    }
-		}
-		
+		}		
 		// Code của Thiện
 		GioHangDao ghDao = new GioHangDao();
         String maND = (String) session.getAttribute("maND"); // Lấy mã người dùng từ session
@@ -81,7 +79,14 @@ public class TrangChuServlet extends HttpServlet {
 		{
 			request.getRequestDispatcher("/views/template/signup.jsp").forward(request, response);
 		}
-
+		else if(action.equals("contact"))
+		{
+			request.getRequestDispatcher("/views/template/contact.jsp").forward(request, response);
+		}
+		else if(action.equals("about"))
+		{
+			request.getRequestDispatcher("/views/template/about.jsp").forward(request, response);
+		}		
 	}
 
 	/**

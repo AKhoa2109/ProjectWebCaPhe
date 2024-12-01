@@ -337,12 +337,18 @@ RETURNS NVARCHAR(50)
 AS
 BEGIN
     DECLARE @MaxNumber INT;
+<<<<<<< HEAD
 
     SELECT @MaxNumber = ISNULL(MAX(CAST(SUBSTRING(MaDH, 3, LEN(MaDH) - 2) AS INT)), 0)
     FROM DonHang;
 
     SET @MaxNumber = @MaxNumber + 1;
 
+=======
+    SELECT @MaxNumber = ISNULL(MAX(CAST(SUBSTRING(MaDH, 3, LEN(MaDH) - 2) AS INT)), 0)
+    FROM DonHang;
+    SET @MaxNumber = @MaxNumber + 1;
+>>>>>>> remotes/origin/develop
     RETURN 'DH' + RIGHT('00' + CAST(@MaxNumber AS NVARCHAR(50)), 2);
 END;
 

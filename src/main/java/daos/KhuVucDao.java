@@ -8,14 +8,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 import conn.DBConnection;
-
+import models.DonHang;
 import models.KhuVuc;
 
 public class KhuVucDao {
 	private Connection conn = null;
     private PreparedStatement ps = null;
     private ResultSet rs = null;
-    
+
     public List<KhuVuc> getAll()  { 
         String sql = """
         		SELECT * 

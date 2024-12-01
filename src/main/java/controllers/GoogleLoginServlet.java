@@ -43,19 +43,29 @@ public class GoogleLoginServlet extends HttpServlet {
 			GoogleLogin gg = new GoogleLogin();
 			String accessToken = gg.getToken(code);
 			NguoiDung nguoiDung = gg.getUserInfo(accessToken);
-			if(ndDao.insert(nguoiDung))
+			if(!ndDao.checkMailExsist(nguoiDung.getEmail()))
 			{
+				if(ndDao.insert(nguoiDung))
+				{
+					HttpSession session = request.getSession();
+					session.setAttribute("nguoiDung", nguoiDung);
+					session.setAttribute("msg", "Đăng nhập thành công");
+					session.setAttribute("typeMess", "success");
+					response.sendRedirect(request.getContextPath() + "/TrangChuServlet");
+				}
+				else {
+					request.setAttribute("msg", "Đăng nhập thất bại");
+					request.setAttribute("typeMess", "error");
+					request.getRequestDispatcher("/views/template/login.jsp").forward(request,
+							response);
+				}
+			}
+			else {
 				HttpSession session = request.getSession();
 				session.setAttribute("nguoiDung", nguoiDung);
 				session.setAttribute("msg", "Đăng nhập thành công");
 				session.setAttribute("typeMess", "success");
 				response.sendRedirect(request.getContextPath() + "/TrangChuServlet");
-			}
-			else {
-				request.setAttribute("msg", "Đăng nhập thất bại");
-				request.setAttribute("typeMess", "error");
-				request.getRequestDispatcher("/views/template/login.jsp").forward(request,
-						response);
 			}
 			
 		}

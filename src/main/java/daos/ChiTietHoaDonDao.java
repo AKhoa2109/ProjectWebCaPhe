@@ -19,7 +19,7 @@ public class ChiTietHoaDonDao {
 	ResultSet rs = null;
 	
 	public ChiTietHoaDonDao () {}
-	
+
 	public boolean insert(ChiTietHoaDon ctHD) {
 		String sql = """
 				INSERT INTO ChiTietHoaDon(MaDH, MaSP, SoLuong, TongTien)
@@ -93,6 +93,7 @@ public class ChiTietHoaDonDao {
 	        ps = conn.prepareStatement(sql);
 	        ps.setString(1, maDH);
 	        rs = ps.executeQuery();
+
 
 	        if (rs.next()) {
 	            tongTienSP = rs.getFloat("TongTienSP");
@@ -285,6 +286,7 @@ public class ChiTietHoaDonDao {
 	    return result;
 	}
 
+
 	public List<Map<String, Object>> getSanPhamVaTongTienByDateRange(Date startDate, Date endDate) {
 	    String sql = """
 	        SELECT sp.TenSP, SUM(cthd.TongTien) AS TongTien
@@ -318,7 +320,6 @@ public class ChiTietHoaDonDao {
 	    } finally {
 	        DBConnection.close(rs, ps, conn);
 	    }
-
 	    return result;
 	}
 
@@ -343,7 +344,6 @@ public class ChiTietHoaDonDao {
 	            Map<String, Object> row = new HashMap<>();
 	            row.put("NgayMua", rs.getDate("NgayMua")); // Ngày mua
 	            row.put("GiaTriDH", rs.getFloat("GiaTriDH")); // Giá trị đơn hàng
-
 	            // Thêm vào danh sách kết quả
 	            result.add(row);
 	        }

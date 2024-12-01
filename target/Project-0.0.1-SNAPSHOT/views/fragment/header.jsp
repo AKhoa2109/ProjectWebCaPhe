@@ -14,32 +14,34 @@
 			<nav class="nav-link-feature">
 				<ul class="nav-links">
 					<li><a href="TrangChuServlet">Trang chủ</a></li>
-					<li><a href="#">Giới thiệu</a></li>
+					<li><a href="TrangChuServlet?action=about">Giới thiệu</a></li>
 					<li><a href="DanhMucSanPham">Danh mục sản phẩm</a></li>
-					<li><a href="contact.jsp">Liên hệ</a></li>
+					<li><a href="TrangChuServlet?action=contact">Liên hệ</a></li>
 				</ul>
 			</nav>
 			<nav class="nav-feature">
 				<ul class="feature">
-					<li class="feature-cart"><a href="#" class="cart"> <i
-							class="fa-solid fa-cart-shopping"></i> <span
-							class="position-absolute top-10 translate-middle badge rounded-pill bg-danger">
-								1+ <span class="visually-hidden">unread messages</span>
-						</span>
-					</a></li>
 					<li class="nav-item dropdown"><a class="nav-link"
 						href="ThongTinCaNhanServlet" data-bs-toggle="dropdown"
 						aria-expanded="false"> <i class="fa-solid fa-user"></i>
 					</a>
 						<ul class="dropdown-menu">
 							<li><a class="dropdown-item"
-								href="TrangChuServlet?action=profile">Thông tin cá nhân</a></li>
+								href="ThongTinCaNhanServlet">Profile</a></li>
 							<li><a class="dropdown-item" href="DangNhapServlet">Đăng
 									nhập</a></li>
 							<li><a class="dropdown-item"
 								href="DangKyServlet?action=signup">Đăng kí</a></li>
+							<li><a class="dropdown-item"
+								href="LogoutServlet">Log out</a></li>
 						</ul></li>
+							
 
+					<li class="feature-cart"><a href="HoaDonServlet" class="cart"><i
+							class="fa-solid fa-cart-shopping"></i> <span
+							class="position-absolute top-10 translate-middle badge rounded-pill bg-danger">
+								${sessionScope.soSPDat > 0 ? sessionScope.soSPDat : '0'}<span class="visually-hidden">unread messages</span>
+						</span> </a></li>
 				</ul>
 			</nav>
 			<nav class="nav-profile">

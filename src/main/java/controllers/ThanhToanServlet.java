@@ -16,22 +16,16 @@ import javax.crypto.spec.SecretKeySpec;
 
 import org.json.JSONObject;
 
-import daos.ChiTietHoaDonDao;
-import daos.DonHangDao;
 import daos.GioHangDao;
 import daos.PhuongThucThanhToanDao;
-import daos.ThanhToanDao;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
-import models.ChiTietHoaDon;
-import models.DonHang;
 import models.GioHang;
 import models.PhuongThucThanhToan;
-import models.ThanhToan;
 
 @WebServlet("/ThanhToanServlet")
 public class ThanhToanServlet extends HttpServlet {

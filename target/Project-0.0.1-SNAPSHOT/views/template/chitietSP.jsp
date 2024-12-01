@@ -17,7 +17,10 @@
 </head>
 <body>
 	<!-- Header -->
-	<jsp:include page="/views/fragment/header.jsp" />
+	<jsp:include page="/views/fragment/header.jsp">
+		<jsp:param name="HoTen" value="${nguoiDung.tenND}" />
+		<jsp:param name="Anh" value="${nguoiDung.anhND}" />
+	</jsp:include>
 
 	<div class="product-detail-container">
 		<nav aria-label="breadcrumb">
@@ -45,15 +48,24 @@
 				<h1>${product.tenSP}</h1>
 				<div class="product-price">${product.getPriceFormat()}</div>
 				<p class="product-description">${product.moTaSP}</p>
-
-				<!-- Số lượng sản phẩm -->
-				<div class="quantity">
-					<label for="quantity">Số lượng:</label> <input type="number"
-						id="quantity" name="quantity" value="1" min="1" />
-				</div>
-
-				<!-- Nút thêm vào giỏ hàng -->
-				<a href="#" class="add-to-cart">Thêm vào giỏ hàng</a>
+				
+				<!-- Thêm sản phẩm vào giỏ hàng -->
+				<form action ="ChiTietSanPhamServlet" method="post">
+					<!-- Thiếu mã người dùng -->
+					<input type="hidden" name="maSP" value="${product.maSP}" />
+					
+					<!-- Thêm id và type -->
+    				<input type="hidden" name="id" value="${param.id}" />
+    				<input type="hidden" name="type" value="${param.type}" />
+					
+					<div class="quantity">
+						<label for="soLuong">Số lượng:</label>
+						<input type="number" id="soLuong" name="soLuong" value="1" min="1" />
+					</div>
+					
+					<!-- Nút thêm vào giỏ hàng -->
+					<button type="submit" class="add-to-cart">Thêm vào giỏ hàng</button>
+				</form>			
 			</div>
 		</div>
 
@@ -71,8 +83,6 @@
 							<div class="price">${list.getPriceFormat()}</div>
 						</a>
 					</div>
-
-
 				</c:forEach>
 			</div>
 		</div>

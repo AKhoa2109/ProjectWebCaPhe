@@ -14,9 +14,9 @@
 			<nav class="nav-link-feature">
 				<ul class="nav-links">
 					<li><a href="TrangChuServlet">Trang chủ</a></li>
-					<li><a href="#">Giới thiệu</a></li>
+					<li><a href="TrangChuServlet?action=about">Giới thiệu</a></li>
 					<li><a href="DanhMucSanPham">Danh mục sản phẩm</a></li>
-					<li><a href="contact.jsp">Liên hệ</a></li>
+					<li><a href="TrangChuServlet?action=contact">Liên hệ</a></li>
 					<li><a href="DonHangServlet?role=client">Quản Lý Đơn Hàng</a></li>
 				</ul>
 			</nav>
@@ -27,12 +27,10 @@
 						aria-expanded="false"> <i class="fa-solid fa-user"></i>
 					</a>
 						<ul class="dropdown-menu">
-							<li><a class="dropdown-item"
-								href="TrangChuServlet?action=profile">Profile</a></li>
-							<li><a class="dropdown-item" href="DangNhapServlet">Đăng
-									nhập</a></li>
-							<li><a class="dropdown-item"
-								href="DangKyServlet?action=signup">Đăng kí</a></li>
+							<li><a class="dropdown-item" href="ThongTinCaNhanServlet">Profile</a></li>
+							<li><a class="dropdown-item" href="DangNhapServlet">Đăng nhập</a></li>
+							<li><a class="dropdown-item" href="DangKyServlet?action=signup">Đăng kí</a></li>
+							<li><a class="dropdown-item" href="LogoutServlet">Log out</a></li>
 						</ul>
 					</li>
 					<li class="feature-cart"><a href="HoaDonServlet" class="cart"><i
