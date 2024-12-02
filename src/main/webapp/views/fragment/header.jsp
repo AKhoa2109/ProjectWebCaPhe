@@ -34,7 +34,7 @@
 							<li><a class="dropdown-item"
 								href="DangKyServlet?action=signup">Đăng kí</a></li>
 							<li><a class="dropdown-item"
-								href="TrangThaiDHServlet">Log out</a></li>
+								href="LogoutServlet">Log out</a></li>
 						</ul></li>
 						
 					<li class="feature-cart"><a href="HoaDonServlet" class="cart"><i

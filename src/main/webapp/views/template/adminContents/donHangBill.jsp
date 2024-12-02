@@ -149,7 +149,7 @@
 		</c:if>
 		
 		<!-- Nút Xác Nhận Đơn Hàng (chỉ hiển thị khi vai trò là user) -->
-		<c:if test="${nguoiDung.vaiTro == 'Client' && donHang.trangThai == 'Đang giao'}">
+		<c:if test="${nguoiDung.vaiTro == 'User' && donHang.trangThai == 'Đang giao'}">
 		    <a href="<%=request.getContextPath()%>/DonHangServlet?role=client&suaTT=edit&maDH=${donHang.maDH}" 
 		       class="btn btn-warning">Xác Nhận Đơn Hàng</a>
 		</c:if>
@@ -157,12 +157,12 @@
 		<c:if test="${nguoiDung.vaiTro == 'Admin'}">
 		    <a href="<%=request.getContextPath()%>/DonHangServlet" class="btn btn-secondary">Quay Lại</a>
 		</c:if>
-		<c:if test="${nguoiDung.vaiTro == 'Client'}">
+		<c:if test="${nguoiDung.vaiTro == 'User'}">
 		    <a href="<%=request.getContextPath()%>/DonHangServlet?role=client" class="btn btn-secondary">Quay Lại</a>
 		</c:if>
 		
 		<!-- Nút Xác Nhận Đơn Hàng (chỉ hiển thị khi vai trò là user) -->
-		<c:if test="${nguoiDung.vaiTro == 'Client' && donHang.trangThai == 'Đang giao'}">
+		<c:if test="${nguoiDung.vaiTro == 'User' && donHang.trangThai == 'Đang giao'}">
 		    <a href="<%=request.getContextPath()%>/DonHangServlet?role=client&huyTT=edit&maDH=${donHang.maDH}" 
 		       class="btn btn-secondary">Hủy</a>
 		</c:if>	    
