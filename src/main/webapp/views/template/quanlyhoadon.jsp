@@ -19,9 +19,12 @@
 </head>
 <body>
 	<!-- Header -->
-    <jsp:include page="/views/fragment/header.jsp" />
+	<jsp:include page="/views/fragment/header.jsp">
+		<jsp:param name="HoTen" value="${nguoiDung.tenND}" />
+		<jsp:param name="Anh" value="${nguoiDung.anhND}" />
+	</jsp:include>
 
-	<div class="content">
+	<div style="margin-left: 20px; margin-right: 20px" class="content">
 		<div class="d-flex align-items-center justify-content-between">  
 		    <form class="input-group ml-auto mb-2 mt-1" method="get" style="width: auto;">  
 		        <!-- <input type="hidden" name="action" value="search" /> -->
@@ -42,7 +45,6 @@
                     </select>
 		            
 		            <input class="btn btn-primary rounded" type="submit" value="Lọc">
-		            <input type="hidden" name="role" value="client">
 		        </div>
 		    </form>
 		</div>

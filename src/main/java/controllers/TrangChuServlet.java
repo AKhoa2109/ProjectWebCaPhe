@@ -14,6 +14,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import models.GioHang;
+import models.NguoiDung;
 
 /**
  * Servlet implementation class TrangChuServlet
@@ -54,14 +55,13 @@ public class TrangChuServlet extends HttpServlet {
 		        session.removeAttribute("typeMess");
 		    }
 		}		
-		// Code của Thiện
+
 		GioHangDao ghDao = new GioHangDao();
-        String maND = (String) session.getAttribute("maND"); // Lấy mã người dùng từ session
-        if (maND == null) {
-            maND = "ND01";
-        }
-        List<GioHang> cart = ghDao.getById(maND);
-        session.setAttribute("soSPDat", cart.size());
+		NguoiDung nd = (NguoiDung) session.getAttribute("nguoiDung"); // Lấy mã người dùng từ session
+		if (nd != null) {
+		    List<GioHang> cart = ghDao.getById(nd.getMaND());
+		    session.setAttribute("soSPDat", cart.size());
+		}
 		
 		if(action==null)
 		{

@@ -65,11 +65,8 @@ public class ChiTietSanPhamServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub		
 		HttpSession session = request.getSession();
-        String maND = (String) session.getAttribute("maND");  // Lấy mã người dùng từ session
-        if (maND == null) {
-            maND = "ND01";
-        }
-        
+        NguoiDung nd = (NguoiDung) session.getAttribute("nguoiDung");  // Lấy mã người dùng từ session
+
 		String id = request.getParameter("id");
         String type = request.getParameter("type");
 		
@@ -79,7 +76,7 @@ public class ChiTietSanPhamServlet extends HttpServlet {
         SanPhamDao spDAO = new SanPhamDao();
 		SanPham sp = spDAO.getSanPhamByLoaiId(maSP);
 		
-		List<GioHang> cart = ghDao.getById(maND);
+		List<GioHang> cart = ghDao.getById(nd.getMaND());
 		boolean tonTai = false;
 		
 		for (GioHang gh :cart) {
@@ -91,8 +88,8 @@ public class ChiTietSanPhamServlet extends HttpServlet {
 		}
 		
 		if (!tonTai) {
-			ghDao.insert(new GioHang(maND, maSP, soLuong, sp.getTenSP(), sp.getGiaSP()));
-			cart = ghDao.getById(maND);
+			ghDao.insert(new GioHang(nd.getMaND(), maSP, soLuong, sp.getTenSP(), sp.getGiaSP()));
+			cart = ghDao.getById(nd.getMaND());
 		}
 		
 		session.setAttribute("soSPDat", cart.size());	

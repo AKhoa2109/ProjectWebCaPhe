@@ -55,9 +55,12 @@ public class VoucherDao {
     
     public Voucher getById(String maVC) {
         String sql = """
-            SELECT * 
-            FROM Voucher
-            WHERE maVC=?
+                SELECT * 
+                FROM Voucher
+                WHERE maVC = ? 
+                AND SoLuotDaSuDung < SoLuotSuDungToiDa 
+                AND NgayKetThuc >= CAST(GETDATE() AS DATE)
+        		AND NgayBatDau <= CAST(GETDATE() AS DATE)
             """;
         Voucher voucher = null;
 
@@ -189,6 +192,26 @@ public class VoucherDao {
             DBConnection.close(rs, ps, conn);
         }
         return data;
+    }
+    
+    public boolean updateSoLuong(String maVC) {
+        String sql = """
+            UPDATE Voucher
+			SET SoLuotSuDungToiDa = SoLuotSuDungToiDa - 1, SoLuotDaSuDung = SoLuotDaSuDung + 1
+			WHERE maVC= ?
+            """;
+
+        try {
+            conn = DBConnection.getConnection();
+            ps = conn.prepareStatement(sql);
+            ps.setString(1, maVC);
+            return ps.executeUpdate() > 0;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            DBConnection.close(rs, ps, conn);
+        }
+        return false;
     }
 
 }

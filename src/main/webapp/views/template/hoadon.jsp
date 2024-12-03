@@ -69,7 +69,7 @@
     </div>
     <div class="print-button">
         <button onclick="printInvoice()">In Hóa Đơn</button>
-        <a href="${pageContext.request.contextPath}/HoaDonServlet?action=xoaDH&maDH=${maDH}" class="back-link">Trở về Trang Đơn Hàng</a>
+        <a href="${pageContext.request.contextPath}/HoaDonServlet?action=xoaDH&maDH=${maDH}" class="back-link">Xác Nhận Đặt Hàng</a>
     </div>
 </body>
 </html>

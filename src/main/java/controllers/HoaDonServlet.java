@@ -3,7 +3,6 @@ package controllers;
 import java.io.IOException;
 import java.util.List;
 
-import daos.ChiTietHoaDonDao;
 import daos.GioHangDao;
 import daos.KhuVucDao;
 import daos.PhuongThucThanhToanDao;
@@ -14,9 +13,9 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
-import models.ChiTietHoaDon;
 import models.GioHang;
 import models.KhuVuc;
+import models.NguoiDung;
 import models.PhuongThucThanhToan;
 import models.Voucher;
 
@@ -41,20 +40,20 @@ public class HoaDonServlet extends HttpServlet {
     KhuVucDao kvDAO = new KhuVucDao();
     PhuongThucThanhToanDao ptttDAO = new PhuongThucThanhToanDao();
     GioHangDao ghDao = new GioHangDao();
+    VoucherDao vcDao = new VoucherDao();
     
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub		
 		HttpSession session = request.getSession();
-        String maND = (String) session.getAttribute("maND"); // Lấy mã người dùng từ session
-        if (maND == null) {
-            maND = "ND01";
-        }
-		            
+        NguoiDung nd = (NguoiDung) session.getAttribute("nguoiDung"); // Lấy mã người dùng từ session
+	    String action = request.getParameter("action");
+		            	    
+	    if (action == null) action = "";
+	    
 	    // Xử lí mã giảm giá
         String maGG = request.getParameter("maGiamGia");  
-        // Xử lí hủy voucher
-        String themVoucher = request.getParameter("themVoucher");
-        if ("true".equals(themVoucher)) {
+        // Xử lí thêm voucher
+        if ("themVC".equals(action)) {
         	try {
                 // Kiểm tra nếu mã giảm giá không phải là null hoặc chuỗi rỗng
                 if (maGG != null && !maGG.isEmpty()) {
@@ -77,12 +76,11 @@ public class HoaDonServlet extends HttpServlet {
         }     
         
         // Xử lí hủy voucher
-        String xoaVoucher = request.getParameter("xoaVoucher");
-        if ("true".equals(xoaVoucher)) {
+        if ("huyVC".equals(action)) {
         	session.removeAttribute("maGiamGia");
             session.setAttribute("giamGia", 0);
-            request.setAttribute("msg", "Mã giảm giá đã bị hủy");
-        }
+            request.setAttribute("msg", "Mã giảm giá đã bị hủy");     
+        }       
         
         // Xử lí khu vực
 	    List<KhuVuc> dSKhuVuc = kvDAO.getAll();
@@ -116,26 +114,23 @@ public class HoaDonServlet extends HttpServlet {
             }
         }
         
-        List<GioHang> cart = ghDao.getById(maND);   
-	    String action = request.getParameter("action");
+        List<GioHang> cart = ghDao.getById(nd.getMaND());   
 	    String maSP = request.getParameter("maSP");
-	    
-	    if (action == null) action = "";
 
 	    String maDH = request.getParameter("maDH");
 	    // Nếu action == delete thì thực hiện xóa
 	    if (action.equals("delete") && maSP != null) {
-	    	ghDao.removeItem(maND, maSP);
-	    	cart = ghDao.getById(maND);
+	    	ghDao.removeItem(nd.getMaND(), maSP);
+	    	cart = ghDao.getById(nd.getMaND());
 	        session.setAttribute("soSPDat", cart.size());
 	    }
 	    else if (action.equals("xoaDH") && maDH != null) {
-	    	// Thêm từng sản phẩm trong giỏ hàng vào chi tiết hóa đơn
 	        for (GioHang gh : cart) {	        
-	            ghDao.removeItem(maND, gh.getMaSP()); // Xóa sản phẩm đã đặt khỏi giỏ hàng
+	            ghDao.removeItem(nd.getMaND(), gh.getMaSP()); // Xóa sản phẩm đã đặt khỏi giỏ hàng
 	        }
-	        
-	        cart = ghDao.getById(maND); // Lấy lại giỏ hàng sau khi xóa
+	        String maVC = (String) session.getAttribute("maGiamGia");
+	        vcDao.updateSoLuong(maVC);
+	        cart = ghDao.getById(nd.getMaND()); // Lấy lại giỏ hàng sau khi xóa
 	        session.setAttribute("soSPDat", cart.size()); // Cập nhật số sản phẩm đã đặt
 	    }	    
 	    
@@ -149,6 +144,7 @@ public class HoaDonServlet extends HttpServlet {
         request.setAttribute("dSPTTT", dSPTTT);
 	    request.setAttribute("thanhTien", thanhTien);
 	    request.setAttribute("cart", cart);
+	    request.setAttribute("action", "");
 
 	    // Lấy tham số để hiện thông báo
 	    String msg = (String) request.getAttribute("msg");

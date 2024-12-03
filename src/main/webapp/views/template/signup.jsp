@@ -83,7 +83,7 @@
 								</div>
 							</div>
 							<div class="profile-form-user">
-								<label for="">Ngày sinh</label>
+								<label for="">Năm sinh</label>
 								<div class="form-group-user">
 									<input type="text" name="ngay" required />
 								</div>

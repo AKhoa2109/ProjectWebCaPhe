@@ -49,7 +49,7 @@ public class UserFilter implements Filter {
 
         boolean loggedIn = session != null && session.getAttribute("nguoiDung") != null;
         
-     // Trang chủ luôn được phép truy cập, kể cả khi chưa đăng nhập
+        // Trang chủ luôn được phép truy cập, kể cả khi chưa đăng nhập
         boolean isHomePage = requestURI.equals(httpRequest.getContextPath() + "/") ||
                              requestURI.equals(httpRequest.getContextPath() + "/TrangChuServlet");
         	
