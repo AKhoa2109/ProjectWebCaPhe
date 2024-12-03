@@ -52,7 +52,7 @@ GO
 INSERT INTO DonHang (MaDH, GiaTriDH, NgayMua, TrangThai, MaKV, MaVC) VALUES
 ('DH01', 30000, '2024-11-01', N'Đã giao', 'KV01', 'VC01'),
 ('DH02', 15000, '2024-11-02', N'Đang giao', 'KV02', 'VC02'),
-('DH03', 45000, '2024-11-03', N'Chờ xác nhận', 'KV03', 'VC03'),
+('DH03', 45000, '2024-11-03', N'Đã giao', 'KV03', 'VC03'),
 ('DH04', 60000, '2024-11-04', N'Đã giao', 'KV01', 'VC04'),
 ('DH05', 40000, '2024-11-05', N'Đã hủy', 'KV02', 'VC05');
 
