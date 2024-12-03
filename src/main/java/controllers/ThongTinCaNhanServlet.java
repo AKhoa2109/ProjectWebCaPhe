@@ -55,7 +55,7 @@ public class ThongTinCaNhanServlet extends HttpServlet {
 		}
 		else if(action.equals("luu"))
 		{
-			String tenDangNhap = request.getParameter("tenDangNhap");
+			String tenDangNhap = request.getParameter("tenDangNhapA");
 			String matKhau = request.getParameter("matKhauA");
 			String hoTen = request.getParameter("hoTen");
 			String ngay = request.getParameter("nam");

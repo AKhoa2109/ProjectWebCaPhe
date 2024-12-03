@@ -76,15 +76,15 @@
                         <!-- Các trường thông tin giao hàng khác -->
                         <div class="input-group">
                             <label>Địa chỉ chi tiết</label>
-                            <input type="text" name="diaChi" value="Lê Văn Việt, Quận 9" placeholder="Nhập địa chỉ chi tiết">
+                            <input type="text" name="diaChi" value="${sessionScope.nguoiDung.diaChi != null ? sessionScope.nguoiDung.diaChi : ''}" placeholder="Nhập địa chỉ chi tiết">
                         </div>
                         <div class="input-group">
                             <label>Tên</label>
-                            <input type="text" name="ten" value="Anh Khoa Dev Tool" placeholder="Nhập họ và tên">
+                            <input type="text" name="ten" value="${sessionScope.nguoiDung.tenND != null ? sessionScope.nguoiDung.tenND : ''}" placeholder="Nhập họ và tên">
                         </div>
                         <div class="input-group">
                             <label>Số điện thoại</label>
-                            <input type="text" name="soDT" value="0326433123" placeholder="Nhập số điện thoại">
+                            <input type="text" name="soDT" value="${sessionScope.nguoiDung.sdt != null ? sessionScope.nguoiDung.sdt : ''}" placeholder="Nhập số điện thoại">
                         </div>
                     </div>                              
                 </div>

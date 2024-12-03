@@ -25,6 +25,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import models.GioHang;
+import models.NguoiDung;
 import models.PhuongThucThanhToan;
 
 @WebServlet("/ThanhToanServlet")
@@ -48,14 +49,11 @@ public class ThanhToanServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {		
 		// Lấy thông tin người dùng từ session
         HttpSession session = request.getSession();
-        String maND = (String) session.getAttribute("maND"); // Mã người dùng
-        if (maND == null) {
-            maND = "ND01"; // Nếu không có mã người dùng trong session, gán giá trị mặc định
-        }
+        NguoiDung nd = (NguoiDung) session.getAttribute("nguoiDung"); 
         
         // Lấy thông tin từ session
         GioHangDao ghDao = new GioHangDao();
-        List<GioHang> cart = ghDao.getById(maND); 
+        List<GioHang> cart = ghDao.getById(nd.getMaND()); 
         String maPTTT = (String) session.getAttribute("maPTTT"); // Mã phương thức thanh toán
         // Lấy thông tin phương thức thanh toán từ database
         PhuongThucThanhToanDao ptttDao = new PhuongThucThanhToanDao();
@@ -159,6 +157,7 @@ public class ThanhToanServlet extends HttpServlet {
 	    else {
 	    	request.setAttribute("msg", "Không có sản phẩm nào");
 	    }	    
+	    session.setAttribute("nguoiDung", nd);
 	    request.getRequestDispatcher("/HoaDonServlet").forward(request, response);
     }
 	
