@@ -14,7 +14,7 @@
 						<li><a href="TrangChuServlet?action=about">Về chúng tôi</a></li>
 						<li><a href="DanhMucSanPham">Sản phẩm</a></li>
 						<li><a href="TrangChuServlet?action=contact">Liên lạc với chúng tôi</a></li>
-						<li><a href="DonHangServlet?role=client">Giỏ hàng</a></li>
+						<li><a href="HoaDonServlet">Giỏ hàng</a></li>
 					</ul>
 				</div>
 				<div class="footer-col">
