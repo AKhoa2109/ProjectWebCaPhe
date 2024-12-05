@@ -50,7 +50,7 @@
                     </div>
                     <div class="section">
 			           <h2><i class="fas fa-credit-card"></i> Phương thức thanh toán</h2>
-			           <div class="payment-method">
+			           <div class="input-group">
 			               <select name="maPTTT" onchange="this.form.submit()">
 			                   <c:forEach var="pT" items="${dSPTTT}">
 			                       <option value="${pT.maPTTT}" <c:if test="${pT.maPTTT == sessionScope.maPTTT}">selected</c:if>>${pT.tenPTTT}</option>
@@ -58,15 +58,15 @@
 			               </select>
 			           </div>
 			       </div>
-			       <div class="section">
+			       <div class="section input-group">
 			           <h2><i class="fa-solid fa-ticket"></i> Mã giảm giá</h2>
+			           <input type="text" name="maGiamGia" value="${sessionScope.maGiamGia != null ? sessionScope.maGiamGia : ''}" placeholder="Nhập mã giảm giá" style="width: 140px; padding: 5px; border: 1px solid #ccc; border-radius: 4px;">
 			           <!-- Nút Áp dụng -->
-					   <button type="submit" style="padding: 5px 10px; background-color: #ff9900; color: white; border: none; border-radius: 4px; cursor: pointer;" onclick="setActionValue('themVC')">
+					   <button type="submit" style="width: 140px; padding: 5px 10px; background-color: #ff9900; color: white; border: none; border-radius: 4px; cursor: pointer;" onclick="setActionValue('themVC')">
 					       Áp dụng
-					   </button>
-					   <input type="text" name="maGiamGia" value="${sessionScope.maGiamGia != null ? sessionScope.maGiamGia : ''}" placeholder="Nhập mã giảm giá" style="width: 142px; padding: 5px; border: 1px solid #ccc; border-radius: 4px;">
+					   </button>					   
 					   <!-- Nút Hủy -->
-					   <button type="submit" style="padding: 5px 10px; background-color: #f44336; color: white; border: none; border-radius: 4px; cursor: pointer;" onclick="setActionValue('huyVC')">
+					   <button type="submit" style="width: 140px; padding: 5px 10px; background-color: #f44336; color: white; border: none; border-radius: 4px; cursor: pointer;" onclick="setActionValue('huyVC')">
 					       Hủy
 					   </button>
 					   <!-- Trường ẩn chứa giá trị của action -->

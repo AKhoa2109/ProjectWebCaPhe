@@ -119,7 +119,7 @@ public class HoaDonInServlet extends HttpServlet {
         if (vc != null) {
             request.setAttribute("giamGia", vc.getGiaTriVC());
         } else {
-            request.setAttribute("giamGia", 0); // Nếu không có voucher, giảm giá bằng 0
+            request.setAttribute("giamGia", "0"); // Nếu không có voucher, giảm giá bằng 0
         }
 	    
 	    // Forward to the JSP for display

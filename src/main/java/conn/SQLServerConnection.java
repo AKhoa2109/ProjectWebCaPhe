@@ -8,13 +8,13 @@ public class SQLServerConnection {
 	{
 		String dbDriver = "com.microsoft.sqlserver.jdbc.SQLServerDriver";
 	    
-	    String dbURL = "jdbc:sqlserver://localhost:1433";
+	    String dbURL = "jdbc:sqlserver://localhost:1434";
 	    String dbName = "WebBanCaPhe"; //Thay đổi
 //	    String connectionURL = dbURL + ";databaseName=" + dbName + ";encrypt=false;";
 	    String connectionURL = dbURL + ";databaseName=" + dbName + ";encrypt=true;trustServerCertificate=true";
 	    
 	    String dbUsername = "sa";  
-	    String dbPassword = "123456";
+	    String dbPassword = "@Daithien2004";
 	    
 	    Connection conn = null; //Đối tượng kết nối CSDL
 	    try { 
