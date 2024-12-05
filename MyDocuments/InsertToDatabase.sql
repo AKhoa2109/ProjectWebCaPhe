@@ -18,10 +18,10 @@ INSERT INTO Voucher (MaVC, TenVC, GiaTriVC, SoLuotSuDungToiDa, SoLuotDaSuDung, N
 
 INSERT INTO NguoiDung (MaND, TenND, NamSinh, GioiTinh, SoDienThoai, Email, DiaChi, AnhND, VaiTro, TenDangNhap, MatKhau) VALUES
 ('ND01', N'Nguyen Van A', 1990, N'Nam', '0912345678', 'a@gmail.com', N'Hồ Chí Minh', 'Avt1.jpg', 'Admin', 'nd1', '123123'),
-('ND02', N'Tran Thi B', 1992, N'Nữ', '0987654321', 'b@gmail.com', N'Hà Nội', 'Avt2.jpg', 'Client', 'nd2', '123123'),
-('ND03', N'Le Van C', 1985, N'Nam', '0911223344', 'c@gmail.com', N'Đà Nẵng', 'Avt3.jpg', 'Client', 'nd3', '123123'),
-('ND04', N'Pham Thi D', 1993, N'Nữ', '0977554433', 'd@gmail.com', N'Cần Thơ', 'Avt4.jpg', 'Client', 'nd4', '123123'),
-('ND05', N'Hoang Van E', 1988, N'Nam', '0966887766', 'e@gmail.com', N'Bình Dương', 'Avt5.jpg' , 'Client', 'nd5', '123123');
+('ND02', N'Tran Thi B', 1992, N'Nữ', '0987654321', 'b@gmail.com', N'Hà Nội', 'Avt2.jpg', 'User', 'nd2', '123123'),
+('ND03', N'Le Van C', 1985, N'Nam', '0911223344', 'c@gmail.com', N'Đà Nẵng', 'Avt3.jpg', 'User', 'nd3', '123123'),
+('ND04', N'Pham Thi D', 1993, N'Nữ', '0977554433', 'd@gmail.com', N'Cần Thơ', 'Avt4.jpg', 'User', 'nd4', '123123'),
+('ND05', N'Hoang Van E', 1988, N'Nam', '0966887766', 'e@gmail.com', N'Bình Dương', 'Avt5.jpg' , 'User', 'nd5', '123123');
 
 INSERT INTO KhuVuc (MaKV, TenKV, PhiVanChuyen) VALUES
 ('KV01', N'Thành phố Thủ Đức', 20000),

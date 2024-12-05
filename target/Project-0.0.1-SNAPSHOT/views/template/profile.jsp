@@ -55,10 +55,16 @@
 								<div class="profile-form-user">
 									<label for="">Tên đăng nhập</label>
 									<div class="form-group-user">
-										<i class="fa-solid fa-user"></i> <input type="text"
+										<i class="fa-solid fa-user"></i> 
+										<input type="text"
 											placeholder="" name="tenDangNhap"
 											value="${sessionScope.nguoiDung.tenDangNhap != null ? sessionScope.nguoiDung.tenDangNhap : ''}"
-											required />
+											 disabled />
+										<input type="hidden"
+											placeholder="" name="tenDangNhapA"
+											value="${sessionScope.nguoiDung.tenDangNhap != null ? sessionScope.nguoiDung.tenDangNhap : ''}"
+											 />
+											
 									</div>
 								</div>
 								<div class="profile-form-user">

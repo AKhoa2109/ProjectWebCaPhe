@@ -11,12 +11,10 @@
 				<div class="footer-col">
 					<h3>Giới thiệu</h3>
 					<ul>
-						<li><a href="#">Về chúng tôi</a></li>
-						<li><a href="#">Sản phẩm</a></li>
-						<li><a href="#">Khuyến mãi</a></li>
-						<li><a href="#">Liên lạc với chúng tôi</a></li>
-
-						<li><a href="#">Giỏ hàng</a></li>
+						<li><a href="TrangChuServlet?action=about">Về chúng tôi</a></li>
+						<li><a href="DanhMucSanPham">Sản phẩm</a></li>
+						<li><a href="TrangChuServlet?action=contact">Liên lạc với chúng tôi</a></li>
+						<li><a href="DonHangServlet">Quản Lý Đơn hàng</a></li>
 					</ul>
 				</div>
 				<div class="footer-col">

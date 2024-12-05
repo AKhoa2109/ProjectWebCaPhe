@@ -4,6 +4,8 @@ import jakarta.servlet.annotation.WebFilter;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
+import models.NguoiDung;
+
 import java.io.IOException;
 import java.util.Arrays;
 import java.util.List;
@@ -42,6 +44,7 @@ public class UserFilter implements Filter {
         HttpServletResponse httpResponse = (HttpServletResponse) response;
     	String servletPath = httpRequest.getServletPath();
         String requestURI = httpRequest.getRequestURI();
+        String contextPath = httpRequest.getContextPath();
         HttpSession session = httpRequest.getSession();
 
         // Kiểm tra nếu URL nằm trong danh sách không yêu cầu xác thực
@@ -49,9 +52,20 @@ public class UserFilter implements Filter {
 
         boolean loggedIn = session != null && session.getAttribute("nguoiDung") != null;
         
-     // Trang chủ luôn được phép truy cập, kể cả khi chưa đăng nhập
+        // Trang chủ luôn được phép truy cập, kể cả khi chưa đăng nhập
         boolean isHomePage = requestURI.equals(httpRequest.getContextPath() + "/") ||
                              requestURI.equals(httpRequest.getContextPath() + "/TrangChuServlet");
+        	
+        // Kiểm tra nếu là trang DashBoardServlet và user không có quyền truy cập
+        NguoiDung nd = (NguoiDung) session.getAttribute("nguoiDung");
+        boolean isDashboardAccess = servletPath.equals("/DashBoardServlet");
+        boolean isUser = loggedIn && nd.getVaiTro().equals("User"); // Cần kiểm tra vai trò
+
+        if (isDashboardAccess && isUser) {
+            // Trả về lỗi 404
+        	request.getRequestDispatcher("/views/template/404.jsp").forward(request, response);
+            return; // Kết thúc ở đây
+        }
         	
         if (loggedIn || isPublicURL || isHomePage) {
             // Nếu đã đăng nhập hoặc truy cập vào URL, cho phép tiếp tục

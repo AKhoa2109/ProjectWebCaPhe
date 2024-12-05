@@ -22,6 +22,7 @@ import models.ChiTietHoaDon;
 import models.DonHang;
 import models.GioHang;
 import models.KhuVuc;
+import models.NguoiDung;
 import models.PhuongThucThanhToan;
 import models.ThanhToan;
 import models.Voucher;
@@ -46,10 +47,8 @@ public class HoaDonInServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {		
 		HttpSession session = request.getSession();
-		String maND = (String) session.getAttribute("maND"); // Mã người dùng
-        if (maND == null) {
-            maND = "ND01"; // Nếu không có mã người dùng trong session, gán giá trị mặc định
-        }
+		NguoiDung nd = (NguoiDung) session.getAttribute("nguoiDung"); // Mã người dùng
+
 		// Thêm đơn hàng vào db
 		GioHangDao ghDao = new GioHangDao();
         DonHangDao dhDao = new DonHangDao();
@@ -60,7 +59,7 @@ public class HoaDonInServlet extends HttpServlet {
         PhuongThucThanhToanDao ptttDao = new PhuongThucThanhToanDao();
         
         String maDH = dhDao.generateMaDH(); // Tạo mã đơn hàng
-        List<GioHang> cart = ghDao.getById(maND); // Lấy danh sách giỏ hàng
+        List<GioHang> cart = ghDao.getById(nd.getMaND()); // Lấy danh sách giỏ hàng
         
         String maGG = (String) session.getAttribute("maGiamGia");
         String maKV = (String) session.getAttribute("maKV");
@@ -86,7 +85,7 @@ public class HoaDonInServlet extends HttpServlet {
         dhDao.insert(dh);
         
         // Lưu thông tin thanh toán vào database
-        ThanhToan tt = new ThanhToan(maND, maDH, maPTTT);                       
+        ThanhToan tt = new ThanhToan(nd.getMaND(), maDH, maPTTT);                       
         ttDao.insert(tt);
         
         request.setAttribute("cart", cart);

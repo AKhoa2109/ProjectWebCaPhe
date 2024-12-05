@@ -26,10 +26,13 @@
 	</jsp:include>
 
     <!-- Header -->
-    <jsp:include page="/views/fragment/header.jsp" />
+	<jsp:include page="/views/fragment/header.jsp">
+		<jsp:param name="HoTen" value="${nguoiDung.tenND}" />
+		<jsp:param name="Anh" value="${nguoiDung.anhND}" />
+	</jsp:include>
 
     <!-- Form cho combobox "Khu vực", gửi dữ liệu tới HoaDonServlet khi thay đổi -->
-    <form action="HoaDonServlet" method="POST">
+    <form action="HoaDonServlet" method="post">
         <div class="bill-container">
             <h1>Xác nhận đơn hàng</h1>
             <div class="content-wrapper">
@@ -57,9 +60,17 @@
 			       </div>
 			       <div class="section">
 			           <h2><i class="fa-solid fa-ticket"></i> Mã giảm giá</h2>
-                       <button type="submit" name="themVoucher" value="true" style="padding: 5px 10px; background-color: #ff9900; color: white; border: none; border-radius: 4px; cursor: pointer;">Áp dụng</button>
-                       <input type="text" name="maGiamGia" value="${sessionScope.maGiamGia != null ? sessionScope.maGiamGia : ''}" placeholder="Nhập mã giảm giá" style="width: 142px; padding: 5px; border: 1px solid #ccc; border-radius: 4px;">
-                   	   <button type="submit" name="xoaVoucher" value="true" style="padding: 5px 10px; background-color: #f44336; color: white; border: none; border-radius: 4px; cursor: pointer;">Hủy</button>
+			           <!-- Nút Áp dụng -->
+					   <button type="submit" style="padding: 5px 10px; background-color: #ff9900; color: white; border: none; border-radius: 4px; cursor: pointer;" onclick="setActionValue('themVC')">
+					       Áp dụng
+					   </button>
+					   <input type="text" name="maGiamGia" value="${sessionScope.maGiamGia != null ? sessionScope.maGiamGia : ''}" placeholder="Nhập mã giảm giá" style="width: 142px; padding: 5px; border: 1px solid #ccc; border-radius: 4px;">
+					   <!-- Nút Hủy -->
+					   <button type="submit" style="padding: 5px 10px; background-color: #f44336; color: white; border: none; border-radius: 4px; cursor: pointer;" onclick="setActionValue('huyVC')">
+					       Hủy
+					   </button>
+					   <!-- Trường ẩn chứa giá trị của action -->
+					   <input type="hidden" id="action" name="action" value="">
                    </div>
                 </div>               
             </div>
@@ -76,15 +87,15 @@
                         <!-- Các trường thông tin giao hàng khác -->
                         <div class="input-group">
                             <label>Địa chỉ chi tiết</label>
-                            <input type="text" name="diaChi" value="Lê Văn Việt, Quận 9" placeholder="Nhập địa chỉ chi tiết">
+                            <input type="text" name="diaChi" value="${sessionScope.nguoiDung.diaChi != null ? sessionScope.nguoiDung.diaChi : ''}" placeholder="Nhập địa chỉ chi tiết">
                         </div>
                         <div class="input-group">
                             <label>Tên</label>
-                            <input type="text" name="ten" value="Anh Khoa Dev Tool" placeholder="Nhập họ và tên">
+                            <input type="text" name="ten" value="${sessionScope.nguoiDung.tenND != null ? sessionScope.nguoiDung.tenND : ''}" placeholder="Nhập họ và tên">
                         </div>
                         <div class="input-group">
                             <label>Số điện thoại</label>
-                            <input type="text" name="soDT" value="0326433123" placeholder="Nhập số điện thoại">
+                            <input type="text" name="soDT" value="${sessionScope.nguoiDung.sdt != null ? sessionScope.nguoiDung.sdt : ''}" placeholder="Nhập số điện thoại">
                         </div>
                     </div>                              
                 </div>
@@ -134,4 +145,9 @@
         </div>
     </form>
 </body>
+<script>
+    function setActionValue(value) {
+        document.getElementById('action').value = value;  // Cập nhật giá trị của action khi bấm nút
+    }
+</script>
 </html>

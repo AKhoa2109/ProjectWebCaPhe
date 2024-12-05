@@ -17,7 +17,7 @@
 					<li><a href="TrangChuServlet?action=about">Giới thiệu</a></li>
 					<li><a href="DanhMucSanPham">Danh mục sản phẩm</a></li>
 					<li><a href="TrangChuServlet?action=contact">Liên hệ</a></li>
-					<li><a href="DonHangServlet?role=client">Quản Lý Đơn Hàng</a></li>
+					<li><a href="DonHangServlet">Quản Lý Đơn Hàng</a></li>
 				</ul>
 			</nav>
 			<nav class="nav-feature">
@@ -34,7 +34,7 @@
 							<li><a class="dropdown-item"
 								href="DangKyServlet?action=signup">Đăng kí</a></li>
 							<li><a class="dropdown-item"
-								href="TrangThaiDHServlet">Log out</a></li>
+								href="LogoutServlet">Log out</a></li>
 						</ul></li>
 						
 					<li class="feature-cart"><a href="HoaDonServlet" class="cart"><i
