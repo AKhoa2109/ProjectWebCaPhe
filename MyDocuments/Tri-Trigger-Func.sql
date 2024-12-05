@@ -352,6 +352,20 @@ BEGIN
 END;
 
 GO
+CREATE FUNCTION [dbo].[FUNC_TaoMaND]()
+RETURNS NVARCHAR(50)
+AS
+BEGIN
+    DECLARE @MaxNumber INT;
+
+    SELECT @MaxNumber = ISNULL(MAX(CAST(SUBSTRING(MaND, 3, LEN(MaND) - 2) AS INT)), 0)
+    FROM NguoiDung;
+    SET @MaxNumber = @MaxNumber + 1;
+
+    RETURN 'ND' + RIGHT('00' + CAST(@MaxNumber AS NVARCHAR(50)), 2);
+END;
+
+GO
 
 -- --------------------------------------Lệnh update dữ liệu--------------------------------------------------------
 UPDATE cthd

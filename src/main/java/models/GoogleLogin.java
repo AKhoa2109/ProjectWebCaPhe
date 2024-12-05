@@ -7,6 +7,9 @@ import com.google.api.client.googleapis.auth.oauth2.GoogleAuthorizationCodeFlow;
 import com.google.api.client.googleapis.auth.oauth2.GoogleAuthorizationCodeTokenRequest;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
+
+import daos.NguoiDungDao;
+
 import org.apache.http.client.fluent.Request;
 import org.apache.hc.client5.http.ClientProtocolException;
 import org.apache.http.client.fluent.Form;
@@ -59,7 +62,9 @@ public class GoogleLogin {
         JsonObject googleResponse = new Gson().fromJson(response, JsonObject.class);
 
         // Tạo đối tượng NguoiDung và ánh xạ các trường từ Google API
+        NguoiDungDao nDao = new NguoiDungDao();
         NguoiDung googleUser = new NguoiDung();
+        googleUser.setMaND(nDao.generateMaND());
         googleUser.setTenND(googleResponse.get("name").getAsString());  // Tên người dùng
         googleUser.setGioiTinh(googleResponse.has("gender") ? googleResponse.get("gender").getAsString() : "");  // Giới tính (nếu có)
         googleUser.setEmail(googleResponse.get("email").getAsString());  // Email

@@ -58,6 +58,7 @@ public class TrangChuServlet extends HttpServlet {
 
 		GioHangDao ghDao = new GioHangDao();
 		NguoiDung nd = (NguoiDung) session.getAttribute("nguoiDung"); // Lấy mã người dùng từ session
+		session.setAttribute("nguoiDung", nd);
 		if (nd != null) {
 		    List<GioHang> cart = ghDao.getById(nd.getMaND());
 		    session.setAttribute("soSPDat", cart.size());

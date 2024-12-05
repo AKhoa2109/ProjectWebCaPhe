@@ -47,11 +47,22 @@ public class ThongTinCaNhanServlet extends HttpServlet {
 		NguoiDungDao ndDao= new NguoiDungDao();
 		String action = request.getParameter("action");
 		HttpSession session = request.getSession();
-		NguoiDung nd = (NguoiDung) session.getAttribute("nguoiDung");		
+		NguoiDung nd = (NguoiDung) session.getAttribute("nguoiDung");
+		NguoiDung nDung = ndDao.getById(nd.getMaND());
+		
 		if(action == null)
 		{
-			session.setAttribute("nguoiDung", nd);
-			request.getRequestDispatcher("/views/template/profile.jsp").forward(request, response);
+			
+			if(nDung==null)
+			{
+				session.setAttribute("nguoiDung", nd);
+				request.getRequestDispatcher("/views/template/profile.jsp").forward(request, response);
+			}
+			else {
+				session.setAttribute("nguoiDung", nDung);
+				request.getRequestDispatcher("/views/template/profile.jsp").forward(request, response);
+			}
+			
 		}
 		else if(action.equals("luu"))
 		{
@@ -66,17 +77,17 @@ public class ThongTinCaNhanServlet extends HttpServlet {
 			String diaChi = request.getParameter("diaChi");
 			int year = Integer.parseInt(ngay);
 
-			nd = new NguoiDung(nd.getMaND(), hoTen, year, gioiTinh, sdt, email, diaChi, anhND, "User", tenDangNhap, matKhau);
+			nDung = new NguoiDung(nd.getMaND(), hoTen, year, gioiTinh, sdt, email, diaChi, anhND, "User", tenDangNhap, matKhau);
 			XuLyAnh xLyAnh = new XuLyAnh();
 			xLyAnh.luuAnh(request, getServletContext(), "HinhNguoiDung");
-			if (ndDao.update(nd)) {
+			if (ndDao.update(nDung)) {
 				request.setAttribute("msg", "Thêm thành công");
 				request.setAttribute("typeMess", "success");
 			} else {
 				request.setAttribute("msg", "Không thành công");
 				request.setAttribute("typeMess", "error");
 			}
-			session.setAttribute("nguoiDung", nd);
+			session.setAttribute("nguoiDung", nDung);
 			request.getRequestDispatcher("/views/template/profile.jsp").forward(request, response);
 			
 		}

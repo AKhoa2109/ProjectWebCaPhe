@@ -274,7 +274,9 @@ public class NguoiDungDao {
             rs = ps.executeQuery(); 
             if (rs.next()) {
             	int count = rs.getInt(1);
-                return count > 0;
+            	if(count==1){
+                	return true;
+                }
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -296,7 +298,9 @@ public class NguoiDungDao {
             rs = ps.executeQuery(); 
             if (rs.next()) {
             	int count = rs.getInt(1);
-                return count > 0;
+                if(count==1){
+                	return true;
+                }
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -364,6 +368,45 @@ public class NguoiDungDao {
             DBConnection.close(rs, ps, conn);
         }
     	return role;
+    }
+    public String generateMaND() {
+		String sql = "SELECT dbo.FUNC_TaoMaND() AS MaND";
+		String maND = null;
+		try {
+			conn = DBConnection.getConnection();
+			ps = conn.prepareStatement(sql);
+			rs = ps.executeQuery();
+			if (rs.next()) {
+				maND = rs.getString("MaND");
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			DBConnection.close(rs, ps, conn);
+		}
+		return maND;
+	}
+    
+    public String getIDByEmail(String email)
+    {
+    	String sql = """
+    			SELECT MaND FROM NguoiDung WHERE Email = ?
+    			""";
+    	 String maND = null;
+    	try {
+            conn = DBConnection.getConnection();
+            ps = conn.prepareStatement(sql);
+            ps.setString(1, email);
+            rs = ps.executeQuery(); 
+            if (rs.next()) {
+            	maND = rs.getString("MaND");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            DBConnection.close(rs, ps, conn);
+        }
+    	return maND;
     }
  
 }

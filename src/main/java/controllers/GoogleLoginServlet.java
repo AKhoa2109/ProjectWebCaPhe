@@ -43,6 +43,10 @@ public class GoogleLoginServlet extends HttpServlet {
 			GoogleLogin gg = new GoogleLogin();
 			String accessToken = gg.getToken(code);
 			NguoiDung nguoiDung = gg.getUserInfo(accessToken);
+			if(nguoiDung.getMaND()=="")
+			{
+				nguoiDung.setMaND(ndDao.getIDByEmail(nguoiDung.getEmail()));
+			}
 			if(!ndDao.checkMailExsist(nguoiDung.getEmail()))
 			{
 				if(ndDao.insert(nguoiDung))
@@ -61,6 +65,7 @@ public class GoogleLoginServlet extends HttpServlet {
 				}
 			}
 			else {
+				nguoiDung = ndDao.getById(nguoiDung.getMaND());
 				HttpSession session = request.getSession();
 				session.setAttribute("nguoiDung", nguoiDung);
 				session.setAttribute("msg", "Đăng nhập thành công");
