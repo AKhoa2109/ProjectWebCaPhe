@@ -1,4 +1,8 @@
-﻿------------------------------------------------------Trigger------------------------------------------------------
+﻿USE WebBanCaPhe
+
+GO
+
+------------------------------------------------------Trigger------------------------------------------------------
 CREATE TRIGGER trg_TuDongTaoMaSlide_Slide
 ON Slide
 INSTEAD OF INSERT
@@ -331,48 +335,36 @@ BEGIN
     END CATCH
 END; 
 
+GO
+
 -- --------------------------------------------Func----------------------------------------------
 CREATE FUNCTION [dbo].[FUNC_TaoMaDH]()
 RETURNS NVARCHAR(50)
 AS
 BEGIN
     DECLARE @MaxNumber INT;
-<<<<<<< HEAD
 
     SELECT @MaxNumber = ISNULL(MAX(CAST(SUBSTRING(MaDH, 3, LEN(MaDH) - 2) AS INT)), 0)
     FROM DonHang;
-
     SET @MaxNumber = @MaxNumber + 1;
 
-=======
-    SELECT @MaxNumber = ISNULL(MAX(CAST(SUBSTRING(MaDH, 3, LEN(MaDH) - 2) AS INT)), 0)
-    FROM DonHang;
-    SET @MaxNumber = @MaxNumber + 1;
->>>>>>> remotes/origin/develop
     RETURN 'DH' + RIGHT('00' + CAST(@MaxNumber AS NVARCHAR(50)), 2);
 END;
 
--- --------------------------------------Lệnh update dữ liệu--------------------------------------------------------
-select sp.GiaSP, cthd.SoLuong, cthd.TongTien 
-from ChiTietHoaDon cthd 
-join SanPham sp on cthd.MaSP = sp.MaSP
+GO
 
+-- --------------------------------------Lệnh update dữ liệu--------------------------------------------------------
 UPDATE cthd
 SET cthd.TongTien = cthd.SoLuong * sp.GiaSP
 FROM ChiTietHoaDon cthd
 JOIN SanPham sp ON cthd.MaSP = sp.MaSP
 
+GO
+
+select sp.GiaSP, cthd.SoLuong, cthd.TongTien 
+from ChiTietHoaDon cthd 
+join SanPham sp on cthd.MaSP = sp.MaSP
 
 
------------------------------------------------Test-------------------------------------------------------------------
-/*
-SELECT * FROM NguyenLieu
 
-INSERT INTO NguyenLieu(MaNL, TenNL, SoLuongTonKho, MaDV)
-VALUES  ('',N'Ngò rí', 323, 'DV01')
-
-delete from NguyenLieu where MaNL='NL'
-*/
-
-SELECT dbo.func_TongTien_ChiTietHoaDon('DH02') AS TongThanhToan;
  
