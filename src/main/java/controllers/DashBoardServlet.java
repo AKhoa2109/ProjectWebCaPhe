@@ -43,7 +43,7 @@ public class DashBoardServlet extends HttpServlet {
 		String action = request.getParameter("action");
 		HttpSession session = request.getSession(false);
 
-		if (session != null || session.getAttribute("role").equals("Admin")) 
+		if (session != null && session.getAttribute("role").equals("Admin")) 
 		{
 			String msg = (String) session.getAttribute("msg");
 			String typeMess = (String) session.getAttribute("typeMess");

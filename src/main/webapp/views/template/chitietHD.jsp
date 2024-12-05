@@ -32,7 +32,7 @@
 	</jsp:include>
 
     <!-- Form cho combobox "Khu vực", gửi dữ liệu tới HoaDonServlet khi thay đổi -->
-    <form action="HoaDonServlet" method="POST">
+    <form action="HoaDonServlet" method="post">
         <div class="bill-container">
             <h1>Xác nhận đơn hàng</h1>
             <div class="content-wrapper">
