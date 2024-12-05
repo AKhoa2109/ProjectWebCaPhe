@@ -48,49 +48,35 @@ public class HoaDonServlet extends HttpServlet {
         NguoiDung nd = (NguoiDung) session.getAttribute("nguoiDung"); // Lấy mã người dùng từ session
 	    String action = request.getParameter("action");
 	    String maGG = request.getParameter("maGiamGia");     	 // Xử lí mã giảm giá  
-	    if(session!=null)
-	    {
-	    	if(action==null)
-	    	{
-	    		action = "";
-	    		String msg = (String) session.getAttribute("msg");
-		        if(msg!=null)
-		        {
-		        	request.setAttribute("msg", msg);
-		        	session.removeAttribute("msg");
-		        }
-	    	}
-	        // Xử lí thêm voucher
-		    else if (action.equals("themVC")) {
-	        	try {
-	                // Kiểm tra nếu mã giảm giá không phải là null hoặc chuỗi rỗng
-	                if (maGG != null && !maGG.isEmpty()) {
-	                    VoucherDao vcDao = new VoucherDao();
-	                    Voucher vc = vcDao.getById(maGG); // Lấy mã giảm giá từ database
-	                    if (vc != null) {
-	                        // Nếu tìm thấy voucher hợp lệ, đưa giá trị giảm giá vào request
-	                    	session.setAttribute("maGiamGia", maGG);
-	                        session.setAttribute("giamGia", vc.getGiaTriVC());
-	                        session.setAttribute("msg", "Đã áp dụng mã giảm giá");
-	                    } else {
-	                        // Nếu không tìm thấy voucher tương ứng, thông báo lỗi
-	                    	session.setAttribute("msg", "Mã giảm giá không hợp lệ");
-	                    }
-	                }
-	            } catch (Exception e) {
-	                e.printStackTrace();
-	                session.setAttribute("msg", "Lỗi khi xử lý mã giảm giá");
-	            }
-	        }     // Xử lí hủy voucher 
-	        else if (action.equals("huyVC")) {
-	        	session.removeAttribute("maGiamGia");
-	            session.setAttribute("giamGia", 0);
-	            session.setAttribute("msg", "Mã giảm giá đã bị hủy");     
-	        }  
-		   
-	    }
-      
-        
+
+    	if (action==null) { action = ""; }
+        // Xử lí thêm voucher
+	    if (action.equals("themVC")) {
+        	try {
+                // Kiểm tra nếu mã giảm giá không phải là null hoặc chuỗi rỗng
+                if (maGG != null && !maGG.isEmpty()) {
+                    VoucherDao vcDao = new VoucherDao();
+                    Voucher vc = vcDao.getById(maGG); // Lấy mã giảm giá từ database
+                    if (vc != null) {
+                        // Nếu tìm thấy voucher hợp lệ, đưa giá trị giảm giá vào request
+                    	session.setAttribute("maGiamGia", maGG);
+                        session.setAttribute("giamGia", vc.getGiaTriVC());
+                        request.setAttribute("msg", "Đã áp dụng mã giảm giá");
+                    } else {
+                        // Nếu không tìm thấy voucher tương ứng, thông báo lỗi
+                    	request.setAttribute("msg", "Mã giảm giá không hợp lệ");
+                    }
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+                request.setAttribute("msg", "Lỗi khi xử lý mã giảm giá");
+            }
+        }     // Xử lí hủy voucher 
+        else if (action.equals("huyVC")) {
+        	session.removeAttribute("maGiamGia");
+            session.setAttribute("giamGia", "0");
+            request.setAttribute("msg", "Mã giảm giá đã bị hủy");
+        }               
         
         // Xử lí khu vực
 	    List<KhuVuc> dSKhuVuc = kvDAO.getAll();
@@ -156,13 +142,9 @@ public class HoaDonServlet extends HttpServlet {
 	    request.setAttribute("cart", cart);
 	    request.setAttribute("action", "");
 
-		/*
-		 * // Lấy tham số để hiện thông báo String msg = (String)
-		 * request.getAttribute("msg"); request.setAttribute("msg", msg);
-		 */
 	    	
 	    // Chuyển tiếp sang JSP (chỉ gọi 1 lần)
-		    getServletContext().getRequestDispatcher("/views/template/chitietHD.jsp").forward(request, response);
+		getServletContext().getRequestDispatcher("/views/template/chitietHD.jsp").forward(request, response);
 	}
 
 	/**
