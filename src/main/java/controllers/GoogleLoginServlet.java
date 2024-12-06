@@ -43,7 +43,7 @@ public class GoogleLoginServlet extends HttpServlet {
 			GoogleLogin gg = new GoogleLogin();
 			String accessToken = gg.getToken(code);
 			NguoiDung nguoiDung = gg.getUserInfo(accessToken);
-			if(nguoiDung.getMaND()=="")
+			if(nguoiDung.getMaND().equals(""))
 			{
 				nguoiDung.setMaND(ndDao.getIDByEmail(nguoiDung.getEmail()));
 			}

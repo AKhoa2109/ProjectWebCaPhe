@@ -29,7 +29,7 @@ public class GoogleLogin {
         // Constructor can be left empty if not needed for initialization
     }
 
-    public static String getToken(String code) throws IOException {
+    public String getToken(String code) throws IOException {
         // Create the request to exchange the authorization code for an access token
         String response = Request.Post(GOOGLE_LINK_GET_TOKEN)
                 .bodyForm(Form.form()
@@ -50,7 +50,7 @@ public class GoogleLogin {
         return accessToken;
     }
     
-    public static NguoiDung getUserInfo(final String accessToken) throws ClientProtocolException, IOException {
+    public NguoiDung getUserInfo(final String accessToken) throws ClientProtocolException, IOException {
 
     	// Liên kết URL lấy thông tin người dùng từ Google
         String link = GOOGLE_LINK_GET_USER_INFO + accessToken;
@@ -62,20 +62,27 @@ public class GoogleLogin {
         JsonObject googleResponse = new Gson().fromJson(response, JsonObject.class);
 
         // Tạo đối tượng NguoiDung và ánh xạ các trường từ Google API
+        
         NguoiDungDao nDao = new NguoiDungDao();
         NguoiDung googleUser = new NguoiDung();
-        googleUser.setMaND(nDao.generateMaND());
+        if(googleUser.getMaND()==null)
+        {
+        	googleUser.setMaND(nDao.generateMaND());
+        }
+        else {
+        	googleUser.setMaND(nDao.getIDByEmail(googleResponse.get("email").getAsString()));
+        }
+        
         googleUser.setTenND(googleResponse.get("name").getAsString());  // Tên người dùng
         googleUser.setGioiTinh(googleResponse.has("gender") ? googleResponse.get("gender").getAsString() : "");  // Giới tính (nếu có)
-        googleUser.setEmail(googleResponse.get("email").getAsString());  // Email
         googleUser.setAnhND(googleResponse.get("picture").getAsString());  // Link ảnh đại diện
+        googleUser.setEmail(googleResponse.get("email").getAsString());  // Email
         googleUser.setSdt("");  // Số điện thoại (Google API không cung cấp)
         googleUser.setDiaChi("");  // Địa chỉ (Google API không cung cấp)
         googleUser.setNamSinh(0);  // Năm sinh (Google API không cung cấp)
         googleUser.setTenDangNhap("");
         googleUser.setMatKhau("");
         googleUser.setVaiTro("User");
-        googleUser.setMaND("");
         return googleUser;
 
     }
