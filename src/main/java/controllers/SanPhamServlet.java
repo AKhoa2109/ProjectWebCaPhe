@@ -47,7 +47,7 @@ public class SanPhamServlet extends HttpServlet {
         
         if (action == null) {
             request.setAttribute("sanPhamList", spDao.getAll());
-            request.setAttribute("loaiSPList", lspDao.getAll());
+            request.setAttribute("loaiSPList", lspDao.getAll()); 
             request.getRequestDispatcher("/views/template/admin.jsp?page=sanPhamTable").forward(request, response);
         } else if (action.equals("filter")) { 
         	String option = request.getParameter("filterOption");

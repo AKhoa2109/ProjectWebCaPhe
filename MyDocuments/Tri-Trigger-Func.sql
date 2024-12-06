@@ -367,17 +367,7 @@ END;
 
 GO
 
--- --------------------------------------Lệnh update dữ liệu--------------------------------------------------------
-UPDATE cthd
-SET cthd.TongTien = cthd.SoLuong * sp.GiaSP
-FROM ChiTietHoaDon cthd
-JOIN SanPham sp ON cthd.MaSP = sp.MaSP
-
-GO
-
-select sp.GiaSP, cthd.SoLuong, cthd.TongTien 
-from ChiTietHoaDon cthd 
-join SanPham sp on cthd.MaSP = sp.MaSP
+ 
 
 
 

@@ -14,7 +14,7 @@ public class SQLServerConnection {
 	    String connectionURL = dbURL + ";databaseName=" + dbName + ";encrypt=true;trustServerCertificate=true";
 	    
 	    String dbUsername = "sa";  
-	    String dbPassword = "123456";
+	    String dbPassword = "1234567890";
 	    
 	    Connection conn = null; //Đối tượng kết nối CSDL
 	    try { 

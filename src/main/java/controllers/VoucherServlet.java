@@ -39,7 +39,7 @@ public class VoucherServlet extends HttpServlet {
             request.getRequestDispatcher("/views/template/admin.jsp?page=voucherAdd").forward(request, response);
         } else if (action.equals("edit")) {
             String maVC = request.getParameter("maVC");
-            request.setAttribute("voucher", vcDao.getById(maVC));
+            request.setAttribute("voucher", vcDao.getByIdToUpdate(maVC)); 
             request.getRequestDispatcher("/views/template/admin.jsp?page=voucherEdit").forward(request, response);
         } else if (action.equals("insert") || action.equals("update")) {
             String maVC = request.getParameter("maVC");

@@ -17,7 +17,7 @@ public class SanPhamDao {
 	public SanPhamDao() {
 		// TODO Auto-generated constructor stub
 	}
-	 
+	
 	public List<SanPham> getAll()
 	{
 		String sql = """
@@ -31,7 +31,7 @@ public class SanPhamDao {
             conn = DBConnection.getConnection();
             ps = conn.prepareStatement(sql);
             rs = ps.executeQuery();
-            
+         // public SanPham(String maSP, String tenSP, float giaSP, String anhSP, String maLoaiSP, String moTaSP, String tenLoaiSP) 
             while (rs.next()) {  
             	SanPham sp = new SanPham(
                     rs.getString("MaSP"),  
@@ -41,7 +41,7 @@ public class SanPhamDao {
                     rs.getString("MaLoaiSP"),
                     rs.getString("MoTaSP"),
                     rs.getString("TenLoaiSP")
-                );
+                ); 
                 data.add(sp);   
             }
         } catch (SQLException e) {

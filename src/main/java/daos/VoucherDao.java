@@ -81,6 +81,42 @@ public class VoucherDao {
                     rs.getDate("ngayKetThuc"),
                     rs.getString("trangThai")
                 );
+               System.out.println(voucher);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            DBConnection.close(rs, ps, conn);
+        }
+        return voucher;
+    }
+    
+    public Voucher getByIdToUpdate(String maVC) {
+        String sql = """
+                SELECT * 
+                FROM Voucher
+                WHERE maVC = ?  
+            """;
+        Voucher voucher = null;
+
+        try {
+            conn = DBConnection.getConnection();
+            ps = conn.prepareStatement(sql);
+            ps.setString(1, maVC);
+            rs = ps.executeQuery();
+
+            if (rs.next()) {
+                voucher = new Voucher(
+                    rs.getString("maVC"),
+                    rs.getString("tenVC"),
+                    rs.getFloat("giaTriVC"),
+                    rs.getInt("soLuotSuDungToiDa"),
+                    rs.getInt("soLuotDaSuDung"),
+                    rs.getDate("ngayBatDau"),
+                    rs.getDate("ngayKetThuc"),
+                    rs.getString("trangThai")
+                );
+               System.out.println(voucher);
             }
         } catch (SQLException e) {
             e.printStackTrace();

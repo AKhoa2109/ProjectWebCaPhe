@@ -34,6 +34,7 @@ public class SanPham {
 		this.anhSP = anhSP;
 		this.maLoaiSP = maLoaiSP;
 		this.moTaSP = moTaSP;
+		this.tenLoaiSP = tenLoaiSP;
 	}
 	
 	
@@ -101,5 +102,19 @@ public class SanPham {
 	{
 		DecimalFormat formatter = new DecimalFormat("#,###");
 		return formatter.format(getGiaSP())+"đ";
+	}
+	
+	@Override
+    public String toString() {
+        return "SanPham{" +
+                "maSP='" + maSP + '\'' +
+                ", tenSP='" + tenSP + '\'' +
+                ", giaSP=" + giaSP +
+                ", anhSP='" + anhSP + '\'' +
+                ", maLoaiSP='" + maLoaiSP + '\'' +
+                ", moTaSP='" + moTaSP + '\'' +
+                ", tenLoaiSP='" + tenLoaiSP + '\'' +
+                ", trungBinhSoSao=" + trungBinhSoSao +
+                '}';
 	}
 }
