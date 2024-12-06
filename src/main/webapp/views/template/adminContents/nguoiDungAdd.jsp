@@ -25,7 +25,7 @@
 		        </div>
 		
 		        <div class="border p-3 text-center mt-3 bg-white">
-		            <img src="<%=request.getContextPath()%>/views/assets/images/HinhNguoiDung/${nguoiDung.anhND}" 
+		            <img src="" 
 		                 onerror="this.src='https://via.placeholder.com/150x150'"
 		                 alt="Placeholder Image"
 		                 class="img-fluid img-thumbnail shadow-sm rounded"

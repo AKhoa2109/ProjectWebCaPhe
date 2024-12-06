@@ -15,7 +15,7 @@
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle d-flex align-items-center" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="color: black;">
-                        <img src="<%=request.getContextPath()%>/views/assets/images/HinhNguoiDung/Avt1.jpg" 
+                        <img src="<%=request.getContextPath()%>/views/assets/images/HinhNguoiDung/Avt1.jpg"  
 					         alt= "Avatar admin" 
 					         class="rounded-circle" style="width:30px; margin-right: 8px;"/> Admin
                     </a>
