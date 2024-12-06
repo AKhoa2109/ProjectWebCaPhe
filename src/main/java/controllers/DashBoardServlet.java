@@ -65,7 +65,7 @@ public class DashBoardServlet extends HttpServlet {
 
 				try {
 					if (startDateStr == null || startDateStr.isEmpty()) {
-						startDateSql = Date.valueOf("2024-11-02"); // Ngày bắt đầu mặc định
+						startDateSql = Date.valueOf("2024-11-01"); // Ngày bắt đầu mặc định
 					} else {
 						startDateSql = Date.valueOf(startDateStr);
 					}

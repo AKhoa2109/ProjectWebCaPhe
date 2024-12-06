@@ -50,7 +50,7 @@
                     </div>
                     <div class="section">
 			           <h2><i class="fas fa-credit-card"></i> Phương thức thanh toán</h2>
-			           <div class="payment-method">
+			           <div class="input-group">
 			               <select name="maPTTT" onchange="this.form.submit()">
 			                   <c:forEach var="pT" items="${dSPTTT}">
 			                       <option value="${pT.maPTTT}" <c:if test="${pT.maPTTT == sessionScope.maPTTT}">selected</c:if>>${pT.tenPTTT}</option>
@@ -58,15 +58,15 @@
 			               </select>
 			           </div>
 			       </div>
-			       <div class="section">
+			       <div class="section input-group">
 			           <h2><i class="fa-solid fa-ticket"></i> Mã giảm giá</h2>
+			           <input type="text" name="maGiamGia" value="${sessionScope.maGiamGia != null ? sessionScope.maGiamGia : ''}" placeholder="Nhập mã giảm giá" style="width: 140px; padding: 5px; border: 1px solid #ccc; border-radius: 4px;">
 			           <!-- Nút Áp dụng -->
-					   <button type="submit" style="padding: 5px 10px; background-color: #ff9900; color: white; border: none; border-radius: 4px; cursor: pointer;" onclick="setActionValue('themVC')">
+					   <button type="submit" name="action" value="themVC" style="width: 140px; padding: 5px 10px; background-color: #ff9900; color: white; border: none; border-radius: 4px; cursor: pointer;">
 					       Áp dụng
-					   </button>
-					   <input type="text" name="maGiamGia" value="${sessionScope.maGiamGia != null ? sessionScope.maGiamGia : ''}" placeholder="Nhập mã giảm giá" style="width: 142px; padding: 5px; border: 1px solid #ccc; border-radius: 4px;">
+					   </button>					   
 					   <!-- Nút Hủy -->
-					   <button type="submit" style="padding: 5px 10px; background-color: #f44336; color: white; border: none; border-radius: 4px; cursor: pointer;" onclick="setActionValue('huyVC')">
+					   <button type="submit" name="action" value="huyVC" style="width: 140px; padding: 5px 10px; background-color: #f44336; color: white; border: none; border-radius: 4px; cursor: pointer;">
 					       Hủy
 					   </button>
 					   <!-- Trường ẩn chứa giá trị của action -->
@@ -87,15 +87,15 @@
                         <!-- Các trường thông tin giao hàng khác -->
                         <div class="input-group">
                             <label>Địa chỉ chi tiết</label>
-                            <input type="text" name="diaChi" value="${sessionScope.nguoiDung.diaChi != null ? sessionScope.nguoiDung.diaChi : ''}" placeholder="Nhập địa chỉ chi tiết">
+                            <input type="text" name="diaChi" value="${sessionScope.nguoiDung.diaChi != null ? sessionScope.nguoiDung.diaChi : ''}" placeholder="Nhập địa chỉ chi tiết" readonly>
                         </div>
                         <div class="input-group">
                             <label>Tên</label>
-                            <input type="text" name="ten" value="${sessionScope.nguoiDung.tenND != null ? sessionScope.nguoiDung.tenND : ''}" placeholder="Nhập họ và tên">
+                            <input type="text" name="ten" value="${sessionScope.nguoiDung.tenND != null ? sessionScope.nguoiDung.tenND : ''}" placeholder="Nhập họ và tên" readonly>
                         </div>
                         <div class="input-group">
                             <label>Số điện thoại</label>
-                            <input type="text" name="soDT" value="${sessionScope.nguoiDung.sdt != null ? sessionScope.nguoiDung.sdt : ''}" placeholder="Nhập số điện thoại">
+                            <input type="text" name="soDT" value="${sessionScope.nguoiDung.sdt != null ? sessionScope.nguoiDung.sdt : ''}" placeholder="Nhập số điện thoại" readonly>
                         </div>
                     </div>                              
                 </div>
@@ -125,11 +125,11 @@
                         </div>
                         <div class="order-total">
                             <p>Phí giao hàng</p>
-                            <p><fmt:formatNumber value="${sessionScope.kvPhi}" type="number" pattern="#,##0" />đ</p>
+                            <p><fmt:formatNumber value="${sessionScope.kvPhi != null ? sessionScope.kvPhi : 0}" type="number" pattern="#,##0" />đ</p>
                         </div>
                          <div class="order-total">
 					        <p>Giảm giá</p>
-					        <p><fmt:formatNumber value="${sessionScope.giamGia}" type="number" pattern="#,##0" />đ</p>
+					        <p><fmt:formatNumber value="${sessionScope.giamGia != null ? sessionScope.giamGia : 0}" type="number" pattern="#,##0" />đ</p>
 					    </div>
                         <div class="order-total">
 					        <p>Tổng tiền</p>
@@ -145,9 +145,4 @@
         </div>
     </form>
 </body>
-<script>
-    function setActionValue(value) {
-        document.getElementById('action').value = value;  // Cập nhật giá trị của action khi bấm nút
-    }
-</script>
 </html>

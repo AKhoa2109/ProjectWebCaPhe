@@ -10,7 +10,7 @@
 <html>
 <head>
 	<meta charset="UTF-8">
-	<title>Insert title here</title>
+	<title>admin</title>
 	 
 	 
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" >  <!--  Bootstrap 4 từ CDN -->
@@ -34,21 +34,7 @@
 	<style>   
 		 
 	@media print {
-	    body * { 
-	        visibility: hidden; /* Ẩn mọi thành phần */
-	    }
-	    #invoiceContentIn, #invoiceContentIn * {
-	        visibility: visible; /* Hiển thị nội dung cần in */
-	    }
-	    #invoiceContentIn {
-	        position: absolute;
-	        top: 0;
-	        left: 0;
-	        width: 100%; /* Đảm bảo chiếm toàn bộ chiều rộng trang */
-	        padding: 0; /* Loại bỏ padding nếu có */
-	        margin: 0; /* Loại bỏ margin nếu có */
-	    }
-	
+
 	    /* Ẩn hoàn toàn drawer nhưng không chiếm không gian */
 	    #drawer {
 	        display: none !important;
