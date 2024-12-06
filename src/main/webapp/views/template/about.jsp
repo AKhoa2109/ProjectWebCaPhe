@@ -21,7 +21,7 @@
 				Us</h1>
 			<nav aria-label="breadcrumb slideInDown">
 				<ol class="custom-breadcrumb justify-content-center mb-0">
-					<li class="custom-breadcrumb-item text-light"><a href="#">Trang
+					<li class="custom-breadcrumb-item text-light"><a href="<%=request.getContextPath()%>/TrangChuServlet">Trang
 							chủ</a></li>
 					<li class="custom-breadcrumb-item text-light" aria-current="page">Giới
 						thiệu</li>
