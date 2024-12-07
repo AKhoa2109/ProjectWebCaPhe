@@ -325,9 +325,10 @@ public class ChiTietHoaDonDao {
 
 	public List<Map<String, Object>> getNgayMuaVaGiaTriDHByDateRange(Date startDate, Date endDate) {
 	    String sql = """
-	        SELECT dh.NgayMua, dh.GiaTriDH
+	        SELECT dh.NgayMua, SUM(dh.GiaTriDH) AS GiaTriDH
 	        FROM DonHang dh
 	        WHERE dh.NgayMua BETWEEN ? AND ?
+	        GROUP BY dh.NgayMua
 	    """;
 
 	    List<Map<String, Object>> result = new ArrayList<>();
