@@ -65,14 +65,7 @@ public class GoogleLogin {
         
         NguoiDungDao nDao = new NguoiDungDao();
         NguoiDung googleUser = new NguoiDung();
-        if(googleUser.getMaND()==null)
-        {
-        	googleUser.setMaND(nDao.generateMaND());
-        }
-        else {
-        	googleUser.setMaND(nDao.getIDByEmail(googleResponse.get("email").getAsString()));
-        }
-        
+    
         googleUser.setTenND(googleResponse.get("name").getAsString());  // Tên người dùng
         googleUser.setGioiTinh(googleResponse.has("gender") ? googleResponse.get("gender").getAsString() : "");  // Giới tính (nếu có)
         googleUser.setAnhND(googleResponse.get("picture").getAsString());  // Link ảnh đại diện
@@ -83,6 +76,14 @@ public class GoogleLogin {
         googleUser.setTenDangNhap("");
         googleUser.setMatKhau("");
         googleUser.setVaiTro("User");
+        googleUser.setMaND(nDao.getIDByEmail(googleResponse.get("email").getAsString()));
+        if(googleUser.getMaND()!=null)
+        {
+        	googleUser.setMaND(nDao.getIDByEmail(googleResponse.get("email").getAsString()));
+        }
+        else {
+        	googleUser.setMaND(nDao.generateMaND());
+        }
         return googleUser;
 
     }
